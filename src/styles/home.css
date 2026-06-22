@@ -416,16 +416,16 @@ section { position: relative; padding: clamp(78px, 10vw, 150px) 0; }
 }
 
 /* Fan layout when family is active */
-.product-family.active img:nth-child(1) { transform: rotate(-12deg) translateX(-45px) translateY(0) scale(1); z-index: 1; }
-.product-family.active img:nth-child(2) { transform: rotate(-6deg) translateX(-22px) translateY(0) scale(1); z-index: 2; }
+.product-family.active img:nth-child(1) { transform: rotate(-14deg) translateX(-140px) translateY(12px) scale(0.95); z-index: 1; }
+.product-family.active img:nth-child(2) { transform: rotate(-7deg) translateX(-70px) translateY(4px) scale(0.98); z-index: 3; }
 .product-family.active img:nth-child(3) { transform: rotate(0deg) translateX(0) translateY(0) scale(1); z-index: 5; }
-.product-family.active img:nth-child(4) { transform: rotate(6deg) translateX(22px) translateY(0) scale(1); z-index: 4; }
-.product-family.active img:nth-child(5) { transform: rotate(12deg) translateX(45px) translateY(0) scale(1); z-index: 3; }
+.product-family.active img:nth-child(4) { transform: rotate(7deg) translateX(70px) translateY(4px) scale(0.98); z-index: 4; }
+.product-family.active img:nth-child(5) { transform: rotate(14deg) translateX(140px) translateY(12px) scale(0.95); z-index: 2; }
 
 /* 3-item layout override when active */
-.product-family.active img:first-child:nth-last-child(3) { transform: rotate(-8deg) translateX(-30px) translateY(0) scale(1); z-index: 1 !important; }
+.product-family.active img:first-child:nth-last-child(3) { transform: rotate(-10deg) translateX(-85px) translateY(8px) scale(0.97); z-index: 1 !important; }
 .product-family.active img:first-child:nth-last-child(3) + img { transform: rotate(0deg) translateX(0) translateY(0) scale(1); z-index: 3 !important; }
-.product-family.active img:first-child:nth-last-child(3) + img + img { transform: rotate(8deg) translateX(30px) translateY(0) scale(1); z-index: 2 !important; }
+.product-family.active img:first-child:nth-last-child(3) + img + img { transform: rotate(10deg) translateX(85px) translateY(8px) scale(0.97); z-index: 2 !important; }
 
 /* Interactive Hover effect */
 .product-family img:hover {
@@ -442,37 +442,83 @@ section { position: relative; padding: clamp(78px, 10vw, 150px) 0; }
 
 .feed-section { overflow: hidden; background: var(--cream); }
 .feed-section .section-title { max-width: 900px; }
+.feed-track-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 46px;
+}
 .feed-track {
   display: flex;
-  gap: 18px;
+  gap: 24px;
   width: max-content;
-  margin-top: 46px;
-  padding-right: 8vw;
-  will-change: transform;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 24px 32px;
+  will-change: scroll-position;
+}
+.feed-track::-webkit-scrollbar {
+  display: none;
 }
 .reel-card {
   position: relative;
-  width: min(300px, 72vw);
-  aspect-ratio: 9 / 15;
+  width: clamp(240px, 20vw, 320px);
+  aspect-ratio: 9 / 16;
   flex: 0 0 auto;
-  border: 1px solid rgba(9,9,9,.1);
+  border: 1px solid rgba(9,9,9,.08);
   background: var(--black);
-  transform-origin: center;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease, box-shadow 0.4s ease;
 }
-.reel-card:nth-child(odd) { transform: rotate(-1.2deg); }
-.reel-card:nth-child(even) { transform: rotate(1deg) translateY(18px); }
+.reel-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+  z-index: 2;
+}
+.reel-video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.reel-video, .reel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: scale 0.8s var(--ease);
+}
+.reel-card:hover .reel-video,
+.reel-card:hover .reel-image {
+  scale: 1.05;
+}
+.reel-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .reel-label {
   position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
   z-index: 2;
-  color: rgba(247,243,238,.88);
-  font-size: 10px;
-  font-weight: var(--weight-label);
-  letter-spacing: .11em;
-  line-height: 1.45;
+  color: var(--white);
+  font-size: clamp(10px, 1.2vw, 13px);
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.4;
   text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+.reel-card:hover .reel-label {
+  opacity: 1;
 }
 
 .faq { border-top: 1px solid rgba(9,9,9,.08); }
@@ -565,26 +611,16 @@ section { position: relative; padding: clamp(78px, 10vw, 150px) 0; }
     height: clamp(200px, 32vh, 250px);
     margin-left: 0;
   }
-  .product-family.active img:nth-child(1) { transform: rotate(-8deg) translateX(-30px); }
-  .product-family.active img:nth-child(2) { transform: rotate(-4deg) translateX(-15px); }
-  .product-family.active img:nth-child(3) { transform: rotate(0deg) translateX(0); }
-  .product-family.active img:nth-child(4) { transform: rotate(4deg) translateX(15px); }
-  .product-family.active img:nth-child(5) { transform: rotate(8deg) translateX(30px); }
+  .product-family.active img:nth-child(1) { transform: rotate(-10deg) translateX(-70px) translateY(5px) scale(0.96); }
+  .product-family.active img:nth-child(2) { transform: rotate(-5deg) translateX(-35px) translateY(1px) scale(0.98); }
+  .product-family.active img:nth-child(3) { transform: rotate(0deg) translateX(0) translateY(0) scale(1); }
+  .product-family.active img:nth-child(4) { transform: rotate(5deg) translateX(35px) translateY(1px) scale(0.98); }
+  .product-family.active img:nth-child(5) { transform: rotate(10deg) translateX(70px) translateY(5px) scale(0.96); }
 
-  .product-family.active img:first-child:nth-last-child(3) { transform: rotate(-6deg) translateX(-20px); }
-  .product-family.active img:first-child:nth-last-child(3) + img { transform: rotate(0deg) translateX(0); }
-  .product-family.active img:first-child:nth-last-child(3) + img + img { transform: rotate(6deg) translateX(20px); }
+  .product-family.active img:first-child:nth-last-child(3) { transform: rotate(-8deg) translateX(-50px) translateY(4px) scale(0.97); }
+  .product-family.active img:first-child:nth-last-child(3) + img { transform: rotate(0deg) translateX(0) translateY(0) scale(1); }
+  .product-family.active img:first-child:nth-last-child(3) + img + img { transform: rotate(8deg) translateX(50px) translateY(4px) scale(0.97); }
   .feed-section { padding-bottom: 70px; }
-  .feed-track {
-    width: auto;
-    max-width: 100%;
-    overflow-x: auto;
-    transform: none !important;
-    padding: 10px 16px 24px 2px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  .reel-card { scroll-snap-align: start; transform: none !important; }
   .about-kinetic { margin-top: 58px; }
   .about-track { font-size: clamp(38px, 13vw, 70px); }
   .faq-heading { margin-bottom: 28px; text-align: left; }

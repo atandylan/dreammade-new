@@ -311,10 +311,38 @@ export function initHomeMotion() {
     }
   });
 
-  const feedTrack = document.querySelector<HTMLElement>(".feed-track");
-  if (feedTrack && !isMobile) {
-    feedTrack.style.flexWrap = "wrap";
-    feedTrack.style.justifyContent = "center";
+  const feedTrack = document.getElementById("feedTrack");
+  if (feedTrack) {
+    let isHovered = false;
+    const scrollSpeed = 0.8;
+
+    const onTick = () => {
+      if (isHovered) return;
+      feedTrack.scrollLeft += scrollSpeed;
+      // Infinite loop reset
+      const halfWidth = feedTrack.scrollWidth / 2;
+      if (feedTrack.scrollLeft >= halfWidth) {
+        feedTrack.scrollLeft = 0;
+      }
+    };
+
+    gsap.ticker.add(onTick);
+
+    const pauseMarquee = () => { isHovered = true; };
+    const resumeMarquee = () => { isHovered = false; };
+
+    feedTrack.addEventListener("mouseenter", pauseMarquee);
+    feedTrack.addEventListener("mouseleave", resumeMarquee);
+    feedTrack.addEventListener("touchstart", pauseMarquee, { passive: true });
+    feedTrack.addEventListener("touchend", resumeMarquee, { passive: true });
+
+    cleanup.push(() => {
+      gsap.ticker.remove(onTick);
+      feedTrack.removeEventListener("mouseenter", pauseMarquee);
+      feedTrack.removeEventListener("mouseleave", resumeMarquee);
+      feedTrack.removeEventListener("touchstart", pauseMarquee);
+      feedTrack.removeEventListener("touchend", resumeMarquee);
+    });
   }
 
   // Reels Cards Stagger Reveal (Desktop & Mobile)

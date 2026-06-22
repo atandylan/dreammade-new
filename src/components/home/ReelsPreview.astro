@@ -1,5 +1,37 @@
 ---
-import { reels } from "../../data/reels";
+import { reels as fallbackReels } from "../../data/reels";
+
+interface ReelItem {
+  id: string;
+  caption?: string;
+  media_type?: string;
+  media_url?: string;
+  permalink?: string;
+  thumbnail_url?: string;
+}
+
+// Convert fallback mock data to match the API structure
+const formattedFallback: ReelItem[] = fallbackReels.map((item, idx) => ({
+  id: `fallback-${idx}`,
+  caption: item.label,
+  media_url: item.image,
+  thumbnail_url: item.image,
+  permalink: "https://www.instagram.com/dreammade/"
+}));
+
+let reelsData: ReelItem[] = formattedFallback;
+
+try {
+  const response = await fetch("https://dreammade-ig-reels.fadzry-work.workers.dev/");
+  if (response.ok) {
+    const json = await response.json();
+    if (json && Array.isArray(json.data) && json.data.length > 0) {
+      reelsData = json.data;
+    }
+  }
+} catch (e) {
+  console.error("Failed to fetch Instagram Reels from worker, using fallback:", e);
+}
 ---
 
 <section class="feed-section dream-pattern-minimal dream-pattern-cream" id="feed">
@@ -9,12 +41,61 @@ import { reels } from "../../data/reels";
       <span class="reveal-line"><span>Designed for</span></span>
       <span class="reveal-line"><span>the scroll.</span></span>
     </h2>
-    <div class="feed-track" aria-label="Dreammade feed cards" tabindex="0">
-      {reels.map((reel) => (
-        <article class="reel-card image-tile">
-          <img class="reel-image" src={reel.image} alt={reel.alt} />
-          <div class="image-overlay"></div>
-          <div class="reel-label">{reel.label}</div>
+  </div>
+  <div class="feed-track-container">
+    <div class="feed-track" id="feedTrack" aria-label="Dreammade feed cards" tabindex="0">
+      {/* First set of reels */}
+      {reelsData.map((reel) => (
+        <article class="reel-card">
+          <a href={reel.permalink || "https://www.instagram.com/"} target="_blank" rel="noopener noreferrer" class="reel-link" aria-label={reel.caption || "Instagram Reel"}>
+            <div class="reel-video-wrapper">
+              {reel.media_type === "VIDEO" || reel.media_url?.includes(".mp4") ? (
+                <video 
+                  class="reel-video" 
+                  src={reel.media_url} 
+                  poster={reel.thumbnail_url} 
+                  autoplay 
+                  muted 
+                  loop 
+                  playsinline
+                  preload="metadata"
+                ></video>
+              ) : (
+                <img class="reel-image" src={reel.media_url} alt={reel.caption || "Dreammade feed"} />
+              )}
+              <div class="image-overlay"></div>
+            </div>
+            {reel.caption && (
+              <div class="reel-label">{reel.caption.split('\n')[0]}</div>
+            )}
+          </a>
+        </article>
+      ))}
+      {/* Duplicated set for infinite loop */}
+      {reelsData.map((reel) => (
+        <article class="reel-card" aria-hidden="true">
+          <a href={reel.permalink || "https://www.instagram.com/"} target="_blank" rel="noopener noreferrer" class="reel-link" tabindex="-1">
+            <div class="reel-video-wrapper">
+              {reel.media_type === "VIDEO" || reel.media_url?.includes(".mp4") ? (
+                <video 
+                  class="reel-video" 
+                  src={reel.media_url} 
+                  poster={reel.thumbnail_url} 
+                  autoplay 
+                  muted 
+                  loop 
+                  playsinline
+                  preload="metadata"
+                ></video>
+              ) : (
+                <img class="reel-image" src={reel.media_url} alt={reel.caption || "Dreammade feed"} />
+              )}
+              <div class="image-overlay"></div>
+            </div>
+            {reel.caption && (
+              <div class="reel-label">{reel.caption.split('\n')[0]}</div>
+            )}
+          </a>
         </article>
       ))}
     </div>
