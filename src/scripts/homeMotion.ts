@@ -262,26 +262,20 @@ export function initHomeMotion() {
     productTransition = gsap.timeline()
       .to(previousFamily?.querySelectorAll("img") ?? [], { 
         opacity: 0, 
-        y: -30, 
-        scale: 0.95,
-        duration: .25, 
-        stagger: 0.03,
+        duration: .2, 
+        stagger: 0.02,
         ease: "power2.in"
       }, 0)
       .add(() => {
         productFamilies.forEach((family, familyIndex) => family.classList.toggle("active", familyIndex === index));
       })
       .fromTo(productFamilies[index]?.querySelectorAll("img") ?? [], {
-        opacity: 0,
-        y: 40,
-        scale: 0.95
+        opacity: 0
       }, {
         opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: .48,
-        stagger: 0.06,
-        ease: "power3.out"
+        duration: .45,
+        stagger: 0.05,
+        ease: "power2.out"
       });
   };
 
@@ -300,24 +294,64 @@ export function initHomeMotion() {
     }
   });
 
+  // Product Showcase Entrance Reveal
+  gsap.fromTo(".product-copy > *", {
+    opacity: 0,
+    y: 35
+  }, {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    stagger: 0.08,
+    ease: "power3.out",
+    scrollTrigger: {
+      id: "dreammade-home-product-copy-reveal",
+      trigger: ".product-showcase",
+      start: "top 80%"
+    }
+  });
+
   const feedTrack = document.querySelector<HTMLElement>(".feed-track");
   if (feedTrack && !isMobile) {
     feedTrack.style.flexWrap = "wrap";
     feedTrack.style.justifyContent = "center";
-    gsap.utils.toArray<HTMLElement>(".reel-card").forEach((card, index) => {
-      gsap.fromTo(card, { y: 60, opacity: 0 }, {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          id: `dreammade-home-reel-${index}`,
-          trigger: card,
-          start: "top 85%"
-        }
-      });
-    });
   }
+
+  // Reels Cards Stagger Reveal (Desktop & Mobile)
+  gsap.fromTo(".reel-card", {
+    opacity: 0,
+    y: 50,
+    scale: 0.95
+  }, {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 0.8,
+    stagger: 0.06,
+    ease: "power3.out",
+    scrollTrigger: {
+      id: "dreammade-home-reels-reveal",
+      trigger: ".feed-section",
+      start: "top 85%"
+    }
+  });
+
+  // FAQ Accordion Stagger Reveal
+  gsap.fromTo(".faq-item", {
+    opacity: 0,
+    y: 35
+  }, {
+    opacity: 1,
+    y: 0,
+    duration: 0.7,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: {
+      id: "dreammade-home-faq-items-reveal",
+      trigger: ".faq-list",
+      start: "top 85%"
+    }
+  });
 
 
   gsap.from(".footer-content", {
