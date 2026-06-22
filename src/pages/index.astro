@@ -1,0 +1,47 @@
+---
+import Navbar from "../components/global/Navbar.astro";
+import AboutPreview from "../components/home/AboutPreview.astro";
+import AgeGate from "../components/home/AgeGate.astro";
+import FAQAccordion from "../components/home/FAQAccordion.astro";
+import FooterReveal from "../components/home/FooterReveal.astro";
+import HeroStoryboard from "../components/home/HeroStoryboard.astro";
+import OpeningSequence from "../components/home/OpeningSequence.astro";
+import ProductShowcase from "../components/home/ProductShowcase.astro";
+import ReelsPreview from "../components/home/ReelsPreview.astro";
+
+import "../styles/global.css";
+import "../styles/components.css";
+import "../styles/motion.css";
+import "../styles/home.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dreammade — Tak Keras Tak Syok</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  </head>
+  <body class="locked">
+    <AgeGate />
+    <OpeningSequence />
+    <Navbar variant="home" activeLabel="Home" />
+    <main id="top">
+      <HeroStoryboard />
+      <AboutPreview />
+      <ProductShowcase />
+      <ReelsPreview />
+      <FAQAccordion />
+      <FooterReveal />
+    </main>
+    <script>
+      import { initHomeMotion } from "../scripts/homeMotion";
+      initHomeMotion();
+      document.addEventListener("astro:page-load", initHomeMotion);
+    </script>
+  </body>
+</html>

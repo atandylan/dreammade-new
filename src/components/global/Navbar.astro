@@ -1,0 +1,129 @@
+---
+import { homeNavigation, primaryNavigation } from "../../data/navigation";
+import { site } from "../../data/site";
+
+type Props = {
+  variant?: "home" | "standard";
+  activeLabel?: string;
+  showCta?: boolean;
+};
+
+const { variant = "home", activeLabel, showCta = false } = Astro.props;
+const links = variant === "home" ? homeNavigation : primaryNavigation;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrentLink = (href: string) => {
+  if (!href.startsWith("/")) return false;
+  const linkPath = href.split("#")[0].replace(/\/$/, "") || "/";
+  return linkPath === currentPath;
+};
+const isActive = (link: { label: string; href: string }) => activeLabel ? link.label === activeLabel : isCurrentLink(link.href);
+---
+
+<nav class="nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="brand" href={variant === "home" ? "#top" : "/"} aria-label="Dreammade home">{site.name}</a>
+    <div class="nav-links">
+      {links.map((link) => (
+        <a href={link.href} aria-current={isActive(link) ? "page" : undefined}>{link.label}</a>
+      ))}
+    </div>
+    {showCta && <div class="nav-cta">{site.tagline}</div>}
+    
+    <button class="mobile-menu-trigger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open mobile menu">
+      MENU
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-panel" id="mobile-nav" aria-hidden="true">
+  <div class="mobile-menu-top">
+    <a class="brand" href={variant === "home" ? "#top" : "/"} aria-label="Dreammade home">{site.name}</a>
+    <button class="mobile-menu-close" aria-label="Close mobile menu">CLOSE</button>
+  </div>
+  <div class="mobile-menu-links">
+    {links.map((link) => {
+      if (link.label === "Products") {
+        return (
+          <div class="mobile-product-group">
+            <div class="mobile-product-parent">
+              <a href="/products" class={`mobile-menu-link ${isActive(link) ? 'is-active' : ''}`}>{link.label}</a>
+              <button class="product-group-trigger" aria-expanded="false" aria-controls="mobile-product-children" aria-label="Toggle Products Submenu"></button>
+            </div>
+            <div class="mobile-product-children" id="mobile-product-children">
+              <a href="/products/syokpod-v2" class="mobile-child-link">SyokPod V2</a>
+              <a href="/products/syokpod-pro" class="mobile-child-link">SyokPod Pro</a>
+              <a href="/products/syokbar" class="mobile-child-link">SyokBar</a>
+              <a href="/products/syokbar-target" class="mobile-child-link">SyokBar Target</a>
+            </div>
+          </div>
+        );
+      }
+      return (
+        <a href={link.href} class={`mobile-menu-link ${isActive(link) ? 'is-active' : ''}`} aria-current={isActive(link) ? "page" : undefined}>
+          {link.label}
+        </a>
+      );
+    })}
+  </div>
+</div>
+
+<script>
+  function initMobileMenu() {
+    const trigger = document.querySelector<HTMLButtonElement>('.mobile-menu-trigger');
+    const panel = document.querySelector<HTMLElement>('.mobile-menu-panel');
+    const closeBtn = document.querySelector<HTMLButtonElement>('.mobile-menu-close');
+    const links = document.querySelectorAll<HTMLAnchorElement>('.mobile-menu-link:not(.product-group-trigger), .mobile-child-link');
+    
+    if (!trigger || !panel || !closeBtn) return;
+    
+    // Cleanup old event listeners if any to avoid duplication during view transitions
+    const newTrigger = trigger.cloneNode(true) as HTMLButtonElement;
+    trigger.parentNode?.replaceChild(newTrigger, trigger);
+    
+    const newCloseBtn = closeBtn.cloneNode(true) as HTMLButtonElement;
+    closeBtn.parentNode?.replaceChild(newCloseBtn, closeBtn);
+    
+    const openMenu = () => {
+      newTrigger.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+      panel.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+    
+    const closeMenu = () => {
+      newTrigger.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+      panel.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+    
+    newTrigger.addEventListener('click', openMenu);
+    newCloseBtn.addEventListener('click', closeMenu);
+    
+    links.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+
+    const productTrigger = document.querySelector<HTMLButtonElement>('.product-group-trigger');
+    const productChildren = document.querySelector<HTMLElement>('.mobile-product-children');
+    if (productTrigger && productChildren) {
+      const newProductTrigger = productTrigger.cloneNode(true) as HTMLButtonElement;
+      productTrigger.parentNode?.replaceChild(newProductTrigger, productTrigger);
+      
+      newProductTrigger.addEventListener('click', () => {
+        const isExpanded = newProductTrigger.getAttribute('aria-expanded') === 'true';
+        newProductTrigger.setAttribute('aria-expanded', (!isExpanded).toString());
+        productChildren.classList.toggle('is-open', !isExpanded);
+      });
+    }
+  }
+  
+  initMobileMenu();
+  document.addEventListener('astro:page-load', initMobileMenu);
+</script>

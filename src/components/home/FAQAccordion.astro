@@ -1,0 +1,23 @@
+---
+import { faqs } from "../../data/faqs";
+---
+
+<section class="faq dream-pattern-minimal dream-pattern-cream" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-heading">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="section-title">
+        <span class="reveal-line"><span>Got questions?</span></span>
+      </h2>
+      <p class="faq-intro">Frequently asked.</p>
+    </div>
+    <div class="faq-list">
+      {faqs.map((faq, index) => (
+        <div class:list={["faq-item", { active: index === 0 }]}>
+          <button class="faq-question" type="button" aria-expanded={index === 0 ? "true" : "false"}>{faq.question}</button>
+          <div class="faq-answer"><p>{faq.answer}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

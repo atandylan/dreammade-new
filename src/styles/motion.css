@@ -1,0 +1,17 @@
+/* Motion Utilities */
+.reveal,
+.reveal-card {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,30 @@
+---
+import type { Product } from "../../data/products";
+
+type Props = {
+  product: Product;
+};
+
+const { product } = Astro.props;
+const detail = product.compatibleWith.length > 0
+  ? `Compatible: ${product.compatibleWith.join(" / ")}`
+  : `Made for: ${product.madeFor.join(" / ")}`;
+---
+
+<a class="tile reveal" href={product.route}>
+  <div class="visual">
+    <img
+      src={product.images.primary}
+      alt={product.name}
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+    />
+    <div class="svg-fallback" style="display:none;" set:html={product.images.svg} />
+  </div>
+  <div class="tile-info">
+    <span class="small-label">{product.label}</span>
+    <h3>{product.name}</h3>
+    <p class="tile-description">{product.shortDescription}</p>
+    <p class="tile-compat">{detail}</p>
+    <span class="text-link">View product</span>
+  </div>
+</a>

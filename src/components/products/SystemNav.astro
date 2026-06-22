@@ -1,0 +1,11 @@
+---
+import { productSystemNavigation } from "../../data/navigation";
+---
+
+<nav class="system-nav" aria-label="Product systems">
+  <div class="system-pills">
+    {productSystemNavigation.map((item, index) => (
+      <a class:list={["system-pill", { active: index === 0 }]} href={item.href}>{item.label}</a>
+    ))}
+  </div>
+</nav>

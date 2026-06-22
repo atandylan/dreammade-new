@@ -1,0 +1,85 @@
+---
+import type { ProductEdition, ProductExperience, ProductMediaOption } from "../../data/productExperience";
+
+type Props = { experience: ProductExperience };
+const { experience } = Astro.props;
+
+const closeupFor = (edition: ProductEdition) => {
+  const firstOption = edition.options[0];
+  return firstOption.images[Math.min(1, firstOption.images.length - 1)] ?? firstOption.images[0];
+};
+
+const lineupFor = (edition: ProductEdition): { image: string; label: string }[] => {
+  if (edition.options.length > 1) {
+    return edition.options.map((option: ProductMediaOption) => ({
+      image: option.images[0],
+      label: option.displayName
+    }));
+  }
+
+  const option = edition.options[0];
+  return option.images.map((image, index) => ({
+    image,
+    label: edition.viewLabels?.[index] ?? option.displayName
+  }));
+};
+---
+
+<section class="product-feature-board" aria-label={`${experience.name} feature board`} data-feature-board={experience.id}>
+  {experience.editions.map((edition, editionIndex) => {
+    const closeup = closeupFor(edition);
+    const lineup = lineupFor(edition);
+    const specs = edition.specs ?? [];
+    const firstOption = edition.options[0];
+    return (
+      <div
+        class="product-feature-shell"
+        data-feature-edition={edition.id}
+        hidden={editionIndex !== 0}
+        aria-hidden={editionIndex !== 0 ? "true" : "false"}
+      >
+        <div class="feature-closeup-panel">
+          <span class="feature-panel-label">01 / Close-up</span>
+          <img src={closeup} alt={`${edition.name} product close-up`} loading="lazy" decoding="async" />
+        </div>
+        <div class="feature-copy-panel">
+          <span class="eyebrow">Feature board</span>
+          <h2>{edition.headline}</h2>
+          <p>{edition.description}</p>
+        </div>
+        <div class="feature-lineup-panel">
+          <div
+            class:list={[
+              "feature-lineup-images",
+              { "feature-lineup-images-scrollable": lineup.length > 3 }
+            ]}
+            data-lineup-count={lineup.length}
+            data-product-id={experience.id}
+          >
+            {lineup.map((item) => (
+              <img src={item.image} alt={`${edition.name} ${item.label}`} loading="lazy" decoding="async" />
+            ))}
+          </div>
+          <h3>{edition.options.length > 1 ? `${edition.options.length} finishes in the range.` : `${firstOption.displayName} visual sequence.`}</h3>
+        </div>
+        <div class="feature-spec-row">
+          {specs.map((spec) => (
+            <div class="feature-spec-cell"><span>{spec.label}</span><strong>{spec.value}</strong></div>
+          ))}
+        </div>
+      </div>
+    );
+  })}
+  <script is:inline>
+    window.addEventListener("dreammade:product-state-change", (event) => {
+      const detail = event.detail || {};
+      document.querySelectorAll(`[data-feature-board="${detail.experienceId}"]`).forEach((board) => {
+        board.querySelectorAll("[data-feature-edition]").forEach((state) => {
+          const active = state.getAttribute("data-feature-edition") === detail.editionId;
+          state.toggleAttribute("hidden", !active);
+          state.setAttribute("aria-hidden", String(!active));
+        });
+      });
+    });
+  </script>
+</section>

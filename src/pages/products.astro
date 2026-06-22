@@ -1,0 +1,50 @@
+---
+import Navbar from "../components/global/Navbar.astro";
+import Footer from "../components/global/Footer.astro";
+import ProductsHero from "../components/products/ProductsHero.astro";
+import SyokBarCampaignSection from "../components/products/SyokBarCampaignSection.astro";
+import SyokPodCampaignSection from "../components/products/SyokPodCampaignSection.astro";
+import SystemNav from "../components/products/SystemNav.astro";
+
+import "../styles/global.css";
+import "../styles/components.css";
+import "../styles/motion.css";
+import "../styles/products.css";
+import "../styles/syokbar.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dreammade - Products</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Navbar variant="standard" activeLabel="Products" />
+    <main>
+      <ProductsHero />
+      <SystemNav />
+      <SyokPodCampaignSection />
+      <SyokBarCampaignSection />
+      <section class="products-closing dream-pattern-minimal dream-pattern-cream">
+        <div class="wrap">
+          <span class="eyebrow">Dreammade product catalogue</span>
+          <h2>Pick the system. Then go closer.</h2>
+          <p>Each core device and special edition now opens into its own product-led detail experience.</p>
+          <a class="button" href="#syokpod-v2">Back to top of catalogue</a>
+        </div>
+      </section>
+    </main>
+    <Footer variant="standard" />
+    <script>
+      import { initProductsMotion } from "../scripts/productsMotion";
+      initProductsMotion();
+      document.addEventListener("astro:page-load", initProductsMotion);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+---
+import ProductFamilyMark from "../shared/ProductFamilyMark.astro";
+import type { KohsFormat } from "../../data/kohsFormats";
+
+type Props = { formats: KohsFormat[] };
+const { formats } = Astro.props;
+const flavours = Array.from(new Set(formats.flatMap((format) => format.flavours ?? [])));
+const formatNames = formats.map((format) => format.name).join(" / ");
+const systemCopy = formatNames.includes("E-Liquid")
+  ? "A text-only index of compatible open-system flavours for SyokBar Target."
+  : formatNames.includes("K3000")
+    ? "A text-only index of compatible disposable-system flavours for SyokBar."
+    : "A text-only index of compatible closed-system flavours for SyokPod devices.";
+---
+
+{flavours.length > 0 && (
+<section class="product-flavour-index">
+  <div class="wrap">
+    <div class="flavour-index-head">
+      <div>
+        <div class="product-family-signature">
+          <ProductFamilyMark family="kohs" />
+          <span class="eyebrow">Compatible KOHS flavours</span>
+        </div>
+        <h2>Find your flavour.</h2>
+      </div>
+      <p>{formatNames}. {systemCopy}</p>
+    </div>
+    <div class="flavour-index-grid">
+      {flavours.map((flavour, index) => (
+        <div class="flavour-index-item"><span>{String(index + 1).padStart(2, "0")}</span><b>{flavour}</b></div>
+      ))}
+    </div>
+  </div>
+</section>
+)}

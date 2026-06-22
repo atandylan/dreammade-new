@@ -1,0 +1,45 @@
+---
+import { syokpodProEdition, syokpodV2Standard } from "../../data/syokpodExperience";
+import { syokbarExperience, syokbarTargetExperience } from "../../data/syokbarExperience";
+
+const heroProducts = [
+  {
+    label: "SYOKPOD V2",
+    href: "/products/syokpod-v2",
+    image: syokpodV2Standard.options[0].images[0],
+    className: "products-family-v2"
+  },
+  {
+    label: "SYOKPOD PRO",
+    href: "/products/syokpod-pro",
+    image: syokpodProEdition.options[0].images[0],
+    className: "products-family-pro"
+  },
+  {
+    label: "SYOKBAR",
+    href: "/products/syokbar",
+    image: syokbarExperience.editions[0].options[0].images[0],
+    className: "products-family-bar"
+  },
+  {
+    label: "SYOKBAR TARGET",
+    href: "/products/syokbar-target",
+    image: syokbarTargetExperience.editions[0].options[0].images[0],
+    className: "products-family-target"
+  }
+];
+---
+
+<section class="hero page-hero products-visual-hero dream-pattern-cream" aria-label="Dreammade product families">
+  <div class="products-family-grid">
+    {heroProducts.map((item, index) => (
+      <a class:list={["products-family-item", item.className]} href={item.href} data-products-hero-item>
+        <span class="products-family-label">{item.label}</span>
+        <span class="products-family-visual">
+          <img src={item.image} alt={item.label} loading={index < 2 ? "eager" : "lazy"} decoding="async" />
+          <i aria-hidden="true"></i>
+        </span>
+      </a>
+    ))}
+  </div>
+</section>

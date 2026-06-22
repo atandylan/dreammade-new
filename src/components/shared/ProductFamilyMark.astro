@@ -1,0 +1,43 @@
+---
+type ProductFamily = "syokpod" | "syokbar" | "kohs";
+
+type Props = {
+  family: ProductFamily;
+  className?: string;
+};
+
+const { family, className } = Astro.props;
+
+const familyMarks = {
+  syokpod: {
+    src: "/logo/syokpod-logo-transparent.png",
+    alt: "SyokPod"
+  },
+  syokbar: {
+    src: "/logo/syokbar-logo-transparent.png",
+    alt: "SyokBar"
+  },
+  kohs: {
+    src: "/logo/kohs-logo-transparent.png",
+    alt: "KOHS"
+  }
+};
+
+const mark = familyMarks[family];
+---
+
+<span
+  class:list={[
+    "product-family-mark",
+    `product-family-mark-${family}`,
+    className
+  ]}
+  data-product-family-mark={family}
+>
+  <img
+    src={mark.src}
+    alt={mark.alt}
+    loading="lazy"
+    decoding="async"
+  />
+</span>

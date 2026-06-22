@@ -1,0 +1,332 @@
+---
+import Navbar from "../../components/global/Navbar.astro";
+import Footer from "../../components/global/Footer.astro";
+import ProductConfigurator from "../../components/product-detail/ProductConfigurator.astro";
+import ProductCollectionLinks from "../../components/product-detail/ProductCollectionLinks.astro";
+import ProductEditorialHero from "../../components/product-detail/ProductEditorialHero.astro";
+import ProductFeatureBoard from "../../components/product-detail/ProductFeatureBoard.astro";
+import ProductFlavourIndex from "../../components/product-detail/ProductFlavourIndex.astro";
+import ProductNarrativeSection from "../../components/product-detail/ProductNarrativeSection.astro";
+import SyokBarCampaignGallery from "../../components/product-detail/SyokBarCampaignGallery.astro";
+import SyokBarEditorialHero from "../../components/product-detail/SyokBarEditorialHero.astro";
+import SyokPodCampaignGallery from "../../components/product-detail/SyokPodCampaignGallery.astro";
+import { getKohsFormatsByNames } from "../../data/kohsFormats";
+import { products, specialEditionParentRoutes } from "../../data/products";
+import type { Product } from "../../data/products";
+import { syokbarExperiences } from "../../data/syokbarExperience";
+import { syokpodExperiences } from "../../data/syokpodExperience";
+
+import "../../styles/global.css";
+import "../../styles/components.css";
+import "../../styles/motion.css";
+import "../../styles/product-detail.css";
+import "../../styles/syokbar.css";
+
+export function getStaticPaths() {
+  return products
+    .map((product) => ({
+      params: { slug: product.slug },
+      props: { product },
+    }));
+}
+
+const { product } = Astro.props as { product: Product };
+
+// Find related products
+const getRelated = () => {
+  const compats = products.filter(p => product.compatibleWith.includes(p.name) || product.madeFor.includes(p.name));
+  const isTargeted = products.filter(p => p.compatibleWith.includes(product.name) || p.madeFor.includes(product.name));
+  const sameSystem = products.filter(p => p.system === product.system && p.slug !== product.slug);
+  const all = [...compats, ...isTargeted, ...sameSystem];
+  return Array.from(new Set(all)).filter(p => p.slug !== product.slug && p.category !== "special-edition").slice(0, 4);
+};
+const relatedProducts = getRelated();
+
+// Format system string
+const formatSystem = (sys: string) => sys.replace("-", " ").replace(/\b\w/g, l => l.toUpperCase());
+
+const hasStandard = product.variants.standardColourways.length > 0;
+const hasSpecial = product.variants.specialEditions.length > 0;
+const showVariantSection = hasStandard || hasSpecial || product.category === 'special-edition';
+const syokpodExperience = syokpodExperiences[product.slug];
+const syokbarExperience = syokbarExperiences[product.slug];
+const compatibleKohsFormats = getKohsFormatsByNames(product.compatibleWith);
+const isRichExperience = Boolean(syokpodExperience || syokbarExperience);
+const syokbarGalleryKind = syokbarExperience?.editions[0]?.gallery ?? "none";
+const syokpodPosterGalleryIds = new Set(["syokpod-v2", "syokpod-pro", "syokpod-special-editions"]);
+const directLegacyRedirect = specialEditionParentRoutes[product.slug];
+const legacyRedirects: Record<string, string> = product.slug === "syokpod-v2"
+  ? {
+    "gt-edition": "/products/syokpod-special-editions?variant=gt-edition&finish=copper&view=1",
+    "2-years-anniversary": "/products/syokpod-special-editions?variant=2-years-anniversary&view=1",
+    "lush-limited-edition": "/products/syokpod-special-editions?variant=lush-limited-edition&view=1"
+  }
+  : product.slug === "syokbar"
+    ? {
+      fifa: "/products/syokbar-special-editions?variant=fifa&finish=england&view=1",
+      camo: "/products/syokbar-special-editions?variant=camo&view=1"
+    }
+    : {};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{product.name} - Dreammade</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Navbar variant="standard" activeLabel="Products" />
+    {directLegacyRedirect && (
+      <script is:inline define:vars={{ directLegacyRedirect }}>
+        window.location.replace(directLegacyRedirect);
+      </script>
+    )}
+    {Object.keys(legacyRedirects).length > 0 && (
+      <script is:inline define:vars={{ legacyRedirects }}>
+        (() => {
+          const target = legacyRedirects[new URLSearchParams(window.location.search).get("variant") ?? ""];
+          if (target) window.location.replace(target);
+        })();
+      </script>
+    )}
+    
+    <main class:list={["product-detail", { "syokpod-detail": Boolean(syokpodExperience), "syokbar-detail": Boolean(syokbarExperience) }]} data-core-device={product.category === 'core-device' ? "true" : undefined} data-rich-experience={isRichExperience ? "true" : undefined} data-product-family={syokbarExperience ? "syokbar" : undefined}>
+      {syokpodExperience ? (
+        <>
+          <ProductEditorialHero experience={syokpodExperience} />
+          <ProductConfigurator experience={syokpodExperience} />
+          <ProductFeatureBoard experience={syokpodExperience} />
+          <ProductNarrativeSection experience={syokpodExperience} />
+          {syokpodPosterGalleryIds.has(syokpodExperience.id) && <SyokPodCampaignGallery experience={syokpodExperience} />}
+          <ProductFlavourIndex formats={compatibleKohsFormats} />
+          <ProductCollectionLinks experience={syokpodExperience} />
+        </>
+      ) : syokbarExperience ? (
+        <>
+          <SyokBarEditorialHero experience={syokbarExperience} />
+          <ProductConfigurator experience={syokbarExperience} />
+          <ProductFeatureBoard experience={syokbarExperience} />
+          <ProductNarrativeSection experience={syokbarExperience} />
+          {syokbarGalleryKind !== "none" && <SyokBarCampaignGallery experience={syokbarExperience} />}
+          <ProductFlavourIndex formats={compatibleKohsFormats} />
+          <ProductCollectionLinks experience={syokbarExperience} />
+        </>
+      ) : (
+        <>
+      <section class="hero-detail page-hero dream-pattern-minimal">
+        <div class="wrap detail-wrap">
+          <div class="detail-copy">
+            <span class="eyebrow">{product.type}</span>
+            <h1>{product.name}</h1>
+            <p class="short-desc">{product.shortDescription}</p>
+            <p class="desc">{product.description}</p>
+            <div class="hero-actions">
+              <a href="/products" class="button">Back to Products</a>
+              <a href="/contact" class="button secondary">Contact Dreammade</a>
+            </div>
+          </div>
+          <div class="detail-visual">
+            <div class="visual-panel">
+              <div class="product-sys-label">{product.system.replace('-', ' ').toUpperCase()}</div>
+              {product.images.primary && (
+                <img id="activeProductImage" src={product.images.primary} alt={product.name} />
+              )}
+              <div id="svgFallback" class="svg-fallback" style={product.images.primary ? "display:none;" : "display:block;"} set:html={product.images.svg} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {showVariantSection && (
+        <section class="variant-section">
+          <div class="wrap">
+            <div style="margin-bottom: 24px;">
+              <span class="eyebrow"><span id="activeVariantType">{hasStandard ? "Standard Colourway" : "Edition"}</span> <span id="activeVariantLabel" style="color:var(--red); margin-left: 8px;">{hasStandard ? product.variants.standardColourways[0]?.name : product.variants.specialEditions[0]?.name}</span></span>
+            </div>
+
+            <div class="product-variant-detail">
+              <div class="variant-detail-block">
+                <span class="detail-label">Selected</span>
+                <span class="detail-value" id="activeVariantName">{hasStandard ? product.variants.standardColourways[0]?.name : product.variants.specialEditions[0]?.name}</span>
+              </div>
+              <div class="variant-detail-block">
+                <span class="detail-label">Variant Type</span>
+                <span class="detail-value" id="activeVariantTypeLabel">{hasStandard ? "Standard Colourway" : "Special Edition"}</span>
+              </div>
+              <div class="variant-detail-block full-width">
+                <span class="detail-label">Note</span>
+                <span class="detail-value detail-note" id="activeVariantNote">{hasStandard ? `A colour expression within the ${product.name} line.` : `A special visual expression within the ${product.name} line.`}</span>
+              </div>
+            </div>
+
+            {/* Standard Colourways */}
+            {hasStandard && (
+              <div class="variant-group">
+                <span class="eyebrow" style="opacity: 0.6;">Colourways</span>
+                <div class="swatch-grid">
+                  {product.variants.standardColourways.map((v, i) => (
+                    <button class={`swatch-btn ${i === 0 ? 'active' : ''}`} data-variant-id={v.id} data-variant-image={v.image} data-variant-name={v.name} data-variant-color={v.color} data-variant-type="Standard Colourway" data-variant-note={v.note || `A colour expression within the ${product.name} line.`}>
+                      <span class="swatch-dot" style={`background-color: ${v.color};`}></span>
+                      <span class="swatch-name">{v.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Special Editions */}
+            {hasSpecial && (
+              <div class="variant-group special-editions">
+                <span class="eyebrow" style="opacity: 0.6;">Special Editions</span>
+                <div class="swatch-grid">
+                  {product.variants.specialEditions.map((v, i) => (
+                    <button class={`swatch-btn ${!hasStandard && i === 0 ? 'active' : ''}`} data-variant-id={v.id} data-variant-image={v.image} data-variant-name={v.name} data-variant-color={v.color} data-variant-type="Special Edition" data-variant-note={v.note || `A special visual expression within the ${product.name} line.`}>
+                      <span class="swatch-dot" style={`background-color: ${v.color};`}></span>
+                      <span class="swatch-name">{v.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </div>
+        </section>
+      )}
+
+      {product.specs && product.specs.length > 0 && (
+        <section class="specs-section">
+          <div class="wrap">
+            <div class="specs-heading">
+              <span class="eyebrow">Product details</span>
+              <h2>Built into the format.</h2>
+            </div>
+            <div class="specs-grid">
+              {product.specs.map((spec, index) => (
+                <article class:list={["spec-card", { "spec-card-wide": spec.label === "Colours" }]}>
+                  <span>{String(index + 1).padStart(2, "0")} / {spec.label}</span>
+                  <strong>{spec.value}</strong>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section class="system-details">
+        <div class="wrap">
+          <div class="details-bento">
+            <div class="detail-block">
+              <span class="detail-label">01 / System</span>
+              <span class="detail-value">{formatSystem(product.system)}</span>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">02 / Category</span>
+              <span class="detail-value">{formatSystem(product.category)}</span>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">03 / Type</span>
+              <span class="detail-value">{product.type}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+        </>
+      )}
+
+      {!isRichExperience && (product.compatibleWith.length > 0 || product.madeFor.length > 0) && (
+        <section class="compatibility-section">
+          <div class="wrap">
+            {product.compatibleWith.length > 0 && (
+              <div class="compat-group">
+                <h2>Compatible With</h2>
+                <div class="compat-grid">
+                  {product.compatibleWith.map((itemName) => {
+                     const match = products.find(p => p.name === itemName);
+                     return match ? (
+                       <a href={match.route} class="compat-card">
+                         <h3>{match.name}</h3>
+                         <span class="compat-label">{match.label}</span>
+                       </a>
+                     ) : (
+                       <div class="compat-card disabled">
+                         <h3>{itemName}</h3>
+                       </div>
+                     );
+                  })}
+                </div>
+              </div>
+            )}
+            
+            {product.madeFor.length > 0 && (
+              <div class="compat-group">
+                <h2>Made For</h2>
+                <div class="compat-grid">
+                  {product.madeFor.map((itemName) => {
+                     const match = products.find(p => p.name === itemName);
+                     return match ? (
+                       <a href={match.route} class="compat-card">
+                         <h3>{match.name}</h3>
+                         <span class="compat-label">{match.label}</span>
+                       </a>
+                     ) : (
+                       <div class="compat-card disabled">
+                         <h3>{itemName}</h3>
+                       </div>
+                     );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {!isRichExperience && relatedProducts.length > 0 && (
+        <section class="related-section">
+          <div class="wrap">
+            <h2>Related Products</h2>
+            <div class="related-grid">
+              {relatedProducts.map(rp => (
+                <a href={rp.route} class="related-card">
+                  <div class="related-info">
+                    <span class="eyebrow">{rp.label}</span>
+                    <h3>{rp.name}</h3>
+                    <p>{rp.shortDescription}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section class="cta-section">
+        <div class="wrap">
+          <h2>Explore the full Syok system.</h2>
+          <div class="hero-actions">
+            <a href="/products" class="button">All Products</a>
+            <a href="/contact" class="button secondary">Contact Dreammade</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer variant="standard" />
+    <script>
+      import { initProductDetailMotion } from "../../scripts/productDetailMotion";
+      import { initProductConfigurator } from "../../scripts/productConfigurator";
+      initProductDetailMotion();
+      initProductConfigurator();
+      document.addEventListener('astro:page-load', () => {
+        initProductDetailMotion();
+        initProductConfigurator();
+      });
+    </script>
+  </body>
+</html>

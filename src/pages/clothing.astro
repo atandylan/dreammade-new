@@ -1,0 +1,115 @@
+---
+import Navbar from "../components/global/Navbar.astro";
+import Footer from "../components/global/Footer.astro";
+import HorizontalMediaRail from "../components/shared/HorizontalMediaRail.astro";
+import { clothingAccessoriesData, clothingData } from "../data/clothing";
+
+import "../styles/global.css";
+import "../styles/components.css";
+import "../styles/motion.css";
+import "../styles/horizontal-media-rail.css";
+import "../styles/clothing.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dreammade - SyokGeng Clothing</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Navbar variant="standard" activeLabel="Clothing" />
+    <main>
+      <section class="clothing-hero page-hero dream-texture-red">
+        <div class="wrap">
+          <div class="clothing-hero-copy">
+            <div class="eyebrow reveal">SYOKGENG / DREAMMADE</div>
+            <div class="clothing-brand reveal">SYOKGENG</div>
+            <h1 class="reveal">NOT JUST WORN. CARRIED.</h1>
+          </div>
+        </div>
+      </section>
+
+      <div class="clothing-lookbook" aria-label="SyokGeng Lookbook">
+        {clothingData.map((group, groupIndex) => {
+          const toneClass = groupIndex % 2 === 0
+            ? "lookbook-group-cream surface-cream-clean"
+            : "lookbook-group-red surface-red-grain";
+          return (
+            <section class:list={["lookbook-group", toneClass]}>
+              <div class="wrap lookbook-header">
+                <h2 class="lookbook-title" data-clothing-title>{group.name}</h2>
+              </div>
+              <HorizontalMediaRail
+                id={`clothing-${group.id}`}
+                images={group.images}
+                altPrefix={`${group.name} look`}
+                initialCount={6}
+                eagerCount={groupIndex === 0 ? 2 : 0}
+                className="clothing-media-gallery"
+              />
+            </section>
+          );
+        })}
+      </div>
+
+      <section class="accessories-section">
+        <div class="wrap">
+          <header class="accessories-header">
+            <div class="eyebrow">Accessories</div>
+            <h2>SMALL OBJECTS. SAME SIGNAL.</h2>
+            <p>The SyokGeng identity continues beyond clothing through clean, everyday pieces.</p>
+          </header>
+
+          <div class="accessories-catalogue">
+            <article class="accessory-casing-card">
+              <img src={clothingAccessoriesData.casing.image} alt="SyokGeng Casing" loading="lazy" decoding="async" />
+              <div class="accessory-labels">
+                <span class="label-large">CASING</span>
+                <span class="label-small">SYOKGENG ACCESSORY</span>
+              </div>
+            </article>
+
+            <div class="accessory-eyewear">
+              <div class="eyebrow">SYOKGENG EYEWEAR</div>
+              <h3>SUNGLASS</h3>
+              <HorizontalMediaRail
+                id="accessories-sunglass"
+                images={clothingAccessoriesData.eyewear.images}
+                altPrefix="SyokGeng Sunglass look"
+                initialCount={6}
+                eagerCount={0}
+                className="accessories-eyewear-gallery"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="clothing-social dream-texture-cream">
+        <div class="wrap clothing-social-inner reveal">
+          <div>
+            <div class="eyebrow">Follow SyokGeng</div>
+            <h2>SEE THE GENG IN MOTION.</h2>
+          </div>
+          <div class="clothing-social-links">
+            <a href="https://www.instagram.com/syok_geng/" target="_blank" rel="noopener noreferrer">Instagram <span>@syok_geng</span></a>
+            <a href="https://www.tiktok.com/@syokgeng" target="_blank" rel="noopener noreferrer">TikTok <span>@syokgeng</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer variant="standard" />
+    <script>
+      import { initClothingMotion } from "../scripts/clothingMotion";
+      initClothingMotion();
+      document.addEventListener("astro:page-load", initClothingMotion);
+    </script>
+  </body>
+</html>

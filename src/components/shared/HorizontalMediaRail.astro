@@ -1,0 +1,61 @@
+---
+type Props = {
+  id: string;
+  images: string[];
+  altPrefix: string;
+  initialCount?: number;
+  eagerCount?: number;
+  className?: string;
+};
+
+const {
+  id,
+  images,
+  altPrefix,
+  initialCount = 6,
+  eagerCount = 0,
+  className,
+} = Astro.props;
+---
+
+<div
+  class:list={["horizontal-media-shell", className]}
+  data-progressive-gallery
+  data-gallery-total={images.length}
+  data-gallery-initial={initialCount}
+>
+  <div
+    id={`${id}-rail`}
+    class="horizontal-media-rail"
+    data-progressive-rail
+    tabindex="0"
+    aria-label={`${altPrefix} gallery`}
+  >
+    {images.map((image, index) => (
+      <figure
+        class="horizontal-media-card"
+        data-progressive-item
+        hidden={index >= initialCount}
+      >
+        <img
+          src={image}
+          alt={`${altPrefix} ${index + 1}`}
+          loading={index < eagerCount ? "eager" : "lazy"}
+          decoding="async"
+        />
+      </figure>
+    ))}
+  </div>
+
+  {images.length > initialCount && (
+    <button
+      type="button"
+      class="progressive-gallery-toggle"
+      data-progressive-toggle
+      aria-controls={`${id}-rail`}
+      aria-expanded="false"
+    >
+      See More
+    </button>
+  )}
+</div>

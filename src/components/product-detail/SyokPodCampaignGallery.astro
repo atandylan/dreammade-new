@@ -1,0 +1,111 @@
+---
+import type { SyokPodExperience } from "../../data/syokpodExperience";
+import ProductPosterGallery, { type PosterGalleryImage } from "./ProductPosterGallery.astro";
+
+type GalleryLayout = "count-3" | "count-5" | "count-6" | "count-9";
+type GalleryState = {
+  id: string;
+  title: string;
+  layout: GalleryLayout;
+  images: PosterGalleryImage[];
+  editionId?: string;
+};
+type Props = { experience: SyokPodExperience };
+
+const { experience } = Astro.props;
+
+const numberedImages = (base: string, prefix: string, count: number, extension: string, altName: string): PosterGalleryImage[] =>
+  Array.from({ length: count }, (_, index) => ({
+    src: `${base}/${prefix}-${index + 1}.${extension}`,
+    alt: `${altName} campaign poster ${index + 1}`
+  }));
+
+const galleriesByExperience: Partial<Record<SyokPodExperience["id"], GalleryState[]>> = {
+  "syokpod-v2": [
+    {
+      id: "syokpod-v2-campaign-gallery",
+      title: "SYOKPOD V2",
+      layout: "count-5",
+      images: numberedImages("/products/syokpod/v2", "syokpod", 5, "jpg", "SyokPod V2")
+    }
+  ],
+  "syokpod-pro": [
+    {
+      id: "syokpod-pro-campaign-gallery",
+      title: "SYOKPOD PRO",
+      layout: "count-6",
+      images: [
+        ...numberedImages("/products/syokpod/pro", "syokpod-pro", 3, "jpg", "SyokPod Pro"),
+        ...numberedImages("/products/syokpod/pro", "syokpod-pro", 3, "png", "SyokPod Pro").map((image, index) => ({
+          ...image,
+          src: `/products/syokpod/pro/syokpod-pro-${index + 4}.png`,
+          alt: `SyokPod Pro campaign poster ${index + 4}`
+        }))
+      ]
+    }
+  ],
+  "syokpod-special-editions": [
+    {
+      id: "syokpod-gt-campaign-gallery",
+      title: "GT EDITION",
+      layout: "count-6",
+      editionId: "gt-edition",
+      images: numberedImages("/products/syokpod/gt", "gt", 6, "jpg", "GT Edition")
+    },
+    {
+      id: "syokpod-anniversary-campaign-gallery",
+      title: "2 YEARS ANNIVERSARY",
+      layout: "count-3",
+      editionId: "2-years-anniversary",
+      images: numberedImages("/products/syokpod/2years", "2years", 3, "jpg", "2 Years Anniversary")
+    },
+    {
+      id: "syokpod-lush-campaign-gallery",
+      title: "LUSH LIMITED EDITION",
+      layout: "count-3",
+      editionId: "lush-limited-edition",
+      images: numberedImages("/products/syokpod/lush", "lush", 3, "jpg", "Lush Limited Edition")
+    }
+  ]
+};
+
+const galleries = galleriesByExperience[experience.id] ?? [];
+const initialEdition = Astro.url.searchParams.get("variant");
+const defaultEdition = experience.editions[0]?.id;
+const activeEdition = galleries.some((gallery) => gallery.editionId === initialEdition) ? initialEdition : defaultEdition;
+const isEditionGroup = galleries.some((gallery) => gallery.editionId);
+---
+
+{galleries.length > 0 && (
+  <div class="product-poster-gallery-group" data-syokpod-poster-gallery data-product-poster-gallery-group={experience.id}>
+    {galleries.map((gallery) => (
+      <ProductPosterGallery
+        galleryId={gallery.id}
+        title={gallery.title}
+        images={gallery.images}
+        layout={gallery.layout}
+        editionId={gallery.editionId}
+        hidden={isEditionGroup && gallery.editionId !== activeEdition}
+      />
+    ))}
+    {isEditionGroup && (
+      <script is:inline>
+        (() => {
+          window.__dreammadeSyokPodGalleryCleanup?.();
+          const onStateChange = (event) => {
+            const editionId = event.detail?.editionId;
+            if (!editionId) return;
+            document.querySelectorAll("[data-syokpod-poster-gallery] [data-gallery-edition]").forEach((gallery) => {
+              const active = gallery.getAttribute("data-gallery-edition") === editionId;
+              gallery.toggleAttribute("hidden", !active);
+              gallery.setAttribute("aria-hidden", String(!active));
+            });
+            window.dispatchEvent(new CustomEvent("dreammade:poster-gallery-visible"));
+          };
+          window.addEventListener("dreammade:product-state-change", onStateChange);
+          window.__dreammadeSyokPodGalleryCleanup = () => window.removeEventListener("dreammade:product-state-change", onStateChange);
+        })();
+      </script>
+    )}
+  </div>
+)}

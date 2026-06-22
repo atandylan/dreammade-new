@@ -1,0 +1,118 @@
+---
+import Navbar from "../components/global/Navbar.astro";
+import Footer from "../components/global/Footer.astro";
+import { site } from "../data/site";
+
+import "../styles/global.css";
+import "../styles/components.css";
+import "../styles/motion.css";
+import "../styles/contact.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dreammade - Contact</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Navbar variant="standard" activeLabel="Contact Us" />
+    
+    <main>
+      <section class="contact-editorial surface-cream-clean">
+        <div class="wrap contact-editorial-grid">
+          <div class="contact-editorial-intro">
+            <div class="eyebrow" data-contact-reveal>CONTACT DREAMMADE</div>
+            <h1 data-contact-heading>
+              <span>LET’S</span>
+              <span>START A</span>
+              <span>CONVERSATION.</span>
+            </h1>
+            <p data-contact-reveal>For product inquiries, collaborations, SyokGeng opportunities, events, or general questions — reach Dreammade directly.</p>
+
+            <div class="info-blocks">
+              <div class="info-block" data-contact-info>
+                <h3>Email Us</h3>
+                <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+              </div>
+              
+              <div class="info-block" data-contact-info>
+                <h3>Inquiries</h3>
+                <p>Product / Collaboration / Events / SyokGeng / General</p>
+              </div>
+              
+              <div class="info-block" data-contact-info>
+                <h3>Response Time</h3>
+                <p>We will get back to you within 24h.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form-column">
+            <div class="contact-form-panel">
+            <h3 data-contact-form-title>SAY HELLO</h3>
+            <form id="contactForm" data-contact-email={site.contactEmail}>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="whatsapp">Whatsapp</label>
+                <div class="whatsapp-group">
+                  <select id="country-code" name="countryCode" class="form-control" aria-label="Country Code">
+                    <option value="+60">+60 Malaysia</option>
+                    <option value="+62">+62 Indonesia</option>
+                    <option value="+65">+65 Singapore</option>
+                    <option value="+66">+66 Thailand</option>
+                    <option value="+673">+673 Brunei</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <input type="tel" id="whatsapp" name="whatsapp" class="form-control" placeholder="Your Whatsapp Number" required />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">What’s on your mind?</label>
+                <textarea id="message" name="message" class="form-control" placeholder="Tell us about your request…" required></textarea>
+              </div>
+              
+              <div class="form-actions">
+                <button type="submit" class="button">Send Message</button>
+                <span class="helper-text">Your email app will open to send this message.</span>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-links surface-grey-editorial">
+        <div class="wrap contact-links-inner">
+          <a href="/products">Explore Products <span>↗</span></a>
+          <a href="/clothing">Discover SyokGeng <span>↗</span></a>
+        </div>
+      </section>
+
+    </main>
+    
+    <Footer variant="standard" />
+
+    <script>
+      import { initContactMotion } from "../scripts/contactMotion";
+
+      initContactMotion();
+      document.addEventListener("astro:page-load", initContactMotion);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+---
+import { site } from "../../data/site";
+---
+
+<section class="hero" aria-label="Dreammade hero">
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-ghost" aria-hidden="true">DREAMMADE</div>
+  <div class="hero-transition-band" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <h1 class="hero-title" aria-label={site.tagline}>
+        <span class="title-line title-line-one"><span>Tak Keras</span></span>
+        <span class="title-line title-line-two"><span>Tak Syok</span></span>
+      </h1>
+      <p class="hero-line">{site.description}</p>
+      <div class="hero-actions hero-line">
+        <a class="button" href="#products">Explore Syok</a>
+        <a class="button secondary" href="#about">Brand story</a>
+      </div>
+    </div>
+    <div class="hero-index" aria-hidden="true">
+      <span>Dreammade</span>
+      <span>Est. Malaysia</span>
+    </div>
+  </div>
+</section>

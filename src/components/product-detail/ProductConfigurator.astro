@@ -1,0 +1,97 @@
+---
+import type { ProductExperience } from "../../data/productExperience";
+
+type Props = { experience: ProductExperience };
+const { experience } = Astro.props;
+const firstEdition = experience.editions[0];
+const firstOption = firstEdition.options[0];
+const firstViewIndex = Math.min(firstEdition.defaultViewIndex ?? 0, firstOption.images.length - 1);
+const viewLabels = firstOption.images.map((_, index) => firstEdition.viewLabels?.[index] ?? `VIEW 0${index + 1}`);
+const viewer = experience.viewer ?? {
+  headline: firstEdition.headline,
+  body: [firstEdition.description],
+  notes: [{ label: "Compatibility", value: experience.compatibility }]
+};
+const showEditionSelector = experience.editions.length > 1;
+const showOptionSelector = firstEdition.options.length > 1;
+---
+
+<section class="product-configurator" data-product-experience={experience.id} data-active-edition={firstEdition.id} data-active-option={firstOption.id} data-active-view={firstViewIndex}>
+  <div class="product-configurator-shell">
+    <div class="product-configurator-viewer">
+      <div class="configurator-stage" data-configurator-stage>
+        <span class="configurator-system">DREAMMADE / SYOK SERIES</span>
+        <div class="configurator-device-viewport">
+          <img
+            id="configuratorImage"
+            src={firstOption.images[firstViewIndex]}
+            alt={`${experience.name} ${firstOption.displayName}`}
+          />
+        </div>
+        <div class="configurator-readout">
+          <span id="configuratorEdition">{firstEdition.name}</span>
+          <b id="configuratorOption">{firstOption.displayName}</b>
+          <span id="configuratorView">{viewLabels[firstViewIndex]}</span>
+        </div>
+      </div>
+      <div class="configurator-picker-dock">
+        {showEditionSelector && (
+          <div class="configurator-control-group" id="configuratorEditionGroup">
+            <span class="configurator-label">Edition</span>
+            <div class="configurator-options configurator-edition-options" role="group" aria-label="Product edition">
+              {experience.editions.map((edition, index) => (
+                <button
+                  type="button"
+                  class:list={["configurator-option", "product-edition-tab", { active: index === 0 }]}
+                  data-edition={edition.id}
+                  aria-pressed={index === 0 ? "true" : "false"}
+                >
+                  <span>{edition.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="configurator-control-group" id="configuratorOptionGroup" hidden={!showOptionSelector}>
+          <span class="configurator-label">Finish / Colour / Country</span>
+          <div class="configurator-options" id="configuratorOptions" role="group" aria-label="Product finish">
+            {firstEdition.options.map((option, index) => (
+              <button
+                type="button"
+                class:list={["configurator-option", { active: index === 0 }]}
+                data-option={option.id}
+                aria-pressed={index === 0 ? "true" : "false"}
+              >
+                <i style={`--option-colour:${option.colour ?? "#91050b"}`}></i>
+                <span>{option.displayName}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="configurator-control-group" id="configuratorViews" hidden={firstOption.images.length < 2}>
+          <span class="configurator-label">Angle</span>
+          <div class="view-selector" role="group" aria-label="Product angle">
+            {viewLabels.map((label, index) => (
+              <button type="button" class:list={["view-selector-button", { active: index === firstViewIndex }]} data-view={index + 1} aria-pressed={index === firstViewIndex ? "true" : "false"}>{label}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-configurator-editorial">
+      <div class="configurator-intro">
+        <span class="eyebrow" id="configuratorEyebrow">{firstEdition.eyebrow}</span>
+        <h2 id="configuratorHeadline">{viewer.headline}</h2>
+        <div class="configurator-description">
+          {viewer.body.map((paragraph, index) => (
+            <p id={index === 0 ? "configuratorDescription" : undefined}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+      <p class="configurator-compatibility">{experience.compatibility}</p>
+    </div>
+  </div>
+  <script is:inline type="application/json" id="productExperienceData" set:html={JSON.stringify(experience)}></script>
+</section>

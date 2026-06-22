@@ -1,0 +1,26 @@
+---
+import type { ProductExperience } from "../../data/productExperience";
+
+type Props = { experience: ProductExperience };
+const { experience } = Astro.props;
+const links = experience.collectionLinks ?? [];
+---
+
+{links.length > 0 && (
+  <section class="product-collection-links-section">
+    <div class="product-collection-links">
+      <div>
+        <span class="eyebrow">Explore collection</span>
+        <h2>Move through the system.</h2>
+      </div>
+      <div class="product-collection-grid">
+        {links.map((link) => (
+          <a href={link.href}>
+            <span>{link.eyebrow ?? "Dreammade"}</span>
+            <b>{link.label}</b>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

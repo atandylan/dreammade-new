@@ -1,0 +1,151 @@
+---
+import Navbar from "../components/global/Navbar.astro";
+import Footer from "../components/global/Footer.astro";
+
+import "../styles/global.css";
+import "../styles/components.css";
+import "../styles/motion.css";
+import "../styles/about.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dreammade - About Us</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Navbar variant="standard" activeLabel="About Us" />
+    <main class="about-page">
+      <section class="about-hero surface-photo-overlay" data-about-section="hero">
+        <img class="about-hero-image" src="/about/existence-poster.webp" alt="Dreammade team and community group portrait" />
+        <div class="wrap about-hero-content">
+          <img class="about-hero-logo" src="/logo/dreammade-logo-transparent.png" alt="Dreammade" data-about-logo />
+          <div class="eyebrow about-reveal" data-about-reveal>ABOUT DREAMMADE</div>
+          <h1 class="about-hero-title">
+            <span>BOLD BY NATURE.</span>
+            <span>GROUNDED BY CULTURE.</span>
+          </h1>
+          <span class="about-hero-label about-reveal" data-about-reveal>DREAMMADE / MALAYSIA</span>
+        </div>
+      </section>
+
+      <section class="about-existence surface-cream-clean" data-about-section="existence">
+        <div class="wrap about-existence-grid">
+          <div class="about-existence-media about-reveal-card" data-about-frame>
+            <video autoplay muted loop playsinline preload="metadata" poster="/about/existence-poster.webp" aria-label="Dreammade existence film">
+              <source src="/about/existence-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="about-existence-copy">
+            <div class="eyebrow about-reveal" data-about-reveal>OUR EXISTENCE</div>
+            <div class="about-existence-copy-body" data-about-reveal>
+              <p class="about-existence-statement" data-about-reveal>SyokGeng combines fearless self-expression with authentic Malaysian roots for the everyday generation.</p>
+              <p class="about-existence-statement" data-about-reveal>Dreammade is the parent company behind the Syok series and the #TKTS lifestyle.</p>
+            </div>
+            <span class="about-section-label about-reveal" data-about-reveal>DREAMMADE / SYOKGENG / MALAYSIA</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-text-section about-brand-story surface-red-grain" data-about-section="story">
+        <div class="wrap about-story-grid">
+          <div class="about-section-heading">
+            <div class="eyebrow about-reveal" data-about-reveal>BRAND STORY</div>
+            <h2 class="about-mask-heading"><span>FROM PRODUCT LINE</span><span>TO LIVING CULTURE.</span></h2>
+          </div>
+          <div class="about-section-copy">
+            <p class="about-reveal" data-about-reveal>From the Syok Series emerged SyokGeng. It is unapologetically bold and expressive — rooted in the spirit of the streets and inspired by everyday Malaysians. Dreammade brings this culture to life through products, moments, and meaningful connections.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-text-section about-philosophy surface-cream-clean" data-about-section="philosophy">
+        <div class="wrap">
+          <div class="about-section-heading about-philosophy-heading">
+            <div class="eyebrow about-reveal" data-about-reveal>PRODUCT PHILOSOPHY</div>
+            <h2 class="about-mask-heading"><span>RELIABLE. REFINED.</span><span>FULL OF FLAVOUR.</span></h2>
+          </div>
+          <div class="about-principles">
+            <article class="about-principle-row">
+              <h3>BUILD QUALITY</h3>
+              <p>Precision, materials, and device feel.</p>
+            </article>
+            <article class="about-principle-row">
+              <h3>RICH FLAVOUR</h3>
+              <p>Flavour-led formats built for everyday satisfaction.</p>
+            </article>
+            <article class="about-principle-row">
+              <h3>SMOOTH PERFORMANCE</h3>
+              <p>A consistent experience from first use to last.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-vision surface-red-grain" data-about-section="vision">
+        <div class="wrap">
+          <div class="eyebrow about-vision-eyebrow about-reveal" data-about-reveal>VISION &amp; MISSION</div>
+          <div class="about-vision-grid">
+            <article class="about-vision-column">
+              <div class="eyebrow">Vision</div>
+              <h2>To lead through innovation, flavour, and a culture that gives people room to express themselves.</h2>
+            </article>
+            <article class="about-vision-column">
+              <div class="eyebrow">Mission</div>
+              <h2>To make refined, flavour-led products while growing a community that reaches beyond the device.</h2>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-ecosystem surface-cream-clean" data-about-section="ecosystem">
+        <div class="wrap about-ecosystem-inner">
+          <div class="about-section-heading about-ecosystem-heading">
+            <div class="eyebrow about-reveal" data-about-reveal>BRAND ECOSYSTEM</div>
+            <h2 class="about-mask-heading"><span>ONE CULTURE.</span><span>THREE SYSTEMS.</span></h2>
+          </div>
+          <div class="about-ecosystem-architecture">
+            <div class="about-ecosystem-parent ecosystem-logo ecosystem-logo-dreammade" data-about-frame>
+              <img src="/logo/dreammade-logo-color.png" alt="Dreammade" data-about-logo />
+              <span>PARENT COMPANY</span>
+            </div>
+            <div class="about-ecosystem-connector" aria-hidden="true" data-about-line></div>
+            <div class="about-ecosystem-children">
+              <div class="ecosystem-logo ecosystem-logo-syokpod" data-about-frame><img src="/logo/syokpod-logo-color.png" alt="SyokPod" data-about-logo /></div>
+              <div class="ecosystem-logo ecosystem-logo-syokbar" data-about-frame><img src="/logo/syokbar-logo-color.png" alt="SyokBar" data-about-logo /></div>
+              <div class="ecosystem-logo ecosystem-logo-kohs" data-about-frame><img src="/logo/kohs-logo-color.png" alt="KOHS" data-about-logo /></div>
+            </div>
+          </div>
+          <a class="button about-reveal" href="/products" data-about-reveal>Explore Products</a>
+        </div>
+      </section>
+
+      <section class="about-cta surface-cream-clean" data-about-section="cta">
+        <div class="wrap">
+          <div class="about-cta-frame" data-about-frame>
+            <div class="about-cta-inner">
+              <div class="eyebrow about-reveal" data-about-reveal>NEXT</div>
+              <h2 class="about-mask-heading"><span>FIND THE SYOK</span><span>THAT FITS YOU.</span></h2>
+              <div class="about-cta-actions about-reveal" data-about-reveal>
+                <a class="button" href="/products">Explore Products</a>
+                <a class="button secondary" href="/clothing">Discover SyokGeng</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer variant="standard" />
+    <script>
+      import { initAboutMotion } from "../scripts/aboutMotion";
+      initAboutMotion();
+      document.addEventListener("astro:page-load", initAboutMotion);
+    </script>
+  </body>
+</html>

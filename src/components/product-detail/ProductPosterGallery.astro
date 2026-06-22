@@ -1,0 +1,38 @@
+---
+export type PosterGalleryImage = { src: string; alt: string };
+type Props = {
+  galleryId: string;
+  eyebrow?: string;
+  title: string;
+  images: PosterGalleryImage[];
+  layout: "count-3" | "count-5" | "count-6" | "count-9";
+  hidden?: boolean;
+  editionId?: string;
+};
+
+const { galleryId, eyebrow = "Campaign gallery", title, images, layout, hidden = false, editionId } = Astro.props;
+---
+
+{images.length > 0 && (
+  <section
+    id={galleryId}
+    class:list={["product-poster-gallery", `product-poster-gallery-${layout}`]}
+    data-product-poster-gallery
+    data-poster-gallery
+    data-gallery-edition={editionId}
+    hidden={hidden}
+    aria-hidden={hidden ? "true" : "false"}
+  >
+    <div class="product-poster-gallery-head" data-poster-gallery-heading>
+      <span class="eyebrow">{eyebrow}</span>
+      <h2>{title}</h2>
+    </div>
+    <div class="poster-bento-grid">
+      {images.map((image, index) => (
+        <figure class={`poster-bento-item poster-bento-item-${index + 1}`} data-poster-gallery-item>
+          <img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
+        </figure>
+      ))}
+    </div>
+  </section>
+)}

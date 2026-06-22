@@ -1,0 +1,115 @@
+---
+import ProductFamilyMark from "../shared/ProductFamilyMark.astro";
+
+const v2Images = [
+  "/products/syokpod/v2/syokpod-v2-red-01.webp",
+  "/products/syokpod/v2/syokpod-v2-green-01.webp",
+  "/products/syokpod/v2/syokpod-v2-grey-01.webp",
+  "/products/syokpod/v2/syokpod-v2-blue-01.webp",
+  "/products/syokpod/v2/syokpod-v2-black-01.webp",
+];
+
+const proImages = [
+  "/products/syokpod/pro/syokpod-pro-obsidian-01.webp",
+  "/products/syokpod/pro/syokpod-pro-lightgrey-01.webp",
+  "/products/syokpod/pro/syokpod-pro-gold-01.webp",
+  "/products/syokpod/pro/syokpod-pro-gray-01.webp",
+  "/products/syokpod/pro/syokpod-pro-green-01.webp",
+];
+
+const editions = [
+  {
+    id: "gt-edition",
+    name: "GT Edition",
+    line: "Metallic finish. Collector energy.",
+    image: "/products/syokpod/gt/syokpod-gt-copper-02.webp",
+    href: "/products/syokpod-special-editions?variant=gt-edition&finish=copper&view=1",
+  },
+  {
+    id: "2-years-anniversary",
+    name: "2 Years Anniversary",
+    line: "Two years in. Still moving.",
+    image: "/products/syokpod/2years/syokpod-2years-02.webp",
+    href: "/products/syokpod-special-editions?variant=2-years-anniversary&view=1",
+  },
+  {
+    id: "lush-limited-edition",
+    name: "Lush Limited Edition",
+    line: "Softer colour. Same Syok attitude.",
+    image: "/products/syokpod/lush/syokpod-lush-02.webp",
+    href: "/products/syokpod-special-editions?variant=lush-limited-edition&view=1",
+  },
+];
+---
+
+<section class="syokpod-campaigns" aria-label="SyokPod products">
+  <article class="syokpod-campaign syokpod-campaign-v2" id="syokpod-v2" data-product-campaign data-product-story-slide>
+    <div class="campaign-product-group campaign-product-group-v2" data-campaign-group>
+      {v2Images.map((image, index) => (
+        <span class={`device-slot campaign-product-layer campaign-product-layer-${index + 1}`}>
+          <span class="device-float" data-campaign-layer>
+            <img src={image} alt={`SyokPod V2 colourway ${index + 1}`} loading={index < 3 ? "eager" : "lazy"} />
+            <span class="device-shadow" aria-hidden="true"></span>
+          </span>
+        </span>
+      ))}
+    </div>
+    <div class="campaign-copy">
+      <div class="product-family-signature">
+        <ProductFamilyMark family="syokpod" />
+        <span class="eyebrow">Closed System / Syok Series</span>
+      </div>
+      <h2>SYOKPOD<br />V2</h2>
+      <h3>Compact, clean and built for daily carry.</h3>
+      <div class="campaign-description">
+        <p>A closed-system device built for smooth sessions, standout colourways, and the SyokGeng way of life.</p>
+      </div>
+      <a class="campaign-link" href="/products/syokpod-v2">Explore SyokPod V2</a>
+    </div>
+  </article>
+
+  <div class="special-editions-head" id="syokpod-special-editions">
+    <div class="product-family-signature">
+      <ProductFamilyMark family="syokpod" />
+      <span class="eyebrow">SyokPod editions</span>
+    </div>
+    <h2>Collector expressions.</h2>
+  </div>
+  <div class="special-editions-grid">
+    {editions.map((edition) => (
+      <a class="special-edition-panel" href={edition.href} data-edition={edition.id} data-product-story-slide>
+        <span class="special-edition-visual"><img src={edition.image} alt={edition.name} loading="lazy" /></span>
+        <span class="special-edition-copy">
+          <small>SyokPod V2 edition</small>
+          <b>{edition.name}</b>
+          <span>{edition.line}</span>
+        </span>
+      </a>
+    ))}
+  </div>
+
+  <article class="syokpod-campaign syokpod-campaign-pro" id="syokpod-pro" data-product-campaign data-product-story-slide>
+    <div class="campaign-copy">
+      <div class="product-family-signature">
+        <ProductFamilyMark family="syokpod" />
+        <span class="eyebrow">Closed System / Syok Series</span>
+      </div>
+      <h2>SYOKPOD PRO</h2>
+      <h3>More control.<br />Stronger silhouette.</h3>
+      <div class="campaign-description">
+        <p>Built for users who want a bolder SyokPod experience without losing everyday comfort.</p>
+      </div>
+      <a class="campaign-link" href="/products/syokpod-pro">Explore SyokPod Pro</a>
+    </div>
+    <div class="campaign-product-group campaign-product-group-pro" data-campaign-group>
+      {proImages.map((image, index) => (
+        <span class={`device-slot campaign-product-layer campaign-product-layer-${index + 1}`}>
+          <span class="device-float" data-campaign-layer>
+            <img src={image} alt={`SyokPod Pro finish ${index + 1}`} loading="lazy" />
+            <span class="device-shadow" aria-hidden="true"></span>
+          </span>
+        </span>
+      ))}
+    </div>
+  </article>
+</section>

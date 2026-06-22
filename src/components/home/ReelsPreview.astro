@@ -1,0 +1,22 @@
+---
+import { reels } from "../../data/reels";
+---
+
+<section class="feed-section dream-pattern-minimal dream-pattern-cream" id="feed">
+  <div class="wrap">
+    <div class="eyebrow">From the feed</div>
+    <h2 class="section-title">
+      <span class="reveal-line"><span>Designed for</span></span>
+      <span class="reveal-line"><span>the scroll.</span></span>
+    </h2>
+    <div class="feed-track" aria-label="Dreammade feed cards" tabindex="0">
+      {reels.map((reel) => (
+        <article class="reel-card image-tile">
+          <img class="reel-image" src={reel.image} alt={reel.alt} />
+          <div class="image-overlay"></div>
+          <div class="reel-label">{reel.label}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

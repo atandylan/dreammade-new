@@ -1,0 +1,84 @@
+---
+import Navbar from "../components/global/Navbar.astro";
+import Footer from "../components/global/Footer.astro";
+import HorizontalMediaRail from "../components/shared/HorizontalMediaRail.astro";
+
+import { eventsData } from "../data/events";
+import "../styles/global.css";
+import "../styles/components.css";
+import "../styles/motion.css";
+import "../styles/horizontal-media-rail.css";
+import "../styles/events.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dreammade - Events</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Navbar variant="standard" activeLabel="Events" />
+    
+    <main id="top">
+      <section class="events-hero page-hero dream-texture-red">
+        <div class="wrap events-hero-inner">
+          <div class="eyebrow reveal">DREAMMADE EVENTS</div>
+          <h1 class="reveal">MOMENTS THAT CARRY THE SYOK IDENTITY.</h1>
+          <p class="body-copy reveal">A visual archive of Dreammade’s brand activations, partnerships, and authentic SyokGeng #TKTS moments that changed the game.</p>
+        </div>
+      </section>
+
+      <div id="event-gallery" class="events-albums" aria-label="Dreammade event albums">
+        {eventsData.map((album, albumIndex) => {
+          const toneClass = albumIndex % 2 === 0
+            ? "event-album-cream surface-cream-clean"
+            : "event-album-red surface-red-grain";
+          return (
+            <section class:list={["event-album", toneClass]}>
+              <div class="wrap event-album-header">
+                <div class="eyebrow event-index" data-event-reveal>Event 0{albumIndex + 1}</div>
+                <h2 class="event-title" data-event-title>{album.title}</h2>
+              </div>
+              <HorizontalMediaRail
+                id={`event-${album.id}`}
+                images={album.images}
+                altPrefix={`${album.title} photograph`}
+                initialCount={6}
+                eagerCount={albumIndex === 0 ? 2 : 0}
+                className="event-media-gallery"
+              />
+            </section>
+          );
+        })}
+      </div>
+
+      <!-- 3. CTA -->
+      <section class="events-cta surface-cream-clean">
+        <div class="wrap cta-inner">
+          <div class="eyebrow reveal">NEXT</div>
+          <h2 class="reveal">BRING DREAMMADE INTO THE ROOM.</h2>
+          <p class="body-copy dark-copy reveal">For event inquiries, collaborations, activations, or SyokGeng moments, contact the Dreammade team.</p>
+          <div class="cta-buttons reveal">
+            <a href="/contact" class="button">Contact Dreammade</a>
+            <a href="/products" class="button secondary">Explore Products</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    
+    <Footer variant="standard" />
+
+    <script>
+      import { initEventsMotion } from "../scripts/eventsMotion";
+      initEventsMotion();
+      document.addEventListener("astro:page-load", initEventsMotion);
+    </script>
+  </body>
+</html>

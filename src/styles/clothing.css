@@ -1,0 +1,344 @@
+main {
+  background: var(--cream);
+  overflow: hidden;
+}
+
+section {
+  position: relative;
+  padding: clamp(78px, 10vw, 140px) 0;
+}
+
+.clothing-hero {
+  padding-top: clamp(140px, 15vw, 200px);
+  padding-bottom: clamp(82px, 10vw, 128px);
+}
+
+.clothing-hero .wrap,
+.clothing-hero-copy {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.clothing-hero h1 {
+  max-width: 10ch;
+  margin: clamp(24px, 3vw, 38px) 0 0;
+  color: var(--text-light);
+  font-size: clamp(54px, 7.2vw, 104px);
+  line-height: .86;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+
+.clothing-brand {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin-top: clamp(16px, 2.4vw, 28px);
+  color: var(--cream);
+  opacity: 1;
+  font-family: var(--font-display);
+  font-size: clamp(78px, 11.5vw, 172px);
+  font-weight: 900;
+  font-variation-settings:
+    "wght" 900,
+    "wdth" 116,
+    "opsz" 72;
+  line-height: .76;
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 18px 46px rgba(9,9,9,.18);
+}
+
+.clothing-lookbook {
+  display: block;
+}
+
+.lookbook-group {
+  width: 100%;
+  overflow: hidden;
+}
+
+.lookbook-header {
+  margin-bottom: clamp(30px, 4vw, 48px);
+}
+
+.lookbook-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6.5vw, 92px);
+  line-height: .92;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+
+.lookbook-group-cream {
+  color: var(--text-dark);
+}
+
+.lookbook-group-cream .lookbook-title,
+.lookbook-group-cream .progressive-gallery-toggle {
+  color: var(--red);
+}
+
+.lookbook-group-red {
+  color: var(--cream);
+}
+
+.lookbook-group-red .lookbook-title,
+.lookbook-group-red .progressive-gallery-toggle {
+  color: var(--cream);
+}
+
+.clothing-media-gallery .horizontal-media-card {
+  border-radius: clamp(14px, 1.5vw, 22px);
+}
+
+.lookbook-group-red .horizontal-media-card {
+  border: 1px solid rgba(247,243,238,.16);
+}
+
+.lookbook-group-cream .progressive-gallery-toggle:hover {
+  background: var(--red);
+  color: var(--cream);
+}
+
+.lookbook-group-red .progressive-gallery-toggle:hover {
+  background: var(--cream);
+  color: var(--red);
+}
+
+.accessories-section {
+  background: var(--brand-grey-dark);
+  color: var(--cream);
+  overflow: hidden;
+}
+
+.accessories-header {
+  max-width: 980px;
+  margin-bottom: clamp(36px, 5vw, 70px);
+}
+
+.accessories-header .eyebrow,
+.accessory-eyewear .eyebrow {
+  color: rgba(247,243,238,.72);
+}
+
+.accessories-header h2 {
+  margin: 12px 0 0;
+  color: var(--cream);
+  font-size: clamp(42px, 6.5vw, 92px);
+  line-height: .92;
+  letter-spacing: -.035em;
+}
+
+.accessories-header p {
+  max-width: 560px;
+  margin: 22px 0 0;
+  color: var(--text-muted-light);
+  line-height: 1.65;
+}
+
+.accessories-catalogue {
+  display: grid;
+  grid-template-columns: minmax(280px, .4fr) minmax(0, .6fr);
+  gap: clamp(24px, 4vw, 58px);
+  align-items: stretch;
+}
+
+.accessory-casing-card {
+  min-width: 0;
+  min-height: clamp(460px, 54vw, 660px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  border-radius: clamp(26px, 3vw, 44px);
+  background: var(--cream);
+  color: var(--text-dark);
+  padding: clamp(24px, 3vw, 42px);
+  overflow: hidden;
+}
+
+.accessory-casing-card img {
+  width: min(78%, 420px);
+  max-height: 430px;
+  margin: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 34px rgba(9, 9, 9, .28));
+}
+
+.accessory-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.accessory-labels .label-large {
+  color: var(--red);
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 48px);
+  line-height: .9;
+  letter-spacing: -.025em;
+}
+
+.accessory-labels .label-small {
+  color: var(--text-muted-dark);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .1em;
+}
+
+.accessory-eyewear {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+}
+
+.accessory-eyewear h3 {
+  margin: 10px 0 clamp(20px, 2.8vw, 34px);
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 78px);
+  line-height: .9;
+  letter-spacing: -.03em;
+}
+
+.accessories-eyewear-gallery .horizontal-media-rail {
+  padding-left: 0;
+  padding-right: 0;
+  scroll-padding-inline: 0;
+}
+
+.accessories-eyewear-gallery .horizontal-media-card {
+  flex-basis: clamp(240px, 24vw, 360px);
+  border: 1px solid rgba(247,243,238,.18);
+  border-radius: clamp(14px, 1.5vw, 22px);
+}
+
+.accessories-eyewear-gallery .progressive-gallery-toggle {
+  margin-left: 0;
+  margin-right: 0;
+  color: var(--cream);
+}
+
+.accessories-eyewear-gallery .progressive-gallery-toggle:hover {
+  background: var(--cream);
+  color: var(--brand-grey-dark);
+}
+
+.clothing-social {
+  background: var(--cream);
+  color: var(--text-dark);
+}
+
+.clothing-social-inner {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, .72fr);
+  gap: 50px;
+  align-items: end;
+}
+
+.clothing-social-inner h2 {
+  margin: 12px 0 0;
+  font-size: clamp(42px, 6.5vw, 92px);
+  line-height: .92;
+  letter-spacing: -.035em;
+}
+
+.clothing-social-links {
+  border-top: 1px solid rgba(9,9,9,.18);
+}
+
+.clothing-social-links a {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(9,9,9,.18);
+  padding: 24px 0;
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.5vw, 32px);
+  text-transform: uppercase;
+}
+
+.clothing-social-links span {
+  color: var(--red);
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: .06em;
+}
+
+@media (max-width: 900px) {
+  .accessories-catalogue,
+  .clothing-social-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .accessory-casing-card {
+    min-height: 420px;
+  }
+
+  .accessories-eyewear-gallery .horizontal-media-rail {
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .clothing-hero {
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    padding-top: 88px;
+    padding-bottom: 28px;
+    overflow: hidden;
+  }
+
+  .clothing-hero .wrap,
+  .clothing-hero-copy {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .clothing-hero .eyebrow {
+    font-size: 8px;
+  }
+
+  .lookbook-title,
+  .accessories-header h2,
+  .accessory-eyewear h3,
+  .clothing-social-inner h2 {
+    letter-spacing: -.015em;
+    line-height: .98;
+  }
+
+  .clothing-brand {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 12px;
+    font-size: clamp(46px, 14vw, 64px);
+    font-variation-settings:
+      "wght" 900,
+      "wdth" 108,
+      "opsz" 64;
+    line-height: .8;
+    letter-spacing: -.055em;
+    white-space: nowrap;
+  }
+
+  .clothing-hero h1 {
+    max-width: 9ch;
+    margin-top: 20px;
+    font-size: clamp(38px, 11.5vw, 52px);
+    line-height: .88;
+  }
+
+  .accessory-casing-card {
+    min-height: 380px;
+  }
+
+  .accessory-casing-card img {
+    width: min(88%, 340px);
+  }
+}

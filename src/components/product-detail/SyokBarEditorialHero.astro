@@ -1,0 +1,29 @@
+---
+import ProductFamilyMark from "../shared/ProductFamilyMark.astro";
+import type { SyokBarExperience } from "../../data/syokbarExperience";
+
+type Props = { experience: SyokBarExperience };
+const { experience } = Astro.props;
+---
+
+<section class:list={["syokbar-editorial-hero", { "syokbar-editorial-target": experience.target, "syokbar-editorial-special": experience.id === "syokbar-special-editions" }]} data-syokbar-hero>
+  <div class="syokbar-editorial-shell">
+    <div class="syokbar-editorial-copy">
+      <div class="product-family-signature product-family-signature-hero">
+        <ProductFamilyMark family="syokbar" />
+        <span class="eyebrow">{experience.eyebrow}</span>
+      </div>
+      <h1>{experience.name}</h1>
+      <h2>{experience.statement}</h2>
+      <p>{experience.description}</p>
+      <span>{experience.compatibility}</span>
+    </div>
+    <div class="syokbar-hero-stage">
+      {experience.heroImages.map((image, index) => (
+        <span class={`syokbar-hero-device syokbar-hero-device-${index + 1}`}>
+          <img src={image} alt={`${experience.name} hero device ${index + 1}`} loading={index < 2 ? "eager" : "lazy"} />
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

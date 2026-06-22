@@ -1,0 +1,27 @@
+---
+import type { ProductExperience } from "../../data/productExperience";
+
+type Props = { experience: ProductExperience };
+const { experience } = Astro.props;
+const narratives = experience.narratives ?? (experience.narrative ? [experience.narrative] : []);
+---
+
+{narratives.map((narrative, index) => (
+  <section class:list={[
+    "product-narrative-section",
+    `product-narrative-${narrative.tone ?? "cream"}`,
+    `product-narrative-flow-${index + 1}`,
+    { "product-narrative-reverse": index % 2 === 1 }
+  ]}>
+    <div class="product-narrative-shell">
+      <div class="product-narrative-heading">
+        <span class="eyebrow">{narrative.eyebrow}</span>
+        <h2>{narrative.title}</h2>
+        {narrative.lead && <p>{narrative.lead}</p>}
+      </div>
+      <div class="product-narrative-copy">
+        {narrative.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+))}

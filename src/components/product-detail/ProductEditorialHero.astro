@@ -1,0 +1,29 @@
+---
+import ProductFamilyMark from "../shared/ProductFamilyMark.astro";
+import type { SyokPodExperience } from "../../data/syokpodExperience";
+
+type Props = { experience: SyokPodExperience };
+const { experience } = Astro.props;
+---
+
+<section class:list={["product-editorial-hero", { "product-editorial-hero-pro": experience.id === "syokpod-pro", "product-editorial-hero-special": experience.id === "syokpod-special-editions" }]} data-editorial-hero>
+  <div class="product-editorial-shell">
+    <div class:list={["product-editorial-visual", { "product-editorial-pro": experience.id === "syokpod-pro" }]} data-editorial-group>
+      {experience.heroImages.map((image, index) => (
+        <span class={`editorial-device-layer editorial-device-layer-${index + 1}`} data-editorial-layer>
+          <img src={image} alt={`${experience.name} colourway ${index + 1}`} loading={index < 3 ? "eager" : "lazy"} />
+        </span>
+      ))}
+    </div>
+    <div class="product-editorial-copy">
+      <div class="product-family-signature product-family-signature-hero">
+        <ProductFamilyMark family="syokpod" />
+        <span class="eyebrow">{experience.eyebrow}</span>
+      </div>
+      <h1>{experience.id === "syokpod-v2" ? <><span>SyokPod</span><span>V2</span></> : experience.name}</h1>
+      <h2>{experience.statement}</h2>
+      <div class="editorial-description"><p>{experience.description}</p></div>
+      <span class="editorial-compat">{experience.compatibility}</span>
+    </div>
+  </div>
+</section>

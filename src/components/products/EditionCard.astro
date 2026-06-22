@@ -1,0 +1,24 @@
+---
+import type { Product } from "../../data/products";
+import { specialEditionParentRoutes } from "../../data/products";
+
+type Props = {
+  product: Product;
+};
+
+const { product } = Astro.props;
+const route = specialEditionParentRoutes[product.slug] || product.route;
+---
+
+<a class="edition-card reveal" href={route}>
+  <div class="edition-visual">
+    <img src={product.images.primary} alt={product.name} onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+    <div class="edition-svg-fallback" style="display:none;" set:html={product.images.svg}></div>
+  </div>
+  <div class="edition-info">
+    <span class="small-label">{product.label}</span>
+    <h3>{product.name}</h3>
+    <p>{product.shortDescription}</p>
+    <span class="text-link">View edition</span>
+  </div>
+</a>

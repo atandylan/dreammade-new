@@ -1,0 +1,74 @@
+---
+import type { SyokBarExperience } from "../../data/syokbarExperience";
+import ProductPosterGallery, { type PosterGalleryImage } from "./ProductPosterGallery.astro";
+
+type Props = { experience: SyokBarExperience };
+const { experience } = Astro.props;
+const activeGallery = experience.editions[0]?.gallery ?? "none";
+const showTarget = activeGallery === "target";
+const showFifa = experience.editions.some((edition) => edition.gallery === "fifa");
+const showCamo = experience.editions.some((edition) => edition.gallery === "camo");
+const fifaPosters = [
+  "/products/syokbar/SYOKBAR FIFA/fifa-england.jpg",
+  "/products/syokbar/SYOKBAR FIFA/fifa-france.jpg",
+  "/products/syokbar/SYOKBAR FIFA/fifa-portugal.jpg",
+  "/products/syokbar/SYOKBAR FIFA/fifa-spain.jpg"
+];
+const fifaLife = ["FIFA1", "FIFA2", "FIFA3", "FIFA4", "FIFA5", "FIFA6"].map((name) => `/products/syokbar/SYOKBAR FIFA/${name}.jpg`);
+const camo: PosterGalleryImage[] = [1, 2, 3, 4, 5, 6].map((n) => ({
+  src: `/products/syokbar/SYOKBAR CAMO EDITION/camo-shoot-${n}.${n === 1 ? "png" : "jpg"}`,
+  alt: `SyokBar Camo campaign poster ${n}`
+}));
+const target: PosterGalleryImage[] = Array.from({ length: 9 }, (_, index) => ({
+  src: `/products/syokbar/SYOKBAR TARGET/target-model-${index + 1}.jpg`,
+  alt: `SyokBar Target campaign poster ${index + 1}`
+}));
+---
+
+<section class="syokbar-campaign-gallery" data-syokbar-gallery>
+  {showFifa && (
+    <>
+      <div class="syokbar-gallery-state" data-gallery-edition="fifa" data-poster-gallery hidden={activeGallery !== "fifa"} aria-hidden={activeGallery !== "fifa" ? "true" : "false"}>
+        <div class="syokbar-gallery-head" data-poster-gallery-heading><span class="eyebrow">Campaign gallery</span><h2>MATCH-DAY ENERGY.</h2></div>
+        <img class="syokbar-gallery-lead" src="/products/syokbar/SYOKBAR FIFA/all-syokbar-fifa.jpg" alt="SyokBar FIFA full lineup poster" loading="eager" decoding="async" data-poster-gallery-item />
+        <div class="syokbar-gallery-grid syokbar-gallery-grid-four">
+          {fifaPosters.map((image, index) => <img src={image} alt={`SyokBar FIFA country poster ${index + 1}`} loading="lazy" decoding="async" data-poster-gallery-item />)}
+        </div>
+        <div class="syokbar-gallery-grid syokbar-gallery-grid-six">
+          {fifaLife.map((image, index) => <img src={image} alt={`SyokBar FIFA lifestyle poster ${index + 1}`} loading="lazy" decoding="async" data-poster-gallery-item />)}
+        </div>
+      </div>
+    </>
+  )}
+  {showCamo && (
+    <ProductPosterGallery
+      galleryId="syokbar-camo-campaign-gallery"
+      title="SYOKBAR CAMO"
+      images={camo}
+      layout="count-6"
+      editionId="camo"
+      hidden={activeGallery !== "camo"}
+    />
+  )}
+  {showTarget && (
+    <ProductPosterGallery galleryId="syokbar-target-campaign-gallery" title="SYOKBAR TARGET" images={target} layout="count-9" editionId="standard" />
+  )}
+  <script is:inline>
+    (() => {
+      window.__dreammadeSyokBarGalleryCleanup?.();
+      const onStateChange = (event) => {
+        const editionId = event.detail?.editionId;
+        if (!editionId) return;
+        document.querySelectorAll("[data-syokbar-gallery] [data-gallery-edition]").forEach((gallery) => {
+          if (gallery.getAttribute("data-gallery-edition") === "standard") return;
+          const active = gallery.getAttribute("data-gallery-edition") === editionId;
+          gallery.toggleAttribute("hidden", !active);
+          gallery.setAttribute("aria-hidden", String(!active));
+        });
+        window.dispatchEvent(new CustomEvent("dreammade:poster-gallery-visible"));
+      };
+      window.addEventListener("dreammade:product-state-change", onStateChange);
+      window.__dreammadeSyokBarGalleryCleanup = () => window.removeEventListener("dreammade:product-state-change", onStateChange);
+    })();
+  </script>
+</section>

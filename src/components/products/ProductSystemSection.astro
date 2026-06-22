@@ -1,0 +1,36 @@
+---
+import EditionCard from "./EditionCard.astro";
+import ProductTile from "./ProductTile.astro";
+import type { ProductSystemGroup } from "../../data/products";
+
+type Props = {
+  system: ProductSystemGroup;
+  sectionId?: string;
+};
+
+const { system, sectionId } = Astro.props;
+---
+
+<div class="system-group" id={sectionId ?? system.id}>
+  <div class="system-head reveal">
+    <div>
+      <div class="eyebrow">{system.eyebrow}</div>
+      <h2 class="system-title">{system.title}</h2>
+    </div>
+    <p class="body-copy">{system.description}</p>
+  </div>
+  {system.groups.map((group) => (
+    <div class="system-subgroup">
+      <h3 class="subgroup-title reveal">{group.title}</h3>
+      {group.category === "special-edition" ? (
+        <div class="edition-strip">
+          {group.products.map((product) => <EditionCard product={product} />)}
+        </div>
+      ) : (
+        <div class:list={["product-grid", { "two-up": group.category === "core-device" }]}>
+          {group.products.map((product) => <ProductTile product={product} />)}
+        </div>
+      )}
+    </div>
+  ))}
+</div>
