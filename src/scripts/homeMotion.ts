@@ -313,23 +313,18 @@ export function initHomeMotion() {
 
   const feedTrack = document.getElementById("feedTrack");
   if (feedTrack) {
-    let isHovered = false;
-    const scrollSpeed = 0.8;
+    const cards = feedTrack.querySelectorAll(".reel-card");
+    gsap.set(feedTrack, { x: 0, xPercent: 0 });
+    const duration = (cards.length / 2) * 5;
+    const marqueeTween = gsap.to(feedTrack, {
+      xPercent: -50,
+      ease: "none",
+      duration: duration > 0 ? duration : 25,
+      repeat: -1
+    });
 
-    const onTick = () => {
-      if (isHovered) return;
-      feedTrack.scrollLeft += scrollSpeed;
-      // Infinite loop reset
-      const halfWidth = feedTrack.scrollWidth / 2;
-      if (feedTrack.scrollLeft >= halfWidth) {
-        feedTrack.scrollLeft = 0;
-      }
-    };
-
-    gsap.ticker.add(onTick);
-
-    const pauseMarquee = () => { isHovered = true; };
-    const resumeMarquee = () => { isHovered = false; };
+    const pauseMarquee = () => { marqueeTween.pause(); };
+    const resumeMarquee = () => { marqueeTween.play(); };
 
     feedTrack.addEventListener("mouseenter", pauseMarquee);
     feedTrack.addEventListener("mouseleave", resumeMarquee);
@@ -337,7 +332,7 @@ export function initHomeMotion() {
     feedTrack.addEventListener("touchend", resumeMarquee, { passive: true });
 
     cleanup.push(() => {
-      gsap.ticker.remove(onTick);
+      marqueeTween.kill();
       feedTrack.removeEventListener("mouseenter", pauseMarquee);
       feedTrack.removeEventListener("mouseleave", resumeMarquee);
       feedTrack.removeEventListener("touchstart", pauseMarquee);
