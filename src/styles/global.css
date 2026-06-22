@@ -955,11 +955,11 @@ section {
 }
 
 .footer-reveal .footer-credit a {
-  color: rgba(3,3,3,.28);
+  color: rgba(247, 243, 238, 0.38);
 }
 
 .footer-reveal .footer-credit a:hover {
-  color: rgba(3,3,3,.62);
+  color: rgba(247, 243, 238, 0.72);
 }
 
 .footer-reveal {
@@ -985,7 +985,12 @@ section {
   text-transform: uppercase;
 }
 .footer-reveal .footer-word {
-  font-size: clamp(62px, 15vw, 190px);
+  font-size: clamp(54px, 13vw, 170px);
+  text-align: center;
+  margin-inline: auto;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--black);
 }
 
 .footer-reveal-grid {
@@ -993,17 +998,20 @@ section {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(20px, 4vw, 48px);
-  border-top: 1px solid rgba(3,3,3,.22);
+  border-top: 1px solid rgba(247, 243, 238, 0.18);
   padding-top: clamp(24px, 4vw, 36px);
+  justify-items: center;
 }
 
 .footer-reveal-col {
   display: grid;
   gap: 14px;
+  text-align: center;
+  justify-items: center;
 }
 
 .footer-kicker {
-  color: rgba(3,3,3,.52);
+  color: rgba(247, 243, 238, 0.6);
   font-size: 9px;
   font-weight: var(--weight-label);
   text-transform: uppercase;
@@ -1013,18 +1021,21 @@ section {
 .footer-reveal-col nav {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px 16px;
+  max-width: 280px;
 }
 
 .footer-reveal-col a {
-  color: rgba(3,3,3,.78);
+  color: var(--cream);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .08em;
+  transition: color 0.3s ease;
 }
 
 .footer-reveal-col a:hover {
-  color: var(--black);
+  color: var(--white);
 }
 
 .footer-bottom {
@@ -1045,6 +1056,13 @@ section {
 .footer-reveal .footer-bottom {
   margin-top: 38px;
   padding-top: 22px;
+  border-top: 1px solid rgba(247, 243, 238, 0.18);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+  justify-items: center;
+  color: rgba(247, 243, 238, 0.78);
 }
 
 .footer-copyright,
@@ -1060,6 +1078,11 @@ section {
   text-align: left;
 }
 
+.footer-reveal .footer-copyright {
+  justify-self: center;
+  text-align: center;
+}
+
 .footer-adult-note {
   justify-self: center;
   text-align: center;
@@ -1069,6 +1092,11 @@ section {
 .footer-credit {
   justify-self: end;
   text-align: right;
+}
+
+.footer-reveal .footer-credit {
+  justify-self: center;
+  text-align: center;
 }
 
 .footer-links, .footer-nav {
@@ -1126,21 +1154,32 @@ section {
     font-size: clamp(48px, 18vw, 86px);
   }
   
-  .footer-bottom,
-  .footer-reveal .footer-bottom {
+  .footer-bottom {
     grid-template-columns: 1fr;
     gap: 16px;
     text-align: left;
   }
 
+  .footer-reveal .footer-bottom {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+    justify-items: center;
+  }
+
   .footer-copyright,
   .footer-adult-note,
-  .footer-credit,
+  .footer-credit {
+    justify-self: start;
+    text-align: left;
+    max-width: 100%;
+  }
+
   .footer-reveal .footer-copyright,
   .footer-reveal .footer-adult-note,
   .footer-reveal .footer-credit {
-    justify-self: start;
-    text-align: left;
+    justify-self: center;
+    text-align: center;
     max-width: 100%;
   }
 

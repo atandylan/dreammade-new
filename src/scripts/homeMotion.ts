@@ -159,8 +159,7 @@ export function initHomeMotion() {
     .to(".title-line-one", { yPercent: -15, opacity: 0.5, ease: "none" }, 0)
     .to(".title-line-two", { yPercent: -10, opacity: 0.5, ease: "none" }, 0)
     .to(".hero-ghost", { yPercent: -18, opacity: 0.5, ease: "none" }, 0)
-    .to(".hero-copy, .hero-index", { opacity: 0, y: -20, ease: "none" }, .2)
-    .to(".hero-transition-band", { scaleY: 1, skewY: 0, ease: "power3.inOut" }, .1);
+    .to(".hero-copy, .hero-index", { opacity: 0, y: -20, ease: "none" }, .2);
 
   gsap.timeline({
     scrollTrigger: {
@@ -236,7 +235,6 @@ export function initHomeMotion() {
   const productProgress = document.querySelector<HTMLElement>("#productProgress");
   const productBg = document.querySelector<HTMLElement>(".product-bg");
   const productFamilies = gsap.utils.toArray<HTMLElement>(".product-family");
-  const scanShutters = gsap.utils.toArray<HTMLElement>(".scan-grid i");
   let activeProduct = -1;
   let productTransition: gsap.core.Timeline | undefined;
 
@@ -262,26 +260,29 @@ export function initHomeMotion() {
     const previousFamily = productFamilies.find((family) => family.classList.contains("active"));
     productTransition?.kill();
     productTransition = gsap.timeline()
-      .to(scanShutters, { scaleY: 1, duration: .2, stagger: { each: .028, from: "edges" }, ease: "power2.in" }, 0)
-      .fromTo(".scan-beam", { xPercent: 0, opacity: 0 }, { xPercent: 840, opacity: .86, duration: .42, ease: "power2.inOut" }, .02)
-      .to(previousFamily?.querySelectorAll("img") ?? [], { opacity: 0, y: -24, duration: .2, stagger: 0.04 }, 0)
+      .to(previousFamily?.querySelectorAll("img") ?? [], { 
+        opacity: 0, 
+        y: -30, 
+        scale: 0.95,
+        duration: .25, 
+        stagger: 0.03,
+        ease: "power2.in"
+      }, 0)
       .add(() => {
         productFamilies.forEach((family, familyIndex) => family.classList.toggle("active", familyIndex === index));
       })
       .fromTo(productFamilies[index]?.querySelectorAll("img") ?? [], {
         opacity: 0,
-        y: 34,
+        y: 40,
         scale: 0.95
       }, {
         opacity: 1,
         y: 0,
         scale: 1,
         duration: .48,
-        stagger: 0.08,
+        stagger: 0.06,
         ease: "power3.out"
-      })
-      .to(scanShutters, { scaleY: 0, duration: .3, stagger: { each: .035, from: "end" }, ease: "power3.inOut" }, "-=.34")
-      .to(".scan-beam", { opacity: 0, duration: .12 }, "-=.18");
+      });
   };
 
   renderProduct(0);
@@ -295,7 +296,6 @@ export function initHomeMotion() {
     invalidateOnRefresh: true,
     onUpdate: (self) => {
       renderProduct(Math.min(3, Math.floor(self.progress * 4)));
-      gsap.set(".product-scan-frame", { rotate: Math.sin(self.progress * Math.PI * 4) * 1.2 });
       gsap.set(".product-bg", { backgroundPosition: `${self.progress * 18}% center` });
     }
   });
