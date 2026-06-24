@@ -75,7 +75,7 @@
 
 .about-existence-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(300px, .75fr);
+  grid-template-columns: 1.1fr 0.9fr;
   gap: clamp(36px, 5vw, 72px);
   align-items: center;
 }
@@ -112,7 +112,8 @@
   font-weight: 850;
   font-variation-settings: "wght" 850, "wdth" 118, "opsz" 64;
   line-height: 1.1;
-  letter-spacing: -.018em;
+  letter-spacing: -0.02em;
+  max-width: 28ch;
 }
 
 .about-section-label {

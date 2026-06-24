@@ -35,11 +35,10 @@ section {
   min-width: 0;
   max-width: 100%;
   margin-top: clamp(16px, 2.4vw, 28px);
-  color: rgba(9, 9, 9, 0.95);
-  opacity: 0.14;
-  mix-blend-mode: difference;
+  color: var(--white);
+  opacity: 0.08;
   font-family: var(--font-display);
-  font-size: clamp(78px, 11.5vw, 172px);
+  font-size: clamp(90px, 13vw, 210px);
   font-weight: 900;
   font-variation-settings:
     "wght" 900,
