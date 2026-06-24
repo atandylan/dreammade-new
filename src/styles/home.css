@@ -457,16 +457,16 @@ section { position: relative; padding: clamp(78px, 10vw, 150px) 0; }
 }
 
 /* Fan layout when family is active */
-.product-family.active img:nth-child(1) { transform: translateX(-190px) rotate(-16deg) translateY(16px) scale(0.95); z-index: 1; }
-.product-family.active img:nth-child(2) { transform: translateX(-95px) rotate(-8deg) translateY(4px) scale(0.98); z-index: 3; }
-.product-family.active img:nth-child(3) { transform: translateX(0) rotate(0deg) translateY(0) scale(1.05); z-index: 5; }
-.product-family.active img:nth-child(4) { transform: translateX(95px) rotate(8deg) translateY(4px) scale(0.98); z-index: 4; }
-.product-family.active img:nth-child(5) { transform: translateX(190px) rotate(16deg) translateY(16px) scale(0.95); z-index: 2; }
+.product-family.active img:nth-child(1) { transform: translateX(-190px) rotate(-16deg); z-index: 1; }
+.product-family.active img:nth-child(2) { transform: translateX(-95px) rotate(-8deg); z-index: 3; }
+.product-family.active img:nth-child(3) { transform: translateX(0) rotate(0deg) scale(1.05); z-index: 5; }
+.product-family.active img:nth-child(4) { transform: translateX(95px) rotate(8deg); z-index: 4; }
+.product-family.active img:nth-child(5) { transform: translateX(190px) rotate(16deg); z-index: 2; }
 
 /* 3-item layout override when active */
-.product-family.active img:first-child:nth-last-child(3) { transform: translateX(-120px) rotate(-12deg) translateY(10px) scale(0.98) !important; z-index: 1 !important; }
-.product-family.active img:first-child:nth-last-child(3) + img { transform: translateX(0) rotate(0deg) translateY(0) scale(1.05) !important; z-index: 3 !important; }
-.product-family.active img:first-child:nth-last-child(3) + img + img { transform: translateX(120px) rotate(12deg) translateY(10px) scale(0.98) !important; z-index: 2 !important; }
+.product-family.active img:first-child:nth-last-child(3) { transform: translateX(-120px) rotate(-12deg) !important; z-index: 1 !important; }
+.product-family.active img:first-child:nth-last-child(3) + img { transform: translateX(0) rotate(0deg) scale(1.05) !important; z-index: 3 !important; }
+.product-family.active img:first-child:nth-last-child(3) + img + img { transform: translateX(120px) rotate(12deg) !important; z-index: 2 !important; }
 
 /* Interactive Hover effect */
 .product-family img:hover {
@@ -475,16 +475,16 @@ section { position: relative; padding: clamp(78px, 10vw, 150px) 0; }
 }
 
 /* Individual Child Hover Alignments to prevent running off-axis */
-.product-family.active img:nth-child(1):hover { transform: translateX(-190px) rotate(-8deg) translateY(-12px) scale(1.15) !important; }
-.product-family.active img:nth-child(2):hover { transform: translateX(-95px) rotate(-4deg) translateY(-18px) scale(1.15) !important; }
-.product-family.active img:nth-child(3):hover { transform: translateX(0) rotate(0deg) translateY(-24px) scale(1.18) !important; }
-.product-family.active img:nth-child(4):hover { transform: translateX(95px) rotate(4deg) translateY(-18px) scale(1.15) !important; }
-.product-family.active img:nth-child(5):hover { transform: translateX(190px) rotate(8deg) translateY(-12px) scale(1.15) !important; }
+.product-family.active img:nth-child(1):hover { transform: translateX(-190px) rotate(0deg) translateY(-30px) scale(1.15) !important; }
+.product-family.active img:nth-child(2):hover { transform: translateX(-95px) rotate(0deg) translateY(-30px) scale(1.15) !important; }
+.product-family.active img:nth-child(3):hover { transform: translateX(0) rotate(0deg) translateY(-30px) scale(1.18) !important; }
+.product-family.active img:nth-child(4):hover { transform: translateX(95px) rotate(0deg) translateY(-30px) scale(1.15) !important; }
+.product-family.active img:nth-child(5):hover { transform: translateX(190px) rotate(0deg) translateY(-30px) scale(1.15) !important; }
 
 /* 3-Item Layout Hover Alignments */
-.product-family.active img:first-child:nth-last-child(3):hover { transform: translateX(-120px) rotate(-6deg) translateY(-14px) scale(1.15) !important; }
-.product-family.active img:first-child:nth-last-child(3) + img:hover { transform: translateX(0) rotate(0deg) translateY(-24px) scale(1.18) !important; }
-.product-family.active img:first-child:nth-last-child(3) + img + img:hover { transform: translateX(120px) rotate(6deg) translateY(-14px) scale(1.15) !important; }
+.product-family.active img:first-child:nth-last-child(3):hover { transform: translateX(-120px) rotate(0deg) translateY(-30px) scale(1.15) !important; }
+.product-family.active img:first-child:nth-last-child(3) + img:hover { transform: translateX(0) rotate(0deg) translateY(-30px) scale(1.18) !important; }
+.product-family.active img:first-child:nth-last-child(3) + img + img:hover { transform: translateX(120px) rotate(0deg) translateY(-30px) scale(1.15) !important; }
 
 /* Hover group interactions */
 .product-family:has(img:hover) img:not(:hover) {
