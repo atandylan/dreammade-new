@@ -9,7 +9,7 @@ export const eventsData: EventAlbum[] = [
     id: "cargasm",
     title: "Cargasm",
     images: [
-      "/events/CARGASM/cargasm-1.jpg",
+      "/events/CARGASM/cargasm-1.webp",
       "/events/CARGASM/cargasm-2.jpg",
       "/events/CARGASM/cargasm-3.jpg",
       "/events/CARGASM/cargasm-4.jpg",
@@ -19,8 +19,8 @@ export const eventsData: EventAlbum[] = [
       "/events/CARGASM/cargasm-8.png",
       "/events/CARGASM/cargasm-9.png",
       "/events/CARGASM/cargasm-10.png",
-      "/events/CARGASM/cargasm-11.png",
-      "/events/CARGASM/cargasm-12.png"
+      "/events/CARGASM/cargasm-11.webp",
+      "/events/CARGASM/cargasm-12.webp"
     ]
   },
   {
@@ -41,7 +41,7 @@ export const eventsData: EventAlbum[] = [
     id: "hausboom",
     title: "Hausboom",
     images: [
-      "/events/HAUSBOOM/hausboom-1.webp",
+      "/events/HAUSBOOM/hausboom-1.PNG",
       "/events/HAUSBOOM/hausboom-2.webp",
       "/events/HAUSBOOM/hausboom-3.webp",
       "/events/HAUSBOOM/hausboom-4.webp",
