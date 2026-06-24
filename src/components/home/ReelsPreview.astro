@@ -1,6 +1,4 @@
 ---
-import { reels as fallbackReels } from "../../data/reels";
-
 interface ReelItem {
   id: string;
   caption?: string;
@@ -10,16 +8,7 @@ interface ReelItem {
   thumbnail_url?: string;
 }
 
-// Convert fallback mock data to match the API structure
-const formattedFallback: ReelItem[] = fallbackReels.map((item, idx) => ({
-  id: `fallback-${idx}`,
-  caption: item.label,
-  media_url: item.image,
-  thumbnail_url: item.image,
-  permalink: "https://www.instagram.com/syok_geng/"
-}));
-
-let reelsData: ReelItem[] = formattedFallback;
+let reelsData: ReelItem[] = [];
 
 try {
   const response = await fetch("https://dreammade-ig-reels.fadzry-work.workers.dev/");
@@ -30,7 +19,7 @@ try {
     }
   }
 } catch (e) {
-  console.error("Failed to fetch Instagram Reels from worker, using fallback:", e);
+  console.error("Failed to fetch Instagram Reels from worker:", e);
 }
 ---
 
