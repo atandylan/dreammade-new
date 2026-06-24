@@ -30,7 +30,11 @@ export function initClothingMotion() {
 
   const showStaticPage = () => {
     document.querySelectorAll<HTMLElement>(".reveal, [data-clothing-title], .horizontal-media-shell, .horizontal-media-card, .horizontal-media-card img, .progressive-gallery-toggle, .accessories-header, .accessory-casing-card, .accessory-casing-card img, .accessory-eyewear, .clothing-social-inner, .clothing-social-links a").forEach((el) => {
-      el.style.opacity = "1";
+      if (el.classList.contains("clothing-brand")) {
+        el.style.opacity = "0.14";
+      } else {
+        el.style.opacity = "1";
+      }
       el.style.transform = "none";
       el.style.clipPath = "none";
     });
@@ -45,7 +49,7 @@ export function initClothingMotion() {
   try {
     gsap.timeline({ defaults: { ease: "power3.out" } })
       .fromTo(".clothing-hero .eyebrow", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: .62 })
-      .fromTo(".clothing-brand", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .72 }, "-=.42")
+      .fromTo(".clothing-brand", { y: 20, opacity: 0 }, { y: 0, opacity: 0.14, duration: .72 }, "-=.42")
       .fromTo(".clothing-hero h1", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .78 }, "-=.5");
 
     document.querySelectorAll<HTMLElement>(".lookbook-group").forEach((group, groupIndex) => {

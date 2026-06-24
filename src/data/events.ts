@@ -27,26 +27,26 @@ export const eventsData: EventAlbum[] = [
     id: "night-of-seven",
     title: "Night Of Seven",
     images: [
-      "/events/NIGHT OF 7/NO7-1.png",
-      "/events/NIGHT OF 7/NO7-2.png",
-      "/events/NIGHT OF 7/NO7-3.png",
-      "/events/NIGHT OF 7/NO7-4.png",
-      "/events/NIGHT OF 7/NO7-5.png",
-      "/events/NIGHT OF 7/NO7-6.png",
-      "/events/NIGHT OF 7/NO7-7.png",
-      "/events/NIGHT OF 7/NO7-8.png"
+      "/events/NIGHT OF 7/NO7-1.webp",
+      "/events/NIGHT OF 7/NO7-2.webp",
+      "/events/NIGHT OF 7/NO7-3.webp",
+      "/events/NIGHT OF 7/NO7-4.webp",
+      "/events/NIGHT OF 7/NO7-5.webp",
+      "/events/NIGHT OF 7/NO7-6.webp",
+      "/events/NIGHT OF 7/NO7-7.webp",
+      "/events/NIGHT OF 7/NO7-8.webp"
     ]
   },
   {
     id: "hausboom",
     title: "Hausboom",
     images: [
-      "/events/HAUSBOOM/hausboom-1.PNG",
-      "/events/HAUSBOOM/hausboom-2.PNG",
-      "/events/HAUSBOOM/hausboom-3.PNG",
-      "/events/HAUSBOOM/hausboom-4.PNG",
-      "/events/HAUSBOOM/hausboom-5.PNG",
-      "/events/HAUSBOOM/hausboom-6.PNG",
+      "/events/HAUSBOOM/hausboom-1.webp",
+      "/events/HAUSBOOM/hausboom-2.webp",
+      "/events/HAUSBOOM/hausboom-3.webp",
+      "/events/HAUSBOOM/hausboom-4.webp",
+      "/events/HAUSBOOM/hausboom-5.webp",
+      "/events/HAUSBOOM/hausboom-6.webp",
       "/events/HAUSBOOM/hausboom-7.jpeg"
     ]
   },

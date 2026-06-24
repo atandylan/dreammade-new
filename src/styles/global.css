@@ -795,7 +795,7 @@ section {
 .footer-standard .footer-columns {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 1fr 1.2fr 1.2fr 1.5fr;
   gap: clamp(28px, 4vw, 64px);
   align-items: start;
   justify-items: center;

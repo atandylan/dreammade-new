@@ -35,8 +35,9 @@ section {
   min-width: 0;
   max-width: 100%;
   margin-top: clamp(16px, 2.4vw, 28px);
-  color: var(--cream);
-  opacity: 1;
+  color: rgba(9, 9, 9, 0.95);
+  opacity: 0.14;
+  mix-blend-mode: difference;
   font-family: var(--font-display);
   font-size: clamp(78px, 11.5vw, 172px);
   font-weight: 900;
@@ -45,7 +46,7 @@ section {
     "wdth" 116,
     "opsz" 72;
   line-height: .76;
-  letter-spacing: -.06em;
+  letter-spacing: -0.05em;
   text-transform: uppercase;
   white-space: nowrap;
   -webkit-text-stroke: 0;
@@ -323,7 +324,7 @@ section {
       "wdth" 108,
       "opsz" 64;
     line-height: .8;
-    letter-spacing: -.055em;
+    letter-spacing: -0.05em;
     white-space: nowrap;
   }
 
