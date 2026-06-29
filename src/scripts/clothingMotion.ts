@@ -29,7 +29,7 @@ export function initClothingMotion() {
   };
 
   const showStaticPage = () => {
-    document.querySelectorAll<HTMLElement>(".reveal, [data-clothing-title], .horizontal-media-shell, .horizontal-media-card, .horizontal-media-card img, .progressive-gallery-toggle, .accessories-header, .accessory-casing-card, .accessory-casing-card img, .accessory-eyewear, .clothing-social-inner, .clothing-social-links a").forEach((el) => {
+    document.querySelectorAll<HTMLElement>(".reveal, [data-clothing-title], .horizontal-media-shell, .horizontal-media-card, .horizontal-media-card img, .progressive-gallery-toggle, .accessories-header, .accessory-casing-card, .accessory-casing-card img, .accessory-eyewear, .clothing-reels, .clothing-reels-title, .clothing-reels-cta").forEach((el) => {
       if (el.classList.contains("clothing-brand")) {
         el.style.opacity = "0.08";
       } else {
@@ -109,13 +109,29 @@ export function initClothingMotion() {
 
     gsap.timeline({
       scrollTrigger: {
-        id: clothingTriggerId("social"),
-        trigger: ".clothing-social",
+        id: clothingTriggerId("reels"),
+        trigger: ".clothing-reels",
         start: "top 84%",
       },
     })
-      .fromTo(".clothing-social-inner > div:first-child", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .52, ease: "power3.out" })
-      .fromTo(".clothing-social-links a", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .42, stagger: .06, ease: "power3.out" }, "-=.18");
+      .fromTo(".clothing-reels-title", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .52, ease: "power3.out" });
+
+    const clothingReelsTrack = document.getElementById("clothingReelsTrack");
+    if (clothingReelsTrack) {
+      const reelCards = clothingReelsTrack.querySelectorAll(".clothing-reel-card");
+      gsap.set(clothingReelsTrack, { x: 0 });
+      const reelDuration = (reelCards.length / 2) * 4.5;
+      const reelMarquee = gsap.to(clothingReelsTrack, {
+        xPercent: -50,
+        ease: "none",
+        duration: reelDuration > 0 ? reelDuration : 20,
+        repeat: -1
+      });
+      clothingReelsTrack.addEventListener("mouseenter", () => reelMarquee.pause());
+      clothingReelsTrack.addEventListener("mouseleave", () => reelMarquee.play());
+      clothingReelsTrack.addEventListener("touchstart", () => reelMarquee.pause(), { passive: true });
+      clothingReelsTrack.addEventListener("touchend", () => reelMarquee.play(), { passive: true });
+    }
 
     window.setTimeout(() => ScrollTrigger.refresh(), 400);
   } catch (error) {

@@ -9,6 +9,31 @@ import "../styles/components.css";
 import "../styles/motion.css";
 import "../styles/horizontal-media-rail.css";
 import "../styles/clothing.css";
+
+interface ReelItem {
+  id: string;
+  caption?: string;
+  media_type?: string;
+  media_url?: string;
+  permalink?: string;
+  thumbnail_url?: string;
+}
+
+let reelsData: ReelItem[] = [];
+try {
+  const response = await fetch("https://dreammade-ig-reels.fadzry-work.workers.dev/");
+  if (response.ok) {
+    const json = await response.json();
+    const all: ReelItem[] = Array.isArray(json.reels) ? json.reels
+      : Array.isArray(json.photos) ? json.photos : [];
+    // Videos + thumbnails only
+    reelsData = all.filter(
+      (item) => item.media_type === "VIDEO" || item.media_url?.includes(".mp4") || item.thumbnail_url
+    );
+  }
+} catch (e) {
+  console.error("Failed to fetch reels for clothing:", e);
+}
 ---
 
 <!doctype html>
@@ -118,16 +143,49 @@ import "../styles/clothing.css";
         </div>
       </section>
 
-      <section class="clothing-social dream-texture-cream">
-        <div class="wrap clothing-social-inner reveal">
-          <div>
-            <div class="eyebrow">Follow SyokGeng</div>
-            <h2>SEE THE GENG IN MOTION.</h2>
+      <section class="clothing-reels dream-texture-cream" id="clothing-reels">
+        <div class="wrap">
+          <div class="eyebrow">Follow SyokGeng</div>
+          <h2 class="clothing-reels-title">SEE THE GENG IN MOTION.</h2>
+        </div>
+        <div class="clothing-reels-track-container">
+          <div class="clothing-reels-track" id="clothingReelsTrack" aria-label="SyokGeng reels">
+            {reelsData.map((reel) => (
+              <article class="clothing-reel-card">
+                <a href={reel.permalink || "https://www.instagram.com/syok_geng/"} target="_blank" rel="noopener noreferrer" class="clothing-reel-link" aria-label={reel.caption || "SyokGeng reel"}>
+                  <div class="clothing-reel-media">
+                    <img
+                      src={reel.thumbnail_url || reel.media_url}
+                      alt={reel.caption?.split('\n')[0] || "SyokGeng"}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="clothing-reel-play-icon">▶</div>
+                  </div>
+                </a>
+              </article>
+            ))}
+            {/* Duplicate for infinite scroll */}
+            {reelsData.map((reel) => (
+              <article class="clothing-reel-card" aria-hidden="true">
+                <a href={reel.permalink || "https://www.instagram.com/syok_geng/"} target="_blank" rel="noopener noreferrer" class="clothing-reel-link" tabindex="-1">
+                  <div class="clothing-reel-media">
+                    <img
+                      src={reel.thumbnail_url || reel.media_url}
+                      alt={reel.caption?.split('\n')[0] || "SyokGeng"}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="clothing-reel-play-icon">▶</div>
+                  </div>
+                </a>
+              </article>
+            ))}
           </div>
-          <div class="clothing-social-links">
-            <a href="https://www.instagram.com/syok_geng/" target="_blank" rel="noopener noreferrer">Instagram <span>@syok_geng</span></a>
-            <a href="https://www.tiktok.com/@syokgeng" target="_blank" rel="noopener noreferrer">TikTok <span>@syokgeng</span></a>
-          </div>
+        </div>
+        <div class="wrap clothing-reels-footer">
+          <a href="https://www.instagram.com/syok_geng/" target="_blank" rel="noopener noreferrer" class="clothing-reels-cta">@syok_geng on Instagram →</a>
+          <a href="https://www.tiktok.com/@syokgeng" target="_blank" rel="noopener noreferrer" class="clothing-reels-cta">@syokgeng on TikTok →</a>
         </div>
       </section>
     </main>

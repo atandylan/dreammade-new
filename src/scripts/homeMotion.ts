@@ -292,22 +292,7 @@ export function initHomeMotion() {
     });
   }
 
-  // Left column content entrance reveal
-  gsap.fromTo(".product-sticky-inner > *", {
-    opacity: 0,
-    y: 30
-  }, {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    stagger: 0.08,
-    ease: "power3.out",
-    scrollTrigger: {
-      id: "dreammade-home-product-sticky-reveal",
-      trigger: ".product-showcase",
-      start: "top 80%"
-    }
-  });
+
 
   const feedTrack = document.getElementById("feedTrack");
   if (feedTrack) {
@@ -405,66 +390,78 @@ export function initHomeMotion() {
 
   ScrollTrigger.refresh();
 
-  // Initial hidden state for cards to avoid premature reveal overlap
-  gsap.set(".product-card-sticky", { opacity: 0, y: 40 });
+  // ─── PRODUCT CARDS: one at a time reveal
+  const cards = gsap.utils.toArray<HTMLElement>(".product-card-sticky");
 
-  // Product card scroll triggers
-  gsap.utils.toArray<HTMLElement>(".product-card-sticky").forEach((card, idx) => {
-    // Reveal the whole card first (solves device overlap between cards)
-    gsap.to(card, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power3.out",
-      immediateRender: false,
-      scrollTrigger: {
-        id: `dreammade-home-pcard-reveal-${idx}`,
-        trigger: card,
-        start: `top ${82 - idx * 5}%`,
-      }
+  // Start: all cards invisible except first
+  gsap.set(cards, { opacity: 0, scale: 0.97 });
+  if (cards[0]) {
+    gsap.set(cards[0], { opacity: 1, scale: 1 });
+  }
+
+  cards.forEach((card, idx) => {
+    const imgs = card.querySelectorAll<HTMLElement>(".product-card-img");
+
+    // Preserve inline opacity per image
+    imgs.forEach((img) => {
+      gsap.set(img, { opacity: parseFloat(img.style.opacity || "1") });
     });
 
-    // Then animate copy
-    gsap.fromTo(
-      card.querySelector(".product-card-copy"),
-      { x: -28, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.7,
-        ease: "power3.out",
+    if (idx === 0) {
+      // First card: images stagger in on section enter
+      gsap.from(imgs, {
+        x: 80,
+        duration: 0.75,
+        stagger: 0.1,
+        ease: "back.out(1.1)",
         immediateRender: false,
         scrollTrigger: {
-          id: `dreammade-home-pcard-copy-${idx}`,
-          trigger: card,
-          start: `top ${78 - idx * 5}%`,
+          id: "dreammade-home-pcard-imgs-0",
+          trigger: ".product-showcase",
+          start: "top 70%",
         }
-      }
-    );
+      });
+    }
 
-    // Images: slide in from right using translateX only — DO NOT animate opacity
-    const imgs = card.querySelectorAll<HTMLElement>(".product-card-img");
-    imgs.forEach((img) => {
-      const naturalOpacity = parseFloat(img.style.opacity || "1");
-      gsap.set(img, { opacity: naturalOpacity });
-    });
-    gsap.from(imgs, {
-      x: 80,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "back.out(1.1)",
-      immediateRender: false,
-      scrollTrigger: {
-        id: `dreammade-home-pcard-imgs-${idx}`,
+    if (idx > 0) {
+      // Each subsequent card: fade in when its scroll zone starts, fade out previous
+      ScrollTrigger.create({
+        id: `dreammade-home-pcard-enter-${idx}`,
         trigger: card,
-        start: `top ${75 - idx * 5}%`,
-      }
-    });
-  });
+        start: "top 55%",
+        onEnter: () => {
+          // Fade out previous card
+          gsap.to(cards[idx - 1], {
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.4,
+            ease: "power2.in"
+          });
+          // Fade in current card + images stagger
+          gsap.to(card, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.5,
+            ease: "power3.out"
+          });
+          gsap.from(imgs, {
+            x: 80,
+            duration: 0.75,
+            stagger: 0.1,
+            ease: "back.out(1.1)",
+            immediateRender: false,
+          });
+        },
+        onLeaveBack: () => {
+          // Scrolling back up — restore previous card, hide current
+          gsap.to(card, { opacity: 0, scale: 0.97, duration: 0.35, ease: "power2.in" });
+          gsap.to(cards[idx - 1], { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
+        }
+      });
+    }
 
-  if (!reduceMotion) {
-    document.querySelectorAll<HTMLElement>(".product-card-sticky").forEach((card) => {
-      const imgs = card.querySelectorAll<HTMLElement>(".product-card-img");
+    // Floating/breathing per card images
+    if (!reduceMotion) {
       imgs.forEach((img, i) => {
         gsap.to(img, {
           y: i % 2 === 0 ? -7 : -11,
@@ -475,8 +472,8 @@ export function initHomeMotion() {
           delay: i * 0.22
         });
       });
-    });
-  }
+    }
+  });
 
 
   // ─── ABOUT SECTION: scrub parallax on the section title
