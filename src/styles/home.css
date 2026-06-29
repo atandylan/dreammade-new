@@ -733,7 +733,12 @@ section { position: relative; padding: clamp(40px, 6vw, 80px) 0; }
 
 .pstack-images {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  width: 52%;
+  height: 100%;
   pointer-events: none;
   overflow: visible;
   clip-path: none;
