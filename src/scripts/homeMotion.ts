@@ -425,21 +425,23 @@ export function initHomeMotion() {
     );
 
     // Images: slide in from right using translateX only — DO NOT animate opacity
-    gsap.fromTo(
-      card.querySelector(".product-card-images"),
-      { x: 60 },
-      {
-        x: 0,
-        duration: 0.85,
-        ease: "power4.out",
-        immediateRender: false,
-        scrollTrigger: {
-          id: `dreammade-home-pcard-imgs-${idx}`,
-          trigger: card,
-          start: "top 75%",
-        }
+    const imgs = card.querySelectorAll<HTMLElement>(".product-card-img");
+    imgs.forEach((img) => {
+      const naturalOpacity = parseFloat(img.style.opacity ?? "1");
+      gsap.set(img, { opacity: naturalOpacity });
+    });
+    gsap.from(imgs, {
+      x: 80,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "back.out(1.1)",
+      immediateRender: false,
+      scrollTrigger: {
+        id: `dreammade-home-pcard-imgs-${idx}`,
+        trigger: card,
+        start: "top 75%",
       }
-    );
+    });
   });
 
   // ─── ABOUT SECTION: scrub parallax on the section title
