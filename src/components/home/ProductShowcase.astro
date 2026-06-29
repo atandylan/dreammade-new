@@ -87,9 +87,9 @@ const productGroups = [
               class="pstack-img"
               style={`
                 position: absolute;
-                bottom: -8%;
+                bottom: -6%;
                 left: ${vIdx * 14}%;
-                height: 113%;
+                height: 110%;
                 z-index: ${(group.variants.length - vIdx) * 10};
                 rotate: ${vIdx * 3.5}deg;
                 opacity: ${1 - vIdx * 0.12};
@@ -161,6 +161,8 @@ const productGroups = [
 /* ── Section header ── */
 .product-stacking-section .eyebrow {
   color: var(--brand-red, #91050b);
+  position: relative;
+  z-index: 30;
 }
 .product-stacking-section h2 {
   font-size: clamp(28px, 4vw, 52px);
@@ -168,5 +170,7 @@ const productGroups = [
   margin: 8px 0 0;
   text-transform: uppercase;
   color: var(--text-light, #f7f3ee);
+  position: relative;
+  z-index: 30;
 }
 </style>

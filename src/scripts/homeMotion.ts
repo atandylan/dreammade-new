@@ -307,23 +307,25 @@ export function initHomeMotion() {
       repeat: -1
     });
 
-    // Stagger reveal — runs after cards are injected into DOM
-    gsap.fromTo(".reel-card",
-      { opacity: 0, y: 50, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        stagger: 0.06,
-        ease: "power3.out",
-        scrollTrigger: {
-          id: "dreammade-home-reels-reveal",
-          trigger: "#feedTrack",
-          start: "top 85%"
+    // Stagger reveal — only runs when cards are present in DOM
+    if (cards.length) {
+      gsap.fromTo(".reel-card",
+        { opacity: 0, y: 50, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: {
+            id: "dreammade-home-reels-reveal",
+            trigger: "#feedTrack",
+            start: "top 85%"
+          }
         }
-      }
-    );
+      );
+    }
 
     const pauseMarquee = () => { marqueeTween.pause(); };
     const resumeMarquee = () => { marqueeTween.play(); };
