@@ -375,44 +375,38 @@ export function initHomeMotion() {
 
   ScrollTrigger.refresh();
 
-  // ─── PRODUCT CARD ENTRANCE (each sticky card fades + slides up on enter)
+  // Product card: copy slides in from left
   gsap.utils.toArray<HTMLElement>(".product-card-sticky").forEach((card, idx) => {
-    gsap.fromTo(card.querySelector(".product-card-copy"), 
-      { opacity: 0, x: -32 },
+    gsap.fromTo(
+      card.querySelector(".product-card-copy"),
+      { x: -28, opacity: 0 },
       {
-        opacity: 1,
         x: 0,
-        duration: 0.75,
+        opacity: 1,
+        duration: 0.7,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
           id: `dreammade-home-pcard-copy-${idx}`,
           trigger: card,
-          start: "top 72%",
+          start: "top 78%",
         }
       }
     );
 
-    gsap.fromTo(card.querySelectorAll(".product-card-img"),
-      { opacity: 0, x: 60, rotate: 0 },
+    // Images: slide in from right using translateX only — DO NOT animate opacity
+    gsap.fromTo(
+      card.querySelector(".product-card-images"),
+      { x: 60 },
       {
-        opacity: (i: number) => {
-          const imgs = card.querySelectorAll<HTMLImageElement>(".product-card-img");
-          return parseFloat(imgs[i]?.style.opacity ?? "1");
-        },
         x: 0,
-        rotate: (i: number) => {
-          const imgs = card.querySelectorAll<HTMLImageElement>(".product-card-img");
-          return imgs[i]?.style.transform?.match(/rotate\((.+)\)/)?.[1] ?? "0deg";
-        },
-        duration: 0.9,
-        stagger: 0.06,
+        duration: 0.85,
         ease: "power4.out",
         immediateRender: false,
         scrollTrigger: {
           id: `dreammade-home-pcard-imgs-${idx}`,
           trigger: card,
-          start: "top 68%",
+          start: "top 75%",
         }
       }
     );
