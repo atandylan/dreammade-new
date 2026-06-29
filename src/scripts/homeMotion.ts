@@ -161,6 +161,36 @@ export function initHomeMotion() {
     .to(".hero-ghost", { yPercent: -18, opacity: 0.5, ease: "none" }, 0)
     .to(".hero-copy, .hero-index", { opacity: 0, y: -20, ease: "none" }, .2);
 
+  // Hero product images: subtle float on load
+  if (!reduceMotion) {
+    const heroImgs = document.querySelectorAll<HTMLElement>(".hero-devices-float img");
+    heroImgs.forEach((img, i) => {
+      gsap.to(img, {
+        y: i % 2 === 0 ? -10 : -14,
+        duration: 2.2 + i * 0.3,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: i * 0.18
+      });
+    });
+
+    // Parallax on scroll — each image at different speed, NO opacity change
+    heroImgs.forEach((img, i) => {
+      gsap.to(img, {
+        y: -(60 + i * 25),
+        ease: "none",
+        scrollTrigger: {
+          id: `dreammade-home-hero-img-${i}`,
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      });
+    });
+  }
+
   gsap.timeline({
     scrollTrigger: {
       id: "dreammade-home-about-reveal",
