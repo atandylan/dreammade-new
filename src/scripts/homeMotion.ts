@@ -351,5 +351,27 @@ export function initHomeMotion() {
     scrollTrigger: { id: "dreammade-home-footer", trigger: ".footer-reveal", start: "top bottom", end: "top top", scrub: true }
   });
 
+  // Intersection Observer for scroll reveal animations
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    const intersecting = entries.filter(entry => entry.isIntersecting);
+    intersecting.forEach((entry, index) => {
+      const target = entry.target as HTMLElement;
+      setTimeout(() => {
+        target.classList.add("is-visible");
+      }, index * 80);
+      observer.unobserve(target);
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  document.querySelectorAll("[data-reveal], [data-reveal-clip]").forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  cleanup.push(() => {
+    revealObserver.disconnect();
+  });
+
   ScrollTrigger.refresh();
 }

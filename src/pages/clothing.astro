@@ -48,7 +48,7 @@ import "../styles/clothing.css";
               <div class="wrap lookbook-grid-container">
                 <div class="lookbook-grid" id={`clothing-${group.id}`}>
                   {group.images.map((image, index) => (
-                    <div class:list={["lookbook-item", `item-${index % 5}`]}>
+                    <div class="lookbook-item">
                       <div class="lookbook-image-wrapper">
                         <img
                           src={image}

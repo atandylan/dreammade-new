@@ -59,8 +59,8 @@ const products = [
     <!-- Left Column: Sticky Product Info -->
     <div class="product-sticky-col">
       <div class="product-sticky-inner">
-        <div class="eyebrow">Product Highlight</div>
-        <h2>Four ways to Syok.</h2>
+        <div class="eyebrow" data-reveal>Product Highlight</div>
+        <h2 data-reveal>Four ways to Syok.</h2>
         <p class="product-showcase-intro">
           Designed around precision, quality and device feel, delivering bold flavours for the everyday generation.
         </p>
@@ -91,14 +91,39 @@ const products = [
             <p>{p.desc}</p>
           </header>
           
-          <div class="showcase-images-grid">
-            {p.images.map((img, imgIdx) => (
-              <div class:list={["showcase-image-card", `parallax-speed-${(imgIdx % 3) + 1}`]} data-parallax-item>
-                <div class="device-image-container">
-                  <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-                </div>
-              </div>
-            ))}
+          <div class="showcase-interactive-container">
+            <div class="showcase-hero-container">
+              <img 
+                src={p.images[0].src} 
+                alt={p.images[0].alt} 
+                class="showcase-hero-image" 
+                id={`hero-image-${p.id}`}
+                loading="lazy" 
+                decoding="async" 
+              />
+            </div>
+            
+            <div class="showcase-swatches-row" role="radiogroup" aria-label={`Select color for ${p.name}`}>
+              {p.images.map((img, imgIdx) => {
+                const colorName = img.alt.split(' ').pop();
+                return (
+                  <button
+                    class={`swatch-button${imgIdx === 0 ? ' active' : ''}`}
+                    data-color={colorName}
+                    data-image-src={img.src}
+                    data-image-alt={img.alt}
+                    data-product-id={p.id}
+                    title={colorName}
+                    aria-label={`Color: ${colorName}`}
+                    aria-checked={imgIdx === 0 ? "true" : "false"}
+                    role="radio"
+                  >
+                    <img src={img.src} alt="" />
+                    <span class="tooltip" role="tooltip">{colorName}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       ))}
@@ -106,3 +131,48 @@ const products = [
     
   </div>
 </section>
+
+<script>
+  function initSwatches() {
+    const swatchButtons = document.querySelectorAll('.swatch-button');
+    swatchButtons.forEach(button => {
+      const btn = button as HTMLButtonElement;
+      
+      // Remove any existing click handler to prevent duplicates
+      const newBtn = btn.cloneNode(true) as HTMLButtonElement;
+      btn.parentNode?.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener('click', () => {
+        const productId = newBtn.dataset.productId;
+        const imageSrc = newBtn.dataset.imageSrc;
+        const imageAlt = newBtn.dataset.imageAlt;
+        
+        if (!productId || !imageSrc || !imageAlt) return;
+
+        const heroImg = document.getElementById(`hero-image-${productId}`) as HTMLImageElement | null;
+        if (heroImg) {
+          heroImg.style.opacity = '0.3';
+          setTimeout(() => {
+            heroImg.src = imageSrc;
+            heroImg.alt = imageAlt;
+            heroImg.style.opacity = '1';
+          }, 100);
+        }
+
+        const row = newBtn.closest('.showcase-swatches-row');
+        if (row) {
+          row.querySelectorAll('.swatch-button').forEach(s => {
+            s.classList.remove('active');
+            s.setAttribute('aria-checked', 'false');
+          });
+          newBtn.classList.add('active');
+          newBtn.setAttribute('aria-checked', 'true');
+        }
+      });
+    });
+  }
+
+  // Bind to page-load and run once initially
+  document.addEventListener('astro:page-load', initSwatches);
+  initSwatches();
+</script>

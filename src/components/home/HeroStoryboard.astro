@@ -7,16 +7,25 @@ import { site } from "../../data/site";
   <div class="hero-ghost" aria-hidden="true">DREAMMADE</div>
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      <h1 class="hero-title" aria-label={site.tagline}>
-        <span class="title-line title-line-one"><span>Tak Keras</span></span>
-        <span class="title-line title-line-two"><span>Tak Syok</span></span>
+      <h1 class="hero-title" aria-label={site.name}>
+        <span class="title-line title-line-one"><span>{site.name.slice(0, 5)}</span></span>
+        <span class="title-line title-line-two"><span>{site.name.slice(5)}</span></span>
       </h1>
-      <p class="hero-line">{site.description}</p>
-      <div class="hero-actions hero-line">
+      <p class="hero-line" data-reveal>{site.description}</p>
+      <div class="hero-actions hero-line" data-reveal>
         <a class="button" href="#products">Explore Syok</a>
         <a class="button secondary" href="#about">Brand story</a>
       </div>
+      <p class="hero-tagline hero-line" data-reveal>{site.tagline}</p>
     </div>
+    
+    <div class="hero-product-stack hero-line">
+      <img src="/products/syokpod/v2/syokpod-v2-red-01.webp" alt="SyokPod V2 Red" class="stack-image stack-image-1" />
+      <img src="/products/syokpod/v2/syokpod-v2-black-01.webp" alt="SyokPod V2 Black" class="stack-image stack-image-2" />
+      <img src="/products/syokbar/SYOKBAR/syokbar-blue-01.webp" alt="SyokBar Blue" class="stack-image stack-image-3" />
+      <img src="/products/syokbar/SYOKBAR/syokbar-orange-01.webp" alt="SyokBar Orange" class="stack-image stack-image-4" />
+    </div>
+
     <div class="hero-index" aria-hidden="true">
       <span>Dreammade</span>
       <span>Est. Malaysia</span>
