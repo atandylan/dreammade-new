@@ -437,16 +437,37 @@ export function initHomeMotion() {
     );
   });
 
+  // Per-image stagger-in when card becomes fully visible
+  stackCards.forEach((card, idx) => {
+    const imgs = card.querySelectorAll<HTMLElement>(".pstack-img");
+    if (!imgs.length) return;
+
+    gsap.from(imgs, {
+      x: 80,
+      opacity: 0,
+      duration: 0.75,
+      stagger: 0.1,
+      ease: "back.out(1.1)",
+      immediateRender: false,
+      scrollTrigger: {
+        id: `dreammade-home-pstack-imgs-${idx}`,
+        trigger: card,
+        start: "top 45%",
+        once: true,
+      }
+    });
+  });
+
   // Floating yoyo on device images inside each card
   if (!reduceMotion) {
     document.querySelectorAll<HTMLElement>(".pstack-img").forEach((img, i) => {
       gsap.to(img, {
-        y: i % 2 === 0 ? -10 : -14,
-        duration: 2.1 + i * 0.28,
+        y: i % 2 === 0 ? -7 : -11,
+        duration: 2.0 + i * 0.35,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
-        delay: i * 0.2,
+        delay: i * 0.22,
       });
     });
   }
