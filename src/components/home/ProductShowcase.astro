@@ -3,115 +3,272 @@ const products = [
   {
     id: "syokpod-v2",
     name: "SyokPod V2",
-    desc: "A closed-system device built for smooth sessions, standout colourways, and the SyokGeng way of life.",
+    desc: "Compact, clean and built for daily carry.",
     compat: "Closed system / KOHS K1000",
-    images: [
-      { src: "/products/syokpod/v2/syokpod-v2-black-01.webp", alt: "SyokPod V2 Black" },
-      { src: "/products/syokpod/v2/syokpod-v2-blue-01.webp", alt: "SyokPod V2 Blue" },
-      { src: "/products/syokpod/v2/syokpod-v2-green-01.webp", alt: "SyokPod V2 Green" },
-      { src: "/products/syokpod/v2/syokpod-v2-grey-01.webp", alt: "SyokPod V2 Grey" },
-      { src: "/products/syokpod/v2/syokpod-v2-red-01.webp", alt: "SyokPod V2 Red" }
-    ]
   },
   {
     id: "syokpod-pro",
     name: "SyokPod Pro",
     desc: "More grip, more control and a stronger silhouette.",
     compat: "Closed system / KOHS K1000",
-    images: [
-      { src: "/products/syokpod/pro/syokpod-pro-gold-01.webp", alt: "SyokPod Pro Gold" },
-      { src: "/products/syokpod/pro/syokpod-pro-gray-01.webp", alt: "SyokPod Pro Gray" },
-      { src: "/products/syokpod/pro/syokpod-pro-green-01.webp", alt: "SyokPod Pro Green" },
-      { src: "/products/syokpod/pro/syokpod-pro-lightgrey-01.webp", alt: "SyokPod Pro Lightgrey" },
-      { src: "/products/syokpod/pro/syokpod-pro-obsidian-01.webp", alt: "SyokPod Pro Obsidian" }
-    ]
   },
   {
     id: "syokbar",
     name: "SyokBar",
     desc: "Designed around the ease of a disposable format while delivering bold flavours.",
     compat: "Disposable system / KOHS K3000",
-    images: [
-      { src: "/products/syokbar/SYOKBAR/syokbar-blue-01.webp", alt: "SyokBar Blue" },
-      { src: "/products/syokbar/SYOKBAR/syokbar-green-01.webp", alt: "SyokBar Green" },
-      { src: "/products/syokbar/SYOKBAR/syokbar-grey-01.webp", alt: "SyokBar Grey" },
-      { src: "/products/syokbar/SYOKBAR/syokbar-orange-01.webp", alt: "SyokBar Orange" },
-      { src: "/products/syokbar/SYOKBAR/syokbar-red-01.webp", alt: "SyokBar Red" }
-    ]
   },
   {
     id: "syokbar-target",
     name: "SyokBar Target",
     desc: "Open-system flexibility with bold flavour control.",
     compat: "Open system / KOHS E-Liquid",
-    images: [
-      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp", alt: "SyokBar Target Green" },
-      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp", alt: "SyokBar Target Orange" },
-      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp", alt: "SyokBar Target Red" }
-    ]
   }
 ];
 ---
 
 <section class="product-showcase" id="products" aria-label="The Syok System">
-  <div class="wrap">
-    <div class="product-showcase-header">
-      <div class="eyebrow" data-reveal>Product Highlight</div>
-      <h2 data-reveal>Four ways to Syok.</h2>
-    </div>
-    
-    <div class="product-list">
-      {products.map((p, idx) => (
-        <div class="product-row" data-reveal>
-          <div class="product-name-group">
-            <span class="eyebrow">0{idx + 1}</span>
-            <h3>{p.name}</h3>
-          </div>
-          <div class="swatch-row">
-            {p.images.map((img) => {
-              const colorName = img.alt.split(' ').pop();
-              return (
-                <img 
-                  src={img.src} 
-                  alt={colorName} 
-                  class="swatch-img" 
-                  loading="lazy" 
-                  decoding="async" 
-                />
-              );
-            })}
-          </div>
-          <a href={`/products/${p.id}`} class="product-row-link">Explore →</a>
+  <div class="product-stage">
+    <div class="product-bg"></div>
+    <div class="wrap product-stage-inner">
+      <div class="product-copy" data-reveal>
+        <div class="eyebrow">Product Highlight</div>
+        <h2>Four ways to Syok.</h2>
+        <div class="product-name" id="productName">SyokPod V2</div>
+        <p class="product-desc" id="productDesc">Compact, clean and built for daily carry.</p>
+        <div class="product-compat" id="productCompat">Closed system / KOHS K1000</div>
+        <div class="product-controls">
+          <a class="button" href="/products">Explore products</a>
+          <span class="product-progress" id="productProgress">01 / 04</span>
         </div>
-      ))}
+      </div>
+      <div class="product-scan-frame" data-reveal>
+        <div class="product-family active" data-family="0">
+          <img src="/products/syokpod/v2/syokpod-v2-black-01.webp" alt="SyokPod V2 Black" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/v2/syokpod-v2-blue-01.webp" alt="SyokPod V2 Blue" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/v2/syokpod-v2-green-01.webp" alt="SyokPod V2 Green" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/v2/syokpod-v2-grey-01.webp" alt="SyokPod V2 Grey" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/v2/syokpod-v2-red-01.webp" alt="SyokPod V2 Red" loading="lazy" decoding="async" />
+        </div>
+        <div class="product-family" data-family="1">
+          <img src="/products/syokpod/pro/syokpod-pro-gold-01.webp" alt="SyokPod Pro Gold" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/pro/syokpod-pro-gray-01.webp" alt="SyokPod Pro Gray" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/pro/syokpod-pro-green-01.webp" alt="SyokPod Pro Green" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/pro/syokpod-pro-lightgrey-01.webp" alt="SyokPod Pro Lightgrey" loading="lazy" decoding="async" />
+          <img src="/products/syokpod/pro/syokpod-pro-obsidian-01.webp" alt="SyokPod Pro Obsidian" loading="lazy" decoding="async" />
+        </div>
+        <div class="product-family" data-family="2">
+          <img src="/products/syokbar/SYOKBAR/syokbar-blue-01.webp" alt="SyokBar Blue" loading="lazy" decoding="async" />
+          <img src="/products/syokbar/SYOKBAR/syokbar-green-01.webp" alt="SyokBar Green" loading="lazy" decoding="async" />
+          <img src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" alt="SyokBar Grey" loading="lazy" decoding="async" />
+          <img src="/products/syokbar/SYOKBAR/syokbar-orange-01.webp" alt="SyokBar Orange" loading="lazy" decoding="async" />
+          <img src="/products/syokbar/SYOKBAR/syokbar-red-01.webp" alt="SyokBar Red" loading="lazy" decoding="async" />
+        </div>
+        <div class="product-family" data-family="3">
+          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp" alt="SyokBar Target Green" loading="lazy" decoding="async" />
+          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp" alt="SyokBar Target Orange" loading="lazy" decoding="async" />
+          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp" alt="SyokBar Target Red" loading="lazy" decoding="async" />
+        </div>
+        
+        <div class="product-nav-indicators">
+          {products.map((p, idx) => (
+            <button class={`product-nav-dot ${idx === 0 ? 'active' : ''}`} data-idx={idx} aria-label={p.name}></button>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-.product-showcase { background: var(--brand-cream-light); color: var(--brand-ink); padding: clamp(32px, 5vw, 64px) 0; }
-.product-showcase-header { margin-bottom: 32px; }
-.product-showcase-header h2 { font-size: clamp(28px, 4vw, 52px); line-height: .95; margin: 8px 0 0; text-transform: uppercase; }
-.product-list { display: flex; flex-direction: column; width: 100%; }
-.product-row { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,2fr) auto; align-items: center; gap: clamp(12px, 2vw, 32px); padding: clamp(14px, 2vw, 22px) 0; border-bottom: 1px solid rgba(9,9,9,.08); transition: background .25s ease; cursor: default; }
-.product-row:first-child { border-top: 1px solid rgba(9,9,9,.08); }
-.product-row:hover { background: rgba(145,5,11,.03); }
-.product-name-group { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
-.product-name-group .eyebrow { flex-shrink: 0; color: var(--brand-red); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
-.product-name-group h3 { font-family: var(--font-display); font-size: clamp(16px, 2vw, 22px); margin: 0; line-height: 1; text-transform: uppercase; color: var(--brand-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.swatch-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.swatch-img { width: 44px; height: 44px; object-fit: contain; border-radius: 6px; background: rgba(9,9,9,.04); flex-shrink: 0; transition: transform .25s ease; }
-.product-row:hover .swatch-img { transform: scale(1.08); }
-.product-row-link { font-family: var(--font-body); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: rgba(9,9,9,.45); white-space: nowrap; transition: color .25s ease; flex-shrink: 0; }
-.product-row:hover .product-row-link { color: var(--brand-red); }
+.product-showcase {
+  background: var(--brand-ink);
+  color: var(--brand-cream-light);
+  overflow: hidden;
+  position: relative;
+}
+.product-stage {
+  position: relative;
+  padding: clamp(40px, 6vw, 80px) 0;
+}
+.product-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 70% 30%, rgba(145, 5, 11, 0.15), transparent 60%);
+  pointer-events: none;
+}
+.product-stage-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.product-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+.product-copy .eyebrow {
+  color: var(--brand-red);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.product-copy h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: .95;
+  margin: 0;
+  text-transform: uppercase;
+}
+.product-name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.product-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(247, 243, 238, 0.78);
+  max-width: 32ch;
+  margin: 0;
+}
+.product-compat {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+.product-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 12px;
+}
+.product-progress {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(247, 243, 238, 0.45);
+}
+.product-scan-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.product-family {
+  display: none;
+}
+.product-family.active {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: center;
+}
+.product-family img {
+  width: clamp(64px, 8vw, 110px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.25));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-family img:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+.product-nav-indicators {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.product-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(247, 243, 238, 0.28);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  padding: 0;
+}
+.product-nav-dot.active {
+  background: var(--brand-cream-light);
+}
 
 @media (max-width: 760px) {
-  .product-row { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 10px 12px; }
-  .product-name-group { grid-column: 1; }
-  .swatch-row { grid-column: 1 / -1; }
-  .product-row-link { grid-column: 2; grid-row: 1; }
-}
-@media (max-width: 480px) {
-  .swatch-img { width: 36px; height: 36px; }
+  .product-stage-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 </style>
+
+<script>
+  function initProductStage() {
+    const families = document.querySelectorAll('.product-family');
+    const dots = document.querySelectorAll('.product-nav-dot');
+    
+    const products = [
+      {
+        name: "SyokPod V2",
+        desc: "Compact, clean and built for daily carry.",
+        compat: "Closed system / KOHS K1000"
+      },
+      {
+        name: "SyokPod Pro",
+        desc: "More grip, more control and a stronger silhouette.",
+        compat: "Closed system / KOHS K1000"
+      },
+      {
+        name: "SyokBar",
+        desc: "Designed around the ease of a disposable format while delivering bold flavours.",
+        compat: "Disposable system / KOHS K3000"
+      },
+      {
+        name: "SyokBar Target",
+        desc: "Open-system flexibility with bold flavour control.",
+        compat: "Open system / KOHS E-Liquid"
+      }
+    ];
+
+    dots.forEach((dot, i) => {
+      // Remove any existing click handler to prevent duplicates
+      const newDot = dot.cloneNode(true) as HTMLButtonElement;
+      dot.parentNode?.replaceChild(newDot, dot);
+
+      newDot.addEventListener('click', () => {
+        families.forEach(f => f.classList.remove('active'));
+        document.querySelectorAll('.product-nav-dot').forEach(d => d.classList.remove('active'));
+        
+        families[i]?.classList.add('active');
+        newDot.classList.add('active');
+        
+        const nameEl = document.getElementById('productName');
+        const descEl = document.getElementById('productDesc');
+        const compatEl = document.getElementById('productCompat');
+        const progressEl = document.getElementById('productProgress');
+
+        if (nameEl) nameEl.textContent = products[i].name;
+        if (descEl) descEl.textContent = products[i].desc;
+        if (compatEl) compatEl.textContent = products[i].compat;
+        if (progressEl) progressEl.textContent = `0${i+1} / 04`;
+      });
+    });
+  }
+
+  // Bind to astro:page-load and run initially
+  document.addEventListener('astro:page-load', initProductStage);
+  initProductStage();
+</script>
