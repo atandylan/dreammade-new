@@ -374,4 +374,116 @@ export function initHomeMotion() {
   });
 
   ScrollTrigger.refresh();
+
+  // ─── PRODUCT CARD ENTRANCE (each sticky card fades + slides up on enter)
+  gsap.utils.toArray<HTMLElement>(".product-card-sticky").forEach((card, idx) => {
+    gsap.fromTo(card.querySelector(".product-card-copy"), 
+      { opacity: 0, x: -32 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.75,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          id: `dreammade-home-pcard-copy-${idx}`,
+          trigger: card,
+          start: "top 72%",
+        }
+      }
+    );
+
+    gsap.fromTo(card.querySelectorAll(".product-card-img"),
+      { opacity: 0, x: 60, rotate: 0 },
+      {
+        opacity: (i: number) => {
+          const imgs = card.querySelectorAll<HTMLImageElement>(".product-card-img");
+          return parseFloat(imgs[i]?.style.opacity ?? "1");
+        },
+        x: 0,
+        rotate: (i: number) => {
+          const imgs = card.querySelectorAll<HTMLImageElement>(".product-card-img");
+          return imgs[i]?.style.transform?.match(/rotate\((.+)\)/)?.[1] ?? "0deg";
+        },
+        duration: 0.9,
+        stagger: 0.06,
+        ease: "power4.out",
+        immediateRender: false,
+        scrollTrigger: {
+          id: `dreammade-home-pcard-imgs-${idx}`,
+          trigger: card,
+          start: "top 68%",
+        }
+      }
+    );
+  });
+
+  // ─── ABOUT SECTION: scrub parallax on the section title
+  gsap.fromTo(".about-preview-section .section-title, .about-preview-section .eyebrow",
+    { opacity: 0, y: 28 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.07,
+      ease: "power3.out",
+      scrollTrigger: {
+        id: "dreammade-home-about-eyebrow",
+        trigger: ".about",
+        start: "top 82%",
+      }
+    }
+  );
+
+  // ─── PRODUCT SHOWCASE section header reveal
+  gsap.fromTo(".product-showcase .eyebrow, .product-showcase-header h2",
+    { opacity: 0, y: 22 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.65,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        id: "dreammade-home-showcase-header",
+        trigger: ".product-showcase",
+        start: "top 80%",
+      }
+    }
+  );
+
+  // ─── FEED SECTION header clip reveal
+  gsap.fromTo(".feed-section .section-title .reveal-line span",
+    { yPercent: 110 },
+    {
+      yPercent: 0,
+      duration: 0.85,
+      stagger: 0.09,
+      ease: "power4.out",
+      immediateRender: false,
+      scrollTrigger: {
+        id: "dreammade-home-feed-title",
+        trigger: ".feed-section",
+        start: "top 82%",
+      }
+    }
+  );
+
+  // ─── FAQ SECTION header
+  gsap.fromTo(".faq-section .section-title .reveal-line span, .faq-section .eyebrow",
+    { yPercent: 110, opacity: 0 },
+    {
+      yPercent: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.08,
+      ease: "power4.out",
+      immediateRender: false,
+      scrollTrigger: {
+        id: "dreammade-home-faq-header",
+        trigger: ".faq-section",
+        start: "top 82%",
+      }
+    }
+  );
 }
