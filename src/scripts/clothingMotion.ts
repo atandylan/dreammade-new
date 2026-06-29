@@ -54,10 +54,7 @@ export function initClothingMotion() {
 
     document.querySelectorAll<HTMLElement>(".lookbook-group").forEach((group, groupIndex) => {
       const title = group.querySelector<HTMLElement>("[data-clothing-title]");
-      const railShell = group.querySelector<HTMLElement>(".horizontal-media-shell");
-      const visibleCards = Array.from(group.querySelectorAll<HTMLElement>(".horizontal-media-card:not([hidden])"));
-      const visibleImages = visibleCards.map((card) => card.querySelector("img")).filter(Boolean);
-      const toggle = group.querySelector<HTMLElement>(".progressive-gallery-toggle");
+      const items = Array.from(group.querySelectorAll<HTMLElement>(".lookbook-item"));
 
       gsap.timeline({
         scrollTrigger: {
@@ -66,11 +63,25 @@ export function initClothingMotion() {
           start: "top 82%",
         },
       })
-        .fromTo(title, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: .62, ease: "power4.out" })
-        .fromTo(railShell, { y: 24, opacity: 0, clipPath: "inset(8% 0% 0% 0%)" }, { y: 0, opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: .62, ease: "power3.out" }, "-=.18")
-        .fromTo(visibleCards, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .42, stagger: .045, ease: "power3.out" }, "-=.28")
-        .fromTo(visibleImages, { scale: 1.02 }, { scale: 1, duration: .78, stagger: .035, ease: "power3.out" }, "-=.5")
-        .fromTo(toggle, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .36, ease: "power3.out" }, "-=.24");
+        .fromTo(title, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: .62, ease: "power4.out" });
+
+      items.forEach((item, itemIndex) => {
+        gsap.fromTo(item,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              id: clothingTriggerId(`lookbook-${groupIndex}-item-${itemIndex}`),
+              trigger: item,
+              start: "top 90%",
+              toggleActions: "play none none none"
+            }
+          }
+        );
+      });
     });
 
     const accessories = document.querySelector<HTMLElement>(".accessories-section");

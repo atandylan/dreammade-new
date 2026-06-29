@@ -22,11 +22,11 @@ export const clothingData: LookbookGroup[] = [
     id: "home",
     name: "Home",
     images: [
-      "/clothing/HOME/home-1.png",
-      "/clothing/HOME/home-2.png",
-      "/clothing/HOME/home-3.png",
-      "/clothing/HOME/home-4.png",
-      "/clothing/HOME/home-5.png",
+      "/clothing/HOME/home-1.jpg",
+      "/clothing/HOME/home-2.jpg",
+      "/clothing/HOME/home-3.jpg",
+      "/clothing/HOME/home-4.jpg",
+      "/clothing/HOME/home-5.jpg",
       "/clothing/HOME/home-6.jpg",
       "/clothing/HOME/home-7.jpg",
       "/clothing/HOME/home-8.jpg",
@@ -44,10 +44,10 @@ export const clothingData: LookbookGroup[] = [
       "/clothing/JERSEY/FIRE/fire-4.jpg",
       "/clothing/JERSEY/FIRE/fire-5.jpg",
       "/clothing/JERSEY/FIRE/fire-6.jpg",
-      "/clothing/JERSEY/FIRE/fire-7.png",
-      "/clothing/JERSEY/FIRE/fire-8.png",
-      "/clothing/JERSEY/FIRE/fire-9.png",
-      "/clothing/JERSEY/FIRE/fire-10.png"
+      "/clothing/JERSEY/FIRE/fire-7.jpg",
+      "/clothing/JERSEY/FIRE/fire-8.jpg",
+      "/clothing/JERSEY/FIRE/fire-9.jpg",
+      "/clothing/JERSEY/FIRE/fire-10.jpg"
     ]
   },
   {
@@ -59,10 +59,10 @@ export const clothingData: LookbookGroup[] = [
       "/clothing/JERSEY/FOREST/forest-3.jpg",
       "/clothing/JERSEY/FOREST/forest-4.jpg",
       "/clothing/JERSEY/FOREST/forest-5.jpg",
-      "/clothing/JERSEY/FOREST/forest-6.png",
-      "/clothing/JERSEY/FOREST/forest-7.png",
-      "/clothing/JERSEY/FOREST/forest-8.png",
-      "/clothing/JERSEY/FOREST/forest-9.png",
+      "/clothing/JERSEY/FOREST/forest-6.jpg",
+      "/clothing/JERSEY/FOREST/forest-7.jpg",
+      "/clothing/JERSEY/FOREST/forest-8.jpg",
+      "/clothing/JERSEY/FOREST/forest-9.jpg",
       "/clothing/JERSEY/FOREST/forest-10.jpg"
     ]
   },
@@ -71,15 +71,15 @@ export const clothingData: LookbookGroup[] = [
     name: "Kiss",
     images: [
       "/clothing/KISSKISS/kiss-1.jpg",
-      "/clothing/KISSKISS/kiss-2.png",
-      "/clothing/KISSKISS/kiss-3.png",
+      "/clothing/KISSKISS/kiss-2.jpg",
+      "/clothing/KISSKISS/kiss-3.jpg",
       "/clothing/KISSKISS/kiss-4.jpg",
-      "/clothing/KISSKISS/kiss-5.png",
-      "/clothing/KISSKISS/kiss-6.png",
-      "/clothing/KISSKISS/kiss-7.png",
-      "/clothing/KISSKISS/kiss-8.png",
-      "/clothing/KISSKISS/kiss-9.png",
-      "/clothing/KISSKISS/kiss-10.png"
+      "/clothing/KISSKISS/kiss-5.jpg",
+      "/clothing/KISSKISS/kiss-6.jpg",
+      "/clothing/KISSKISS/kiss-7.jpg",
+      "/clothing/KISSKISS/kiss-8.jpg",
+      "/clothing/KISSKISS/kiss-9.jpg",
+      "/clothing/KISSKISS/kiss-10.jpg"
     ]
   },
   {

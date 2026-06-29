@@ -1,46 +1,108 @@
+---
+const products = [
+  {
+    id: "syokpod-v2",
+    name: "SyokPod V2",
+    desc: "A closed-system device built for smooth sessions, standout colourways, and the SyokGeng way of life.",
+    compat: "Closed system / KOHS K1000",
+    images: [
+      { src: "/products/syokpod/v2/syokpod-v2-black-01.webp", alt: "SyokPod V2 Black" },
+      { src: "/products/syokpod/v2/syokpod-v2-blue-01.webp", alt: "SyokPod V2 Blue" },
+      { src: "/products/syokpod/v2/syokpod-v2-green-01.webp", alt: "SyokPod V2 Green" },
+      { src: "/products/syokpod/v2/syokpod-v2-grey-01.webp", alt: "SyokPod V2 Grey" },
+      { src: "/products/syokpod/v2/syokpod-v2-red-01.webp", alt: "SyokPod V2 Red" }
+    ]
+  },
+  {
+    id: "syokpod-pro",
+    name: "SyokPod Pro",
+    desc: "More grip, more control and a stronger silhouette.",
+    compat: "Closed system / KOHS K1000",
+    images: [
+      { src: "/products/syokpod/pro/syokpod-pro-gold-01.webp", alt: "SyokPod Pro Gold" },
+      { src: "/products/syokpod/pro/syokpod-pro-gray-01.webp", alt: "SyokPod Pro Gray" },
+      { src: "/products/syokpod/pro/syokpod-pro-green-01.webp", alt: "SyokPod Pro Green" },
+      { src: "/products/syokpod/pro/syokpod-pro-lightgrey-01.webp", alt: "SyokPod Pro Lightgrey" },
+      { src: "/products/syokpod/pro/syokpod-pro-obsidian-01.webp", alt: "SyokPod Pro Obsidian" }
+    ]
+  },
+  {
+    id: "syokbar",
+    name: "SyokBar",
+    desc: "Designed around the ease of a disposable format while delivering bold flavours.",
+    compat: "Disposable system / KOHS K3000",
+    images: [
+      { src: "/products/syokbar/SYOKBAR/syokbar-blue-01.webp", alt: "SyokBar Blue" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-green-01.webp", alt: "SyokBar Green" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-grey-01.webp", alt: "SyokBar Grey" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-orange-01.webp", alt: "SyokBar Orange" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-red-01.webp", alt: "SyokBar Red" }
+    ]
+  },
+  {
+    id: "syokbar-target",
+    name: "SyokBar Target",
+    desc: "Open-system flexibility with bold flavour control.",
+    compat: "Open system / KOHS E-Liquid",
+    images: [
+      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp", alt: "SyokBar Target Green" },
+      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp", alt: "SyokBar Target Orange" },
+      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp", alt: "SyokBar Target Red" }
+    ]
+  }
+];
+---
+
 <section class="product-showcase" id="products" aria-label="The Syok System">
-  <div class="product-stage">
-    <div class="product-bg"></div>
-    <div class="wrap product-stage-inner">
-      <div class="product-copy">
+  <div class="wrap product-showcase-container">
+    
+    <!-- Left Column: Sticky Product Info -->
+    <div class="product-sticky-col">
+      <div class="product-sticky-inner">
         <div class="eyebrow">Product Highlight</div>
         <h2>Four ways to Syok.</h2>
-        <div class="product-name" id="productName">SyokPod V2</div>
-        <p class="product-desc" id="productDesc">Compact, clean and built for daily carry.</p>
-        <div class="product-compat" id="productCompat">Closed system / KOHS K1000</div>
-        <div class="product-controls">
-          <a class="button" href="/products">Explore products</a>
-          <span class="product-progress" id="productProgress">01 / 04</span>
-        </div>
-      </div>
-      <div class="product-scan-frame">
-        <div class="product-family active" data-family="0">
-          <img src="/products/syokpod/v2/syokpod-v2-black-01.webp" alt="SyokPod V2 Black" />
-          <img src="/products/syokpod/v2/syokpod-v2-blue-01.webp" alt="SyokPod V2 Blue" />
-          <img src="/products/syokpod/v2/syokpod-v2-green-01.webp" alt="SyokPod V2 Green" />
-          <img src="/products/syokpod/v2/syokpod-v2-grey-01.webp" alt="SyokPod V2 Grey" />
-          <img src="/products/syokpod/v2/syokpod-v2-red-01.webp" alt="SyokPod V2 Red" />
-        </div>
-        <div class="product-family" data-family="1">
-          <img src="/products/syokpod/pro/syokpod-pro-gold-01.webp" alt="SyokPod Pro Gold" />
-          <img src="/products/syokpod/pro/syokpod-pro-gray-01.webp" alt="SyokPod Pro Gray" />
-          <img src="/products/syokpod/pro/syokpod-pro-green-01.webp" alt="SyokPod Pro Green" />
-          <img src="/products/syokpod/pro/syokpod-pro-lightgrey-01.webp" alt="SyokPod Pro Lightgrey" />
-          <img src="/products/syokpod/pro/syokpod-pro-obsidian-01.webp" alt="SyokPod Pro Obsidian" />
-        </div>
-        <div class="product-family" data-family="2">
-          <img src="/products/syokbar/SYOKBAR/syokbar-blue-01.webp" alt="SyokBar Blue" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-green-01.webp" alt="SyokBar Green" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" alt="SyokBar Grey" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-orange-01.webp" alt="SyokBar Orange" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-red-01.webp" alt="SyokBar Red" />
-        </div>
-        <div class="product-family" data-family="3">
-          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp" alt="SyokBar Target Green" />
-          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp" alt="SyokBar Target Orange" />
-          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp" alt="SyokBar Target Red" />
+        <p class="product-showcase-intro">
+          Designed around precision, quality and device feel, delivering bold flavours for the everyday generation.
+        </p>
+        
+        <!-- Interactive index indicators -->
+        <nav class="product-nav-indicators" aria-label="Product sections navigation">
+          {products.map((p, idx) => (
+            <a href={`#showcase-${p.id}`} class="product-indicator" data-index={idx}>
+              <span class="indicator-number">0{idx + 1}</span>
+              <span class="indicator-name">{p.name}</span>
+            </a>
+          ))}
+        </nav>
+        
+        <div class="product-sticky-footer">
+          <a class="button primary-dark" href="/products">Explore all products</a>
         </div>
       </div>
     </div>
+    
+    <!-- Right Column: Scrollable Feed of Product Families -->
+    <div class="product-scroll-col">
+      {products.map((p, idx) => (
+        <div class="showcase-product-group" id={`showcase-${p.id}`} data-group-index={idx}>
+          <header class="showcase-group-header">
+            <span class="showcase-group-compat">{p.compat}</span>
+            <h3>{p.name}</h3>
+            <p>{p.desc}</p>
+          </header>
+          
+          <div class="showcase-images-grid">
+            {p.images.map((img, imgIdx) => (
+              <div class:list={["showcase-image-card", `parallax-speed-${(imgIdx % 3) + 1}`]} data-parallax-item>
+                <div class="device-image-container">
+                  <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
   </div>
 </section>

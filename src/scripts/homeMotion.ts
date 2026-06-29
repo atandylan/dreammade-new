@@ -203,101 +203,69 @@ export function initHomeMotion() {
     scrollTrigger: { id: "dreammade-home-about-track-secondary", trigger: ".about", start: "top bottom", end: "bottom top", scrub: 1 }
   });
 
-  const products = [
-    {
-      name: "SyokPod V2",
-      desc: "A closed-system device built for smooth sessions, standout colourways, and the SyokGeng way of life.",
-      compat: "Closed system / KOHS K1000",
-      bg: "radial-gradient(circle at 76% 28%, rgba(247,243,238,.14), transparent 30%), linear-gradient(145deg, #91050b, #5f0307)"
-    },
-    {
-      name: "SyokPod Pro",
-      desc: "More grip, more control and a stronger silhouette.",
-      compat: "Closed system / KOHS K1000",
-      bg: "radial-gradient(circle at 72% 24%, rgba(247,243,238,.16), transparent 30%), linear-gradient(145deg, #7b0409, #5f0307)"
-    },
-    {
-      name: "SyokBar",
-      desc: "Designed around the ease of a disposable format while delivering bold flavours.",
-      compat: "Disposable system / KOHS K3000",
-      bg: "radial-gradient(circle at 74% 30%, rgba(247,243,238,.13), transparent 28%), linear-gradient(145deg, #91050b, #6f0308)"
-    },
-    {
-      name: "SyokBar Target",
-      desc: "Open-system flexibility with bold flavour control.",
-      compat: "Open system / KOHS E-Liquid",
-      bg: "radial-gradient(circle at 74% 30%, rgba(247,243,238,.15), transparent 28%), linear-gradient(145deg, #850409, #5f0307)"
-    }
-  ];
-  const productName = document.querySelector<HTMLElement>("#productName");
-  const productDesc = document.querySelector<HTMLElement>("#productDesc");
-  const productCompat = document.querySelector<HTMLElement>("#productCompat");
-  const productProgress = document.querySelector<HTMLElement>("#productProgress");
-  const productBg = document.querySelector<HTMLElement>(".product-bg");
-  const productFamilies = gsap.utils.toArray<HTMLElement>(".product-family");
-  let activeProduct = -1;
-  let productTransition: gsap.core.Timeline | undefined;
+  // Sticky Scroll Showcase Animations
+  const indicators = gsap.utils.toArray<HTMLElement>(".product-indicator");
+  const productGroups = gsap.utils.toArray<HTMLElement>(".showcase-product-group");
 
-  const renderProduct = (index: number) => {
-    if (index === activeProduct || !productName || !productDesc || !productCompat || !productProgress || !productBg) return;
-    activeProduct = index;
-    const selected = products[index];
-    gsap.to(productBg, { background: selected.bg, duration: .55, ease: "power2.out" });
-    gsap.to([productName, productDesc, productCompat, productProgress], {
-      y: -14,
-      opacity: 0,
-      duration: .16,
-      onComplete: () => {
-        productName.textContent = selected.name;
-        productDesc.textContent = selected.desc;
-        productCompat.textContent = selected.compat;
-        productProgress.textContent = `0${index + 1} / 04`;
-        gsap.fromTo([productName, productDesc, productCompat, productProgress], { y: 24, opacity: 0 }, {
-          y: 0, opacity: 1, duration: .42, stagger: .04, ease: "power3.out"
-        });
+  productGroups.forEach((group, idx) => {
+    ScrollTrigger.create({
+      id: `dreammade-home-product-highlight-${idx}`,
+      trigger: group,
+      start: "top 40%",
+      end: "bottom 40%",
+      onEnter: () => {
+        indicators.forEach((ind) => ind.classList.remove("active"));
+        indicators[idx]?.classList.add("active");
+      },
+      onEnterBack: () => {
+        indicators.forEach((ind) => ind.classList.remove("active"));
+        indicators[idx]?.classList.add("active");
       }
     });
-    const previousFamily = productFamilies.find((family) => family.classList.contains("active"));
-    productTransition?.kill();
-    productTransition = gsap.timeline()
-      .to(previousFamily?.querySelectorAll("img") ?? [], { 
-        opacity: 0, 
-        duration: .2, 
-        stagger: 0.02,
-        ease: "power2.in"
-      }, 0)
-      .add(() => {
-        productFamilies.forEach((family, familyIndex) => family.classList.toggle("active", familyIndex === index));
-      })
-      .fromTo(productFamilies[index]?.querySelectorAll("img") ?? [], {
-        opacity: 0
-      }, {
-        opacity: 1,
-        duration: .45,
-        stagger: 0.05,
-        ease: "power2.out"
-      });
-  };
-
-  renderProduct(0);
-  ScrollTrigger.create({
-    id: "dreammade-home-product-showcase",
-    trigger: ".product-showcase",
-    start: "top top",
-    end: isMobile ? "+=220%" : "+=300%",
-    scrub: 1,
-    pin: ".product-stage",
-    invalidateOnRefresh: true,
-    onUpdate: (self) => {
-      renderProduct(Math.min(3, Math.floor(self.progress * 4)));
-      gsap.set(".product-bg", { backgroundPosition: `${self.progress * 18}% center` });
-    }
   });
 
-  // Product Showcase Entrance Reveal
-  gsap.fromTo(".product-copy > *", {
+  // Smooth click scroll for indicators
+  indicators.forEach((indicator) => {
+    indicator.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = indicator.getAttribute("href");
+      if (targetId) {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+  });
+
+  // Parallax effect for product cards
+  if (!reduceMotion && !isMobile) {
+    gsap.utils.toArray<HTMLElement>("[data-parallax-item]").forEach((item) => {
+      let yVal = -40;
+      if (item.classList.contains("parallax-speed-1")) yVal = -20;
+      if (item.classList.contains("parallax-speed-2")) yVal = -50;
+      if (item.classList.contains("parallax-speed-3")) yVal = -80;
+
+      gsap.fromTo(item,
+        { y: 0 },
+        {
+          y: yVal,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    });
+  }
+
+  // Left column content entrance reveal
+  gsap.fromTo(".product-sticky-inner > *", {
     opacity: 0,
-    y: 35
+    y: 30
   }, {
     opacity: 1,
     y: 0,
@@ -305,7 +273,7 @@ export function initHomeMotion() {
     stagger: 0.08,
     ease: "power3.out",
     scrollTrigger: {
-      id: "dreammade-home-product-copy-reveal",
+      id: "dreammade-home-product-sticky-reveal",
       trigger: ".product-showcase",
       start: "top 80%"
     }

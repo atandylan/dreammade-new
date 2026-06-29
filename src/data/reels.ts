@@ -11,7 +11,7 @@ export const reels = [
   },
   {
     label: "SyokGeng",
-    image: "/clothing/HOME/home-3.png",
+    image: "/clothing/HOME/home-3.jpg",
     alt: "SyokGeng clothing lookbook"
   },
   {
@@ -21,7 +21,7 @@ export const reels = [
   },
   {
     label: "From the feed",
-    image: "/clothing/HOME/home-5.png",
+    image: "/clothing/HOME/home-5.jpg",
     alt: "Dreammade fashion editorial"
   }
 ];

@@ -45,14 +45,24 @@ import "../styles/clothing.css";
               <div class="wrap lookbook-header">
                 <h2 class="lookbook-title" data-clothing-title>{group.name}</h2>
               </div>
-              <HorizontalMediaRail
-                id={`clothing-${group.id}`}
-                images={group.images}
-                altPrefix={`${group.name} look`}
-                initialCount={6}
-                eagerCount={groupIndex === 0 ? 2 : 0}
-                className="clothing-media-gallery"
-              />
+              <div class="wrap lookbook-grid-container">
+                <div class="lookbook-grid" id={`clothing-${group.id}`}>
+                  {group.images.map((image, index) => (
+                    <div class:list={["lookbook-item", `item-${index % 5}`]}>
+                      <div class="lookbook-image-wrapper">
+                        <img
+                          src={image}
+                          alt={`${group.name} look ${index + 1}`}
+                          loading={groupIndex === 0 && index < 2 ? "eager" : "lazy"}
+                          decoding="async"
+                        />
+                        <div class="lookbook-image-overlay"></div>
+                        <div class="lookbook-item-badge">SyokGeng</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </section>
           );
         })}

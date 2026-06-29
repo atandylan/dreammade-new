@@ -782,7 +782,7 @@ section {
   margin-inline: auto;
   text-align: center;
   white-space: nowrap;
-  font-size: clamp(54px, 12vw, 160px);
+  font-size: clamp(3rem, 15vw, 12rem);
   transform: translateX(-0.6%);
 }
 .footer-grid {
@@ -799,6 +799,8 @@ section {
   gap: clamp(28px, 4vw, 64px);
   align-items: start;
   justify-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: clamp(24px, 4vw, 48px);
   padding-bottom: clamp(32px, 5vw, 64px);
 }
 .footer-standard .footer-column {
@@ -852,9 +854,12 @@ section {
 .footer-standard .footer-column a,
 .footer-standard .footer-column span {
   color: rgba(247,243,238,.68);
-  transition: color 0.3s ease;
+  display: inline-block;
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
 }
 .footer-standard .footer-column a:hover {
+  opacity: 0.72;
+  transform: translateY(-1.5px);
   color: var(--white);
 }
 .footer-standard .footer-social-nav {
@@ -978,14 +983,14 @@ section {
 }
 .footer-word {
   font-family: var(--font-display);
-  font-size: clamp(56px, 12vw, 150px);
+  font-size: clamp(3rem, 15vw, 12rem);
   line-height: .9;
   font-weight: var(--weight-display);
   letter-spacing: -0.035em;
   text-transform: uppercase;
 }
 .footer-reveal .footer-word {
-  font-size: clamp(54px, 13vw, 170px);
+  font-size: clamp(3rem, 15vw, 12rem);
   text-align: center;
   margin-inline: auto;
   width: fit-content;
@@ -998,7 +1003,7 @@ section {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(20px, 4vw, 48px);
-  border-top: 1px solid rgba(247, 243, 238, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: clamp(24px, 4vw, 36px);
   justify-items: center;
 }
@@ -1031,10 +1036,13 @@ section {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .08em;
-  transition: color 0.3s ease;
+  display: inline-block;
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .footer-reveal-col a:hover {
+  opacity: 0.72;
+  transform: translateY(-1.5px);
   color: var(--white);
 }
 
