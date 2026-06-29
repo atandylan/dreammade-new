@@ -405,8 +405,26 @@ export function initHomeMotion() {
 
   ScrollTrigger.refresh();
 
-  // Product card: copy slides in from left
+  // Initial hidden state for cards to avoid premature reveal overlap
+  gsap.set(".product-card-sticky", { opacity: 0, y: 40 });
+
+  // Product card scroll triggers
   gsap.utils.toArray<HTMLElement>(".product-card-sticky").forEach((card, idx) => {
+    // Reveal the whole card first (solves device overlap between cards)
+    gsap.to(card, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        id: `dreammade-home-pcard-reveal-${idx}`,
+        trigger: card,
+        start: `top ${82 - idx * 5}%`,
+      }
+    });
+
+    // Then animate copy
     gsap.fromTo(
       card.querySelector(".product-card-copy"),
       { x: -28, opacity: 0 },
@@ -419,7 +437,7 @@ export function initHomeMotion() {
         scrollTrigger: {
           id: `dreammade-home-pcard-copy-${idx}`,
           trigger: card,
-          start: "top 78%",
+          start: `top ${78 - idx * 5}%`,
         }
       }
     );
@@ -427,7 +445,7 @@ export function initHomeMotion() {
     // Images: slide in from right using translateX only — DO NOT animate opacity
     const imgs = card.querySelectorAll<HTMLElement>(".product-card-img");
     imgs.forEach((img) => {
-      const naturalOpacity = parseFloat(img.style.opacity ?? "1");
+      const naturalOpacity = parseFloat(img.style.opacity || "1");
       gsap.set(img, { opacity: naturalOpacity });
     });
     gsap.from(imgs, {
@@ -439,10 +457,27 @@ export function initHomeMotion() {
       scrollTrigger: {
         id: `dreammade-home-pcard-imgs-${idx}`,
         trigger: card,
-        start: "top 75%",
+        start: `top ${75 - idx * 5}%`,
       }
     });
   });
+
+  if (!reduceMotion) {
+    document.querySelectorAll<HTMLElement>(".product-card-sticky").forEach((card) => {
+      const imgs = card.querySelectorAll<HTMLElement>(".product-card-img");
+      imgs.forEach((img, i) => {
+        gsap.to(img, {
+          y: i % 2 === 0 ? -7 : -11,
+          duration: 2.0 + i * 0.35,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: i * 0.22
+        });
+      });
+    });
+  }
+
 
   // ─── ABOUT SECTION: scrub parallax on the section title
   gsap.fromTo(".about-preview-section .section-title, .about-preview-section .eyebrow",
