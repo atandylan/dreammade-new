@@ -740,8 +740,9 @@ section.dark-section .eyebrow,
   margin-inline: auto;
   text-align: center;
   white-space: nowrap;
-  font-size: clamp(3rem, 15vw, 12rem);
+  font-size: clamp(2rem, 10vw, 8rem);
   transform: translateX(-0.6%);
+  overflow: hidden;
 }
 .footer-grid {
   display: grid;
@@ -952,7 +953,7 @@ section.dark-section .eyebrow,
   white-space: nowrap;
 }
 .footer-reveal .footer-word {
-  font-size: clamp(4rem, 12vw, 11rem);
+  font-size: clamp(2rem, 10vw, 8rem);
   text-align: center;
   margin-inline: auto;
   width: fit-content;

@@ -60,28 +60,28 @@ const products = [
       <h2 data-reveal>Four ways to Syok.</h2>
     </div>
     
-    <div class="product-frames-grid">
+    <div class="product-list">
       {products.map((p, idx) => (
-        <div class="product-frame" data-reveal>
-          <div class="product-frame-header">
+        <div class="product-row" data-reveal>
+          <div class="product-name-group">
             <span class="eyebrow">0{idx + 1}</span>
             <h3>{p.name}</h3>
           </div>
-          <div class="product-colors">
+          <div class="swatch-row">
             {p.images.map((img) => {
               const colorName = img.alt.split(' ').pop();
               return (
                 <img 
                   src={img.src} 
                   alt={colorName} 
-                  class="product-color-img"
+                  class="swatch-img" 
                   loading="lazy" 
                   decoding="async" 
                 />
               );
             })}
           </div>
-          <a href={`/products/${p.id}`} class="product-frame-link">Explore →</a>
+          <a href={`/products/${p.id}`} class="product-row-link">Explore →</a>
         </div>
       ))}
     </div>
@@ -89,100 +89,29 @@ const products = [
 </section>
 
 <style>
-.product-showcase {
-  background: var(--brand-cream-light);
-  color: var(--brand-ink);
-  padding: clamp(40px, 6vw, 80px) 0;
-}
-.product-showcase-header {
-  margin-bottom: var(--space-4, 16px);
-}
-.product-showcase-header h2 {
-  font-size: clamp(32px, 5vw, 64px);
-  line-height: .95;
-  margin: 12px 0 0;
-  text-transform: uppercase;
-}
-.product-frames-grid { 
-  display: grid; 
-  grid-template-columns: repeat(4, 1fr); 
-  gap: var(--space-4, 16px); 
-  padding: var(--space-8, 64px) var(--space-6, 24px); 
-}
-.product-frame { 
-  background: var(--color-surface, #ffffff); 
-  border-radius: var(--radius-lg, 16px); 
-  padding: var(--space-6, 24px); 
-  display: flex; 
-  flex-direction: column; 
-  gap: var(--space-4, 16px); 
-  border: 1px solid rgba(9, 9, 9, 0.04);
-  box-shadow: 0 8px 24px rgba(9, 9, 9, 0.02);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-}
-.product-frame:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(9, 9, 9, 0.06);
-}
-.product-frame-header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.product-frame-header .eyebrow {
-  color: var(--brand-red);
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-}
-.product-frame-header h3 {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 2.5vw, 28px);
-  margin: 0;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--brand-ink);
-}
-.product-colors { 
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: var(--space-2, 8px); 
-  align-items: flex-end; 
-  margin-top: auto;
-  min-height: 120px;
-}
-.product-color-img { 
-  width: clamp(60px, 7vw, 100px); 
-  height: auto; 
-  object-fit: contain; 
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.06));
-  transition: transform 0.3s ease;
-}
-.product-frame:hover .product-color-img {
-  transform: scale(1.05);
-}
-.product-frame-link {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--brand-ink);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: color 0.3s ease;
-  margin-top: var(--space-4, 16px);
-}
-.product-frame-link:hover {
-  color: var(--brand-red);
-}
+.product-showcase { background: var(--brand-cream-light); color: var(--brand-ink); padding: clamp(32px, 5vw, 64px) 0; }
+.product-showcase-header { margin-bottom: 32px; }
+.product-showcase-header h2 { font-size: clamp(28px, 4vw, 52px); line-height: .95; margin: 8px 0 0; text-transform: uppercase; }
+.product-list { display: flex; flex-direction: column; width: 100%; }
+.product-row { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,2fr) auto; align-items: center; gap: clamp(12px, 2vw, 32px); padding: clamp(14px, 2vw, 22px) 0; border-bottom: 1px solid rgba(9,9,9,.08); transition: background .25s ease; cursor: default; }
+.product-row:first-child { border-top: 1px solid rgba(9,9,9,.08); }
+.product-row:hover { background: rgba(145,5,11,.03); }
+.product-name-group { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+.product-name-group .eyebrow { flex-shrink: 0; color: var(--brand-red); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+.product-name-group h3 { font-family: var(--font-display); font-size: clamp(16px, 2vw, 22px); margin: 0; line-height: 1; text-transform: uppercase; color: var(--brand-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.swatch-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.swatch-img { width: 44px; height: 44px; object-fit: contain; border-radius: 6px; background: rgba(9,9,9,.04); flex-shrink: 0; transition: transform .25s ease; }
+.product-row:hover .swatch-img { transform: scale(1.08); }
+.product-row-link { font-family: var(--font-body); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: rgba(9,9,9,.45); white-space: nowrap; transition: color .25s ease; flex-shrink: 0; }
+.product-row:hover .product-row-link { color: var(--brand-red); }
 
-@media (max-width: 900px) { 
-  .product-frames-grid { grid-template-columns: repeat(2, 1fr); } 
+@media (max-width: 760px) {
+  .product-row { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 10px 12px; }
+  .product-name-group { grid-column: 1; }
+  .swatch-row { grid-column: 1 / -1; }
+  .product-row-link { grid-column: 2; grid-row: 1; }
 }
-@media (max-width: 560px) { 
-  .product-frames-grid { grid-template-columns: 1fr; } 
+@media (max-width: 480px) {
+  .swatch-img { width: 36px; height: 36px; }
 }
 </style>
