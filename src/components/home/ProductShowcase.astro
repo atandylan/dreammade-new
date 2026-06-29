@@ -3,272 +3,262 @@ const products = [
   {
     id: "syokpod-v2",
     name: "SyokPod V2",
-    desc: "Compact, clean and built for daily carry.",
-    compat: "Closed system / KOHS K1000",
+    label: "Closed System",
+    compat: "KOHS K1000",
+    desc: "Built for smooth sessions, standout colourways, and the SyokGeng way of life.",
+    cardBg: "linear-gradient(135deg, #1a1a1a, #0d0d0d)",
+    accentColor: "#91050b",
+    images: [
+      { src: "/products/syokpod/v2/syokpod-v2-black-01.webp", rot: "-20deg", zIdx: 10, right: "60%", opacity: "0.6" },
+      { src: "/products/syokpod/v2/syokpod-v2-blue-01.webp",  rot: "-10deg", zIdx: 20, right: "45%", opacity: "0.75" },
+      { src: "/products/syokpod/v2/syokpod-v2-green-01.webp", rot: "0deg",   zIdx: 30, right: "30%", opacity: "0.88" },
+      { src: "/products/syokpod/v2/syokpod-v2-grey-01.webp",  rot: "10deg",  zIdx: 40, right: "15%", opacity: "0.95" },
+      { src: "/products/syokpod/v2/syokpod-v2-red-01.webp",   rot: "18deg",  zIdx: 50, right: "0%",  opacity: "1" }
+    ]
   },
   {
     id: "syokpod-pro",
     name: "SyokPod Pro",
+    label: "Closed System",
+    compat: "KOHS K1000",
     desc: "More grip, more control and a stronger silhouette.",
-    compat: "Closed system / KOHS K1000",
+    cardBg: "linear-gradient(135deg, #1e0204, #2d0307)",
+    accentColor: "#c0392b",
+    images: [
+      { src: "/products/syokpod/pro/syokpod-pro-gold-01.webp",      rot: "-18deg", zIdx: 10, right: "58%", opacity: "0.6" },
+      { src: "/products/syokpod/pro/syokpod-pro-gray-01.webp",       rot: "-8deg",  zIdx: 20, right: "43%", opacity: "0.75" },
+      { src: "/products/syokpod/pro/syokpod-pro-green-01.webp",      rot: "2deg",   zIdx: 30, right: "28%", opacity: "0.88" },
+      { src: "/products/syokpod/pro/syokpod-pro-lightgrey-01.webp",  rot: "12deg",  zIdx: 40, right: "13%", opacity: "0.95" },
+      { src: "/products/syokpod/pro/syokpod-pro-obsidian-01.webp",   rot: "20deg",  zIdx: 50, right: "0%",  opacity: "1" }
+    ]
   },
   {
     id: "syokbar",
     name: "SyokBar",
+    label: "Disposable",
+    compat: "KOHS K3000",
     desc: "Designed around the ease of a disposable format while delivering bold flavours.",
-    compat: "Disposable system / KOHS K3000",
+    cardBg: "linear-gradient(135deg, #111111, #1a1a1a)",
+    accentColor: "#91050b",
+    images: [
+      { src: "/products/syokbar/SYOKBAR/syokbar-blue-01.webp",   rot: "-18deg", zIdx: 10, right: "60%", opacity: "0.6" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-green-01.webp",  rot: "-8deg",  zIdx: 20, right: "45%", opacity: "0.75" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-grey-01.webp",   rot: "2deg",   zIdx: 30, right: "30%", opacity: "0.88" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-orange-01.webp", rot: "12deg",  zIdx: 40, right: "15%", opacity: "0.95" },
+      { src: "/products/syokbar/SYOKBAR/syokbar-red-01.webp",    rot: "20deg",  zIdx: 50, right: "0%",  opacity: "1" }
+    ]
   },
   {
     id: "syokbar-target",
     name: "SyokBar Target",
+    label: "Open System",
+    compat: "KOHS E-Liquid",
     desc: "Open-system flexibility with bold flavour control.",
-    compat: "Open system / KOHS E-Liquid",
+    cardBg: "linear-gradient(135deg, #1a0303, #250404)",
+    accentColor: "#e74c3c",
+    images: [
+      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp",  rot: "-12deg", zIdx: 10, right: "50%", opacity: "0.65" },
+      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp", rot: "4deg",   zIdx: 30, right: "25%", opacity: "0.88" },
+      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp",    rot: "18deg",  zIdx: 50, right: "0%",  opacity: "1" }
+    ]
   }
 ];
 ---
 
 <section class="product-showcase" id="products" aria-label="The Syok System">
-  <div class="product-stage">
-    <div class="product-bg"></div>
-    <div class="wrap product-stage-inner">
-      <div class="product-copy" data-reveal>
-        <div class="eyebrow">Product Highlight</div>
-        <h2>Four ways to Syok.</h2>
-        <div class="product-name" id="productName">SyokPod V2</div>
-        <p class="product-desc" id="productDesc">Compact, clean and built for daily carry.</p>
-        <div class="product-compat" id="productCompat">Closed system / KOHS K1000</div>
-        <div class="product-controls">
-          <a class="button" href="/products">Explore products</a>
-          <span class="product-progress" id="productProgress">01 / 04</span>
-        </div>
-      </div>
-      <div class="product-scan-frame" data-reveal>
-        <div class="product-family active" data-family="0">
-          <img src="/products/syokpod/v2/syokpod-v2-black-01.webp" alt="SyokPod V2 Black" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/v2/syokpod-v2-blue-01.webp" alt="SyokPod V2 Blue" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/v2/syokpod-v2-green-01.webp" alt="SyokPod V2 Green" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/v2/syokpod-v2-grey-01.webp" alt="SyokPod V2 Grey" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/v2/syokpod-v2-red-01.webp" alt="SyokPod V2 Red" loading="lazy" decoding="async" />
-        </div>
-        <div class="product-family" data-family="1">
-          <img src="/products/syokpod/pro/syokpod-pro-gold-01.webp" alt="SyokPod Pro Gold" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/pro/syokpod-pro-gray-01.webp" alt="SyokPod Pro Gray" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/pro/syokpod-pro-green-01.webp" alt="SyokPod Pro Green" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/pro/syokpod-pro-lightgrey-01.webp" alt="SyokPod Pro Lightgrey" loading="lazy" decoding="async" />
-          <img src="/products/syokpod/pro/syokpod-pro-obsidian-01.webp" alt="SyokPod Pro Obsidian" loading="lazy" decoding="async" />
-        </div>
-        <div class="product-family" data-family="2">
-          <img src="/products/syokbar/SYOKBAR/syokbar-blue-01.webp" alt="SyokBar Blue" loading="lazy" decoding="async" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-green-01.webp" alt="SyokBar Green" loading="lazy" decoding="async" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" alt="SyokBar Grey" loading="lazy" decoding="async" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-orange-01.webp" alt="SyokBar Orange" loading="lazy" decoding="async" />
-          <img src="/products/syokbar/SYOKBAR/syokbar-red-01.webp" alt="SyokBar Red" loading="lazy" decoding="async" />
-        </div>
-        <div class="product-family" data-family="3">
-          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp" alt="SyokBar Target Green" loading="lazy" decoding="async" />
-          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp" alt="SyokBar Target Orange" loading="lazy" decoding="async" />
-          <img src="/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp" alt="SyokBar Target Red" loading="lazy" decoding="async" />
-        </div>
-        
-        <div class="product-nav-indicators">
-          {products.map((p, idx) => (
-            <button class={`product-nav-dot ${idx === 0 ? 'active' : ''}`} data-idx={idx} aria-label={p.name}></button>
-          ))}
-        </div>
-      </div>
+  <div class="wrap">
+    <div class="product-showcase-header">
+      <div class="eyebrow">Product Highlight</div>
+      <h2>Four ways to Syok.</h2>
     </div>
   </div>
+
+  <div class="product-stack-section">
+    {products.map((p, idx) => (
+      <div
+        class="product-card-sticky"
+        style={`top: calc(18vh + ${idx * 22}px);`}
+        id={`pcard-${idx}`}
+      >
+        <div class="product-card-inner" style={`background: ${p.cardBg};`}>
+          <div class="product-card-copy">
+            <span class="product-card-label" style={`color: ${p.accentColor};`}>{p.label}</span>
+            <h3 class="product-card-name">{p.name}</h3>
+            <span class="product-card-compat">{p.compat}</span>
+            <p class="product-card-desc">{p.desc}</p>
+            <a href={`/products/${p.id}`} class="product-card-cta">More Info →</a>
+          </div>
+          <div class="product-card-visual">
+            <div class="product-card-images">
+              {p.images.map((img) => (
+                <img
+                  src={img.src}
+                  alt={p.name}
+                  loading="lazy"
+                  decoding="async"
+                  class="product-card-img"
+                  style={`z-index: ${img.zIdx}; right: ${img.right}; transform: rotate(${img.rot}); opacity: ${img.opacity};`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div style="height: 20vh;"></div>
 </section>
 
 <style>
 .product-showcase {
   background: var(--brand-ink);
-  color: var(--brand-cream-light);
-  overflow: hidden;
-  position: relative;
+  color: var(--text-light);
+  padding-top: clamp(32px, 5vw, 64px);
+  padding-bottom: 0;
 }
-.product-stage {
-  position: relative;
-  padding: clamp(40px, 6vw, 80px) 0;
+.product-showcase-header {
+  padding-bottom: clamp(24px, 4vw, 48px);
 }
-.product-bg {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 70% 30%, rgba(145, 5, 11, 0.15), transparent 60%);
-  pointer-events: none;
-}
-.product-stage-inner {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
-}
-.product-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: relative;
-  z-index: 2;
-}
-.product-copy .eyebrow {
+.product-showcase-header .eyebrow {
   color: var(--brand-red);
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
-.product-copy h2 {
-  font-family: var(--font-display);
+.product-showcase-header h2 {
   font-size: clamp(28px, 4vw, 52px);
   line-height: .95;
-  margin: 0;
+  margin: 8px 0 0;
   text-transform: uppercase;
+  color: var(--text-light);
 }
-.product-name {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 900;
-  text-transform: uppercase;
-  margin-top: 12px;
+
+.product-stack-section {
+  position: relative;
+  height: calc(4 * 65vh);
 }
-.product-desc {
-  font-size: 16px;
-  line-height: 1.6;
-  color: rgba(247, 243, 238, 0.78);
-  max-width: 32ch;
-  margin: 0;
+
+.product-card-sticky {
+  position: sticky;
+  height: 60vh;
+  width: 92%;
+  margin-inline: auto;
+  margin-bottom: 16px;
 }
-.product-compat {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--brand-red);
-}
-.product-controls {
+
+.product-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 24px;
-  margin-top: 12px;
+  padding: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 52px);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
 }
-.product-progress {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 900;
-  color: rgba(247, 243, 238, 0.45);
-}
-.product-scan-frame {
+
+.product-card-copy {
+  width: 45%;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 10px;
+  z-index: 10;
   position: relative;
-  z-index: 2;
 }
-.product-family {
-  display: none;
+
+.product-card-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .14em;
 }
-.product-family.active {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: flex-end;
-  justify-content: center;
+
+.product-card-name {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 900;
+  font-variation-settings: "wght" 900, "wdth" 125, "opsz" 72;
+  line-height: .9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin: 0;
 }
-.product-family img {
-  width: clamp(64px, 8vw, 110px);
-  height: auto;
+
+.product-card-compat {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgba(247,243,238,.45);
+}
+
+.product-card-desc {
+  font-size: clamp(13px, 1.2vw, 15px);
+  line-height: 1.55;
+  color: rgba(247,243,238,.62);
+  max-width: 32ch;
+  margin: 4px 0 8px;
+}
+
+.product-card-cta {
+  display: inline-block;
+  padding: 9px 20px;
+  border: 1px solid rgba(247,243,238,.22);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  border-radius: 999px;
+  width: fit-content;
+  transition: background .25s ease, border-color .25s ease;
+}
+.product-card-cta:hover {
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.product-card-visual {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  clip-path: inset(-20% -12% 0% -12% round 28px);
+}
+
+.product-card-images {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  height: 115%;
+}
+
+.product-card-img {
+  position: absolute;
+  bottom: -8%;
+  height: 108%;
+  max-width: none;
   object-fit: contain;
-  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.25));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.product-family img:hover {
-  transform: translateY(-8px) scale(1.05);
-}
-.product-nav-indicators {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 24px;
-}
-.product-nav-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(247, 243, 238, 0.28);
-  border: none;
-  cursor: pointer;
-  transition: background 0.25s ease;
-  padding: 0;
-}
-.product-nav-dot.active {
-  background: var(--brand-cream-light);
+  drop-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
 }
 
 @media (max-width: 760px) {
-  .product-stage-inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  .product-stack-section { height: calc(4 * 75vh); }
+  .product-card-sticky { height: 68vh; width: 96%; }
+  .product-card-inner { flex-direction: column; align-items: flex-start; padding: 24px 20px; border-radius: 20px; }
+  .product-card-copy { width: 100%; }
+  .product-card-name { font-size: clamp(28px, 8vw, 44px); }
+  .product-card-images { width: 75%; right: -5%; }
+  .product-card-img { height: 90%; }
+}
+
+@media (max-width: 480px) {
+  .product-card-sticky { height: 72vh; }
+  .product-card-images { width: 80%; }
 }
 </style>
-
-<script>
-  function initProductStage() {
-    const families = document.querySelectorAll('.product-family');
-    const dots = document.querySelectorAll('.product-nav-dot');
-    
-    const products = [
-      {
-        name: "SyokPod V2",
-        desc: "Compact, clean and built for daily carry.",
-        compat: "Closed system / KOHS K1000"
-      },
-      {
-        name: "SyokPod Pro",
-        desc: "More grip, more control and a stronger silhouette.",
-        compat: "Closed system / KOHS K1000"
-      },
-      {
-        name: "SyokBar",
-        desc: "Designed around the ease of a disposable format while delivering bold flavours.",
-        compat: "Disposable system / KOHS K3000"
-      },
-      {
-        name: "SyokBar Target",
-        desc: "Open-system flexibility with bold flavour control.",
-        compat: "Open system / KOHS E-Liquid"
-      }
-    ];
-
-    dots.forEach((dot, i) => {
-      // Remove any existing click handler to prevent duplicates
-      const newDot = dot.cloneNode(true) as HTMLButtonElement;
-      dot.parentNode?.replaceChild(newDot, dot);
-
-      newDot.addEventListener('click', () => {
-        families.forEach(f => f.classList.remove('active'));
-        document.querySelectorAll('.product-nav-dot').forEach(d => d.classList.remove('active'));
-        
-        families[i]?.classList.add('active');
-        newDot.classList.add('active');
-        
-        const nameEl = document.getElementById('productName');
-        const descEl = document.getElementById('productDesc');
-        const compatEl = document.getElementById('productCompat');
-        const progressEl = document.getElementById('productProgress');
-
-        if (nameEl) nameEl.textContent = products[i].name;
-        if (descEl) descEl.textContent = products[i].desc;
-        if (compatEl) compatEl.textContent = products[i].compat;
-        if (progressEl) progressEl.textContent = `0${i+1} / 04`;
-      });
-    });
-  }
-
-  // Bind to astro:page-load and run initially
-  document.addEventListener('astro:page-load', initProductStage);
-  initProductStage();
-</script>
