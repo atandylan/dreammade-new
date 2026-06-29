@@ -63,6 +63,23 @@ import "../styles/clothing.css";
                   ))}
                 </div>
               </div>
+              <div class="wrap lookbook-actions">
+                <button class="lookbook-see-more-btn" data-target={`modal-${group.id}`}>See All Photos</button>
+              </div>
+
+              <div class="lookbook-modal" id={`modal-${group.id}`} role="dialog" aria-modal="true">
+                <button class="modal-close" aria-label="Close">✕</button>
+                <div class="modal-grid">
+                  {group.images.map((image, index) => (
+                    <img
+                      src={image}
+                      alt={`${group.name} look ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ))}
+                </div>
+              </div>
             </section>
           );
         })}
@@ -120,6 +137,62 @@ import "../styles/clothing.css";
       import { initClothingMotion } from "../scripts/clothingMotion";
       initClothingMotion();
       document.addEventListener("astro:page-load", initClothingMotion);
+
+      function initLookbookModals() {
+        const modals = document.querySelectorAll('.lookbook-modal');
+        const seeMoreButtons = document.querySelectorAll('.lookbook-see-more-btn');
+
+        seeMoreButtons.forEach(btn => {
+          const newBtn = btn.cloneNode(true) as HTMLButtonElement;
+          btn.parentNode?.replaceChild(newBtn, btn);
+
+          newBtn.addEventListener('click', () => {
+            const targetId = newBtn.getAttribute('data-target');
+            if (targetId) {
+              const modal = document.getElementById(targetId);
+              if (modal) {
+                modal.classList.add('is-open');
+                document.body.classList.add('locked');
+              }
+            }
+          });
+        });
+
+        modals.forEach(modal => {
+          const closeBtn = modal.querySelector('.modal-close');
+          const closeModal = () => {
+            modal.classList.remove('is-open');
+            if (!document.querySelector('.lookbook-modal.is-open')) {
+              document.body.classList.remove('locked');
+            }
+          };
+
+          closeBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeModal();
+          });
+
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              closeModal();
+            }
+          });
+
+          const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+              closeModal();
+            }
+          };
+          window.addEventListener('keydown', onKeyDown);
+
+          document.addEventListener('astro:before-swap', () => {
+            window.removeEventListener('keydown', onKeyDown);
+          }, { once: true });
+        });
+      }
+
+      initLookbookModals();
+      document.addEventListener("astro:page-load", initLookbookModals);
     </script>
   </body>
 </html>

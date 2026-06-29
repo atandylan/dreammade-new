@@ -19,11 +19,19 @@ import { site } from "../../data/site";
       <p class="hero-tagline hero-line" data-reveal>{site.tagline}</p>
     </div>
     
-    <div class="hero-product-stack hero-line">
-      <img src="/products/syokpod/v2/syokpod-v2-red-01.webp" alt="SyokPod V2 Red" class="stack-image stack-image-1" />
-      <img src="/products/syokpod/v2/syokpod-v2-black-01.webp" alt="SyokPod V2 Black" class="stack-image stack-image-2" />
-      <img src="/products/syokbar/SYOKBAR/syokbar-blue-01.webp" alt="SyokBar Blue" class="stack-image stack-image-3" />
-      <img src="/products/syokbar/SYOKBAR/syokbar-orange-01.webp" alt="SyokBar Orange" class="stack-image stack-image-4" />
+    <div class="hero-devices-float hero-line">
+      <div class="hero-device" data-device="1" style="--rot: -8deg; --x: 0%; --y: 0%; --delay: 0s">
+        <img src="/products/syokpod/v2/syokpod-v2-black-01.webp" alt="Syokpod V2 Black" width="180" height="320" loading="eager">
+      </div>
+      <div class="hero-device" data-device="2" style="--rot: 4deg; --x: 40%; --y: 10%; --delay: 0.15s">
+        <img src="/products/syokpod/v2/syokpod-v2-red-01.webp" alt="Syokpod V2 Red" width="180" height="320" loading="eager">
+      </div>
+      <div class="hero-device" data-device="3" style="--rot: -3deg; --x: 75%; --y: -5%; --delay: 0.3s">
+        <img src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" alt="Syokbar Grey" width="220" height="260" loading="eager">
+      </div>
+      <div class="hero-device" data-device="4" style="--rot: 6deg; --x: 110%; --y: 8%; --delay: 0.45s">
+        <img src="/products/syokbar/SYOKBAR/syokbar-orange-01.webp" alt="Syokbar Orange" width="220" height="260" loading="eager">
+      </div>
     </div>
 
     <div class="hero-index" aria-hidden="true">

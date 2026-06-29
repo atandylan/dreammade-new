@@ -913,8 +913,9 @@ section.dark-section .eyebrow,
   width: 100%;
   border-top: 1px solid rgba(247,243,238,.14);
   padding-top: 32px;
+  padding-inline: clamp(1rem, 4vw, 3rem);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   align-items: end;
   justify-items: center;
   gap: clamp(20px, 3vw, 44px);
@@ -980,14 +981,17 @@ section.dark-section .eyebrow,
 }
 .footer-word {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 15vw, 12rem);
+  font-size: clamp(4rem, 12vw, 11rem);
   line-height: .9;
   font-weight: var(--weight-display);
   letter-spacing: -0.035em;
   text-transform: uppercase;
+  overflow: hidden;
+  padding-inline: 1.5rem;
+  white-space: nowrap;
 }
 .footer-reveal .footer-word {
-  font-size: clamp(3rem, 15vw, 12rem);
+  font-size: clamp(4rem, 12vw, 11rem);
   text-align: center;
   margin-inline: auto;
   width: fit-content;
@@ -1048,7 +1052,7 @@ section.dark-section .eyebrow,
   padding-top: 20px;
   border-top: 1px solid rgba(3,3,3,.28);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   align-items: start;
   justify-items: center;
   gap: 24px;
@@ -1058,13 +1062,17 @@ section.dark-section .eyebrow,
   font-weight: var(--weight-label);
   letter-spacing: .08em;
 }
+.footer-bottom > * {
+  justify-self: center;
+  text-align: center;
+}
 
 .footer-reveal .footer-bottom {
   margin-top: 38px;
   padding-top: 22px;
   border-top: 1px solid rgba(247, 243, 238, 0.18);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   align-items: start;
   gap: 24px;
   justify-items: center;
@@ -1129,7 +1137,7 @@ section.dark-section .eyebrow,
     padding: 42px 0 34px;
   }
   .footer-word {
-    font-size: clamp(38px, 14vw, 64px);
+    font-size: clamp(3rem, 18vw, 5rem);
     line-height: .98;
     letter-spacing: -.015em;
   }
@@ -1148,16 +1156,21 @@ section.dark-section .eyebrow,
     max-width: 100%;
     margin-inline: auto;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-all;
     overflow: hidden;
-    font-size: clamp(30px, 9.8vw, 46px);
+    font-size: clamp(3rem, 18vw, 5rem);
     line-height: .92;
     letter-spacing: -.01em;
     font-variation-settings: "wght" 900, "wdth" 108, "opsz" 64;
     transform: none;
   }
   .footer-reveal .footer-word {
-    font-size: clamp(48px, 18vw, 86px);
+    font-size: clamp(3rem, 18vw, 5rem);
+  }
+  .footer-top,
+  .footer-content {
+    overflow-x: hidden;
   }
   
   .footer-bottom {
