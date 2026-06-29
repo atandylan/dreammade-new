@@ -294,8 +294,9 @@ export function initHomeMotion() {
 
 
 
-  const feedTrack = document.getElementById("feedTrack");
-  if (feedTrack) {
+  function startFeedMarquee() {
+    const feedTrack = document.getElementById("feedTrack");
+    if (!feedTrack) return;
     const cards = feedTrack.querySelectorAll(".reel-card");
     gsap.set(feedTrack, { x: 0, xPercent: 0 });
     const duration = (cards.length / 2) * 5;
@@ -305,6 +306,24 @@ export function initHomeMotion() {
       duration: duration > 0 ? duration : 25,
       repeat: -1
     });
+
+    // Stagger reveal — runs after cards are injected into DOM
+    gsap.fromTo(".reel-card",
+      { opacity: 0, y: 50, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.06,
+        ease: "power3.out",
+        scrollTrigger: {
+          id: "dreammade-home-reels-reveal",
+          trigger: "#feedTrack",
+          start: "top 85%"
+        }
+      }
+    );
 
     const pauseMarquee = () => { marqueeTween.pause(); };
     const resumeMarquee = () => { marqueeTween.play(); };
@@ -323,24 +342,11 @@ export function initHomeMotion() {
     });
   }
 
-  // Reels Cards Stagger Reveal (Desktop & Mobile)
-  gsap.fromTo(".reel-card", {
-    opacity: 0,
-    y: 50,
-    scale: 0.95
-  }, {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    duration: 0.8,
-    stagger: 0.06,
-    ease: "power3.out",
-    scrollTrigger: {
-      id: "dreammade-home-reels-reveal",
-      trigger: ".feed-section",
-      start: "top 85%"
-    }
-  });
+  // expose for ReelsPreview to call after DOM inject
+  (window as any).__startFeedMarquee = startFeedMarquee;
+
+  // also call it on init in case cards already exist
+  startFeedMarquee();
 
   // FAQ Accordion Stagger Reveal
   gsap.fromTo(".faq-item", {
@@ -390,94 +396,64 @@ export function initHomeMotion() {
 
   ScrollTrigger.refresh();
 
-  // ─── PRODUCT CARDS: one at a time reveal
-  const cards = gsap.utils.toArray<HTMLElement>(".product-card-sticky");
+  // ─── STACKING PRODUCT CARDS (nexgen-style)
+  const stackCards = gsap.utils.toArray<HTMLElement>(".product-stack-card");
 
-  // Start: all cards invisible except first
-  gsap.set(cards, { opacity: 0, scale: 0.97 });
-  if (cards[0]) {
-    gsap.set(cards[0], { opacity: 1, scale: 1 });
-  }
-
-  cards.forEach((card, idx) => {
-    const imgs = card.querySelectorAll<HTMLElement>(".product-card-img");
-
-    // Preserve inline opacity per image
-    imgs.forEach((img) => {
-      gsap.set(img, { opacity: parseFloat(img.style.opacity || "1") });
+  // Blur out each card as the next one enters
+  stackCards.forEach((card, idx) => {
+    if (idx === stackCards.length - 1) return;
+    gsap.to(card, {
+      filter: "blur(12px)",
+      opacity: 0.45,
+      scale: 0.94,
+      scrollTrigger: {
+        id: `dreammade-home-pstack-blur-${idx}`,
+        trigger: stackCards[idx + 1],
+        start: "top 80%",
+        end: "top 20%",
+        scrub: true,
+      },
     });
-
-    if (idx === 0) {
-      // First card: images stagger in on section enter
-      gsap.from(imgs, {
-        x: 80,
-        duration: 0.75,
-        stagger: 0.1,
-        ease: "back.out(1.1)",
-        immediateRender: false,
-        scrollTrigger: {
-          id: "dreammade-home-pcard-imgs-0",
-          trigger: ".product-showcase",
-          start: "top 70%",
-        }
-      });
-    }
-
-    if (idx > 0) {
-      // Each subsequent card: fade in when its scroll zone starts, fade out previous
-      ScrollTrigger.create({
-        id: `dreammade-home-pcard-enter-${idx}`,
-        trigger: card,
-        start: "top 55%",
-        onEnter: () => {
-          // Fade out previous card
-          gsap.to(cards[idx - 1], {
-            opacity: 0,
-            scale: 0.95,
-            duration: 0.4,
-            ease: "power2.in"
-          });
-          // Fade in current card + images stagger
-          gsap.to(card, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.5,
-            ease: "power3.out"
-          });
-          gsap.from(imgs, {
-            x: 80,
-            duration: 0.75,
-            stagger: 0.1,
-            ease: "back.out(1.1)",
-            immediateRender: false,
-          });
-        },
-        onLeaveBack: () => {
-          // Scrolling back up — restore previous card, hide current
-          gsap.to(card, { opacity: 0, scale: 0.97, duration: 0.35, ease: "power2.in" });
-          gsap.to(cards[idx - 1], { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
-        }
-      });
-    }
-
-    // Floating/breathing per card images
-    if (!reduceMotion) {
-      imgs.forEach((img, i) => {
-        gsap.to(img, {
-          y: i % 2 === 0 ? -7 : -11,
-          duration: 2.0 + i * 0.35,
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-          delay: i * 0.22
-        });
-      });
-    }
   });
+
+  // Scale + fade in each card from below (except first)
+  stackCards.forEach((card, idx) => {
+    if (idx === 0) return;
+    gsap.fromTo(
+      card,
+      { scale: 0.82, opacity: 0, y: 120 },
+      {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          id: `dreammade-home-pstack-enter-${idx}`,
+          trigger: card,
+          start: "top bottom",
+          end: "top 20%",
+          scrub: true,
+        },
+      }
+    );
+  });
+
+  // Floating yoyo on device images inside each card
+  if (!reduceMotion) {
+    document.querySelectorAll<HTMLElement>(".pstack-img").forEach((img, i) => {
+      gsap.to(img, {
+        y: i % 2 === 0 ? -10 : -14,
+        duration: 2.1 + i * 0.28,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: i * 0.2,
+      });
+    });
+  }
 
 
   // ─── ABOUT SECTION: scrub parallax on the section title
-  gsap.fromTo(".about-preview-section .section-title, .about-preview-section .eyebrow",
+  gsap.fromTo(".about .section-title, .about .eyebrow",
     { opacity: 0, y: 28 },
     {
       opacity: 1,
@@ -494,7 +470,7 @@ export function initHomeMotion() {
   );
 
   // ─── PRODUCT SHOWCASE section header reveal
-  gsap.fromTo(".product-showcase .eyebrow, .product-showcase-header h2",
+  gsap.fromTo(".product-stacking-section .eyebrow, .product-stacking-header h2",
     { opacity: 0, y: 22 },
     {
       opacity: 1,
@@ -504,7 +480,7 @@ export function initHomeMotion() {
       ease: "power3.out",
       scrollTrigger: {
         id: "dreammade-home-showcase-header",
-        trigger: ".product-showcase",
+        trigger: ".product-stacking-section",
         start: "top 80%",
       }
     }
@@ -528,7 +504,7 @@ export function initHomeMotion() {
   );
 
   // ─── FAQ SECTION header
-  gsap.fromTo(".faq-section .section-title .reveal-line span, .faq-section .eyebrow",
+  gsap.fromTo(".faq .section-title .reveal-line span, .faq .eyebrow",
     { yPercent: 110, opacity: 0 },
     {
       yPercent: 0,
@@ -539,7 +515,7 @@ export function initHomeMotion() {
       immediateRender: false,
       scrollTrigger: {
         id: "dreammade-home-faq-header",
-        trigger: ".faq-section",
+        trigger: ".faq",
         start: "top 82%",
       }
     }

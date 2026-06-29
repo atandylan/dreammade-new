@@ -1,29 +1,5 @@
 ---
-interface MediaItem {
-  id: string;
-  caption?: string;
-  media_type?: string;
-  media_url?: string;
-  permalink?: string;
-  thumbnail_url?: string;
-}
-
-let photosData: MediaItem[] = [];
-
-try {
-  const response = await fetch("https://dreammade-ig-reels.fadzry-work.workers.dev/");
-  if (response.ok) {
-    const json = await response.json();
-    const all: MediaItem[] = Array.isArray(json.photos) ? json.photos
-      : Array.isArray(json.reels) ? json.reels : [];
-    // Images only — filter out VIDEO
-    photosData = all.filter(
-      (item) => item.media_type !== "VIDEO" && !item.media_url?.includes(".mp4")
-    );
-  }
-} catch (e) {
-  console.error("Failed to fetch IG photos:", e);
-}
+// No server-side fetch — all client-side
 ---
 
 <section class="feed-section" id="feed">
@@ -36,42 +12,62 @@ try {
   </div>
   <div class="feed-track-container">
     <div class="feed-track" id="feedTrack" aria-label="Dreammade Instagram photos">
-      {photosData.map((photo) => (
-        <article class="reel-card">
-          <a href={photo.permalink || "https://www.instagram.com/syok_geng/"} target="_blank" rel="noopener noreferrer" class="reel-link" aria-label={photo.caption || "Instagram photo"}>
-            <div class="reel-video-wrapper">
-              <img
-                class="reel-image"
-                src={photo.media_url}
-                alt={photo.caption?.split('\n')[0] || "Dreammade"}
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="image-overlay"></div>
-            </div>
-            {photo.caption && (
-              <div class="reel-label">{photo.caption.split('\n')[0]}</div>
-            )}
-          </a>
-        </article>
-      ))}
-      {/* Duplicate for infinite scroll */}
-      {photosData.map((photo) => (
-        <article class="reel-card" aria-hidden="true">
-          <a href={photo.permalink || "https://www.instagram.com/syok_geng/"} target="_blank" rel="noopener noreferrer" class="reel-link" tabindex="-1">
-            <div class="reel-video-wrapper">
-              <img
-                class="reel-image"
-                src={photo.media_url}
-                alt={photo.caption?.split('\n')[0] || "Dreammade"}
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="image-overlay"></div>
-            </div>
-          </a>
-        </article>
-      ))}
+      <!-- JS will inject cards here -->
     </div>
   </div>
 </section>
+
+<script>
+  async function loadIGPhotos() {
+    const track = document.getElementById("feedTrack");
+    if (!track) return;
+
+    try {
+      const res = await fetch("https://dreammade-ig-reels.fadzry-work.workers.dev/");
+      if (!res.ok) throw new Error("fetch failed");
+      const json = await res.json();
+
+      const photos = Array.isArray(json.photos) ? json.photos : [];
+      if (!photos.length) return;
+
+      const makeCard = (photo: any, hidden = false) => {
+        const article = document.createElement("article");
+        article.className = "reel-card";
+        if (hidden) {
+          article.setAttribute("aria-hidden", "true");
+        }
+        const captionLine = photo.caption ? photo.caption.split("\n")[0] : "Dreammade";
+        const href = photo.permalink || "https://www.instagram.com/syok_geng/";
+        article.innerHTML = `
+          <a href="${href}" target="_blank" rel="noopener noreferrer" class="reel-link"
+             ${hidden ? 'tabindex="-1"' : ''} aria-label="${captionLine}">
+            <div class="reel-video-wrapper">
+              <img class="reel-image" src="${photo.media_url}"
+                   alt="${captionLine}" loading="lazy" decoding="async" />
+              <div class="image-overlay"></div>
+            </div>
+            <div class="reel-label">${captionLine}</div>
+          </a>
+        `;
+        return article;
+      };
+
+      // Original set + duplicate for infinite scroll
+      const frag = document.createDocumentFragment();
+      photos.forEach((p: any) => frag.appendChild(makeCard(p, false)));
+      photos.forEach((p: any) => frag.appendChild(makeCard(p, true)));
+      track.appendChild(frag);
+
+      // Trigger GSAP marquee after cards are in DOM
+      if (typeof window !== "undefined" && (window as any).__startFeedMarquee) {
+        (window as any).__startFeedMarquee();
+      }
+
+    } catch (e) {
+      console.error("IG photos load failed:", e);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadIGPhotos);
+  document.addEventListener("astro:page-load", loadIGPhotos);
+</script>

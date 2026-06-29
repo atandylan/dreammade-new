@@ -1,262 +1,137 @@
 ---
-const products = [
+const productGroups = [
   {
-    id: "syokpod-v2",
     name: "SyokPod V2",
-    label: "Closed System",
-    compat: "KOHS K1000",
-    desc: "Built for smooth sessions, standout colourways, and the SyokGeng way of life.",
-    cardBg: "linear-gradient(135deg, #1a1a1a, #0d0d0d)",
-    accentColor: "#91050b",
-    images: [
-      { src: "/products/syokpod/v2/syokpod-v2-black-01.webp", rot: "-20deg", zIdx: 50, left: "0%",  opacity: "1"    },
-      { src: "/products/syokpod/v2/syokpod-v2-blue-01.webp",  rot: "-10deg", zIdx: 40, left: "15%", opacity: "0.94" },
-      { src: "/products/syokpod/v2/syokpod-v2-green-01.webp", rot: "0deg",   zIdx: 30, left: "30%", opacity: "0.85" },
-      { src: "/products/syokpod/v2/syokpod-v2-grey-01.webp",  rot: "10deg",  zIdx: 20, left: "45%", opacity: "0.72" },
-      { src: "/products/syokpod/v2/syokpod-v2-red-01.webp",   rot: "20deg",  zIdx: 10, left: "60%", opacity: "0.55" }
+    badge: "Closed System",
+    toneClass: "tone-dark",
+    description: "Built for smooth sessions, standout colourways, and the SyokGeng way of life.",
+    href: "/products/syokpod-v2",
+    variants: [
+      { colorName: "Black",  image: "/products/syokpod/v2/syokpod-v2-black-01.webp" },
+      { colorName: "Blue",   image: "/products/syokpod/v2/syokpod-v2-blue-01.webp" },
+      { colorName: "Green",  image: "/products/syokpod/v2/syokpod-v2-green-01.webp" },
+      { colorName: "Grey",   image: "/products/syokpod/v2/syokpod-v2-grey-01.webp" },
+      { colorName: "Red",    image: "/products/syokpod/v2/syokpod-v2-red-01.webp" }
     ]
   },
   {
-    id: "syokpod-pro",
     name: "SyokPod Pro",
-    label: "Closed System",
-    compat: "KOHS K1000",
-    desc: "More grip, more control and a stronger silhouette.",
-    cardBg: "linear-gradient(135deg, #1e0204, #2d0307)",
-    accentColor: "#c0392b",
-    images: [
-      { src: "/products/syokpod/pro/syokpod-pro-gold-01.webp",     rot: "-20deg", zIdx: 50, left: "0%",  opacity: "1"    },
-      { src: "/products/syokpod/pro/syokpod-pro-gray-01.webp",      rot: "-10deg", zIdx: 40, left: "15%", opacity: "0.94" },
-      { src: "/products/syokpod/pro/syokpod-pro-green-01.webp",     rot: "0deg",   zIdx: 30, left: "30%", opacity: "0.85" },
-      { src: "/products/syokpod/pro/syokpod-pro-lightgrey-01.webp", rot: "10deg",  zIdx: 20, left: "45%", opacity: "0.72" },
-      { src: "/products/syokpod/pro/syokpod-pro-obsidian-01.webp",  rot: "20deg",  zIdx: 10, left: "60%", opacity: "0.55" }
+    badge: "Closed System",
+    toneClass: "tone-crimson",
+    description: "More grip, more control and a stronger silhouette.",
+    href: "/products/syokpod-pro",
+    variants: [
+      { colorName: "Gold",      image: "/products/syokpod/pro/syokpod-pro-gold-01.webp" },
+      { colorName: "Gray",      image: "/products/syokpod/pro/syokpod-pro-gray-01.webp" },
+      { colorName: "Green",     image: "/products/syokpod/pro/syokpod-pro-green-01.webp" },
+      { colorName: "Light Grey",image: "/products/syokpod/pro/syokpod-pro-lightgrey-01.webp" },
+      { colorName: "Obsidian",  image: "/products/syokpod/pro/syokpod-pro-obsidian-01.webp" }
     ]
   },
   {
-    id: "syokbar",
     name: "SyokBar",
-    label: "Disposable",
-    compat: "KOHS K3000",
-    desc: "Designed around the ease of a disposable format while delivering bold flavours.",
-    cardBg: "linear-gradient(135deg, #111111, #1a1a1a)",
-    accentColor: "#91050b",
-    images: [
-      { src: "/products/syokbar/SYOKBAR/syokbar-blue-01.webp",   rot: "-20deg", zIdx: 50, left: "0%",  opacity: "1"    },
-      { src: "/products/syokbar/SYOKBAR/syokbar-green-01.webp",  rot: "-10deg", zIdx: 40, left: "15%", opacity: "0.94" },
-      { src: "/products/syokbar/SYOKBAR/syokbar-grey-01.webp",   rot: "0deg",   zIdx: 30, left: "30%", opacity: "0.85" },
-      { src: "/products/syokbar/SYOKBAR/syokbar-orange-01.webp", rot: "10deg",  zIdx: 20, left: "45%", opacity: "0.72" },
-      { src: "/products/syokbar/SYOKBAR/syokbar-red-01.webp",    rot: "20deg",  zIdx: 10, left: "60%", opacity: "0.55" }
+    badge: "Disposable",
+    toneClass: "tone-charcoal",
+    description: "Designed around the ease of a disposable format while delivering bold flavours.",
+    href: "/products/syokbar",
+    variants: [
+      { colorName: "Blue",   image: "/products/syokbar/SYOKBAR/syokbar-blue-01.webp" },
+      { colorName: "Green",  image: "/products/syokbar/SYOKBAR/syokbar-green-01.webp" },
+      { colorName: "Grey",   image: "/products/syokbar/SYOKBAR/syokbar-grey-01.webp" },
+      { colorName: "Orange", image: "/products/syokbar/SYOKBAR/syokbar-orange-01.webp" },
+      { colorName: "Red",    image: "/products/syokbar/SYOKBAR/syokbar-red-01.webp" }
     ]
   },
   {
-    id: "syokbar-target",
     name: "SyokBar Target",
-    label: "Open System",
-    compat: "KOHS E-Liquid",
-    desc: "Open-system flexibility with bold flavour control.",
-    cardBg: "linear-gradient(135deg, #1a0303, #250404)",
-    accentColor: "#e74c3c",
-    images: [
-      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp",  rot: "-14deg", zIdx: 50, left: "0%",  opacity: "1"   },
-      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp", rot: "4deg",   zIdx: 30, left: "28%", opacity: "0.85" },
-      { src: "/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp",    rot: "18deg",  zIdx: 10, left: "56%", opacity: "0.6"  }
+    badge: "Open System",
+    toneClass: "tone-deep-red",
+    description: "Open-system flexibility with bold flavour control.",
+    href: "/products/syokbar-target",
+    variants: [
+      { colorName: "Green",  image: "/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp" },
+      { colorName: "Orange", image: "/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp" },
+      { colorName: "Red",    image: "/products/syokbar/SYOKBAR TARGET/syokbar-target-red-01.webp" }
     ]
   }
 ];
 ---
 
-<section class="product-showcase" id="products" aria-label="The Syok System">
-  <div class="wrap">
-    <div class="product-showcase-header">
-      <div class="eyebrow">Product Highlight</div>
-      <h2>Four ways to Syok.</h2>
-    </div>
+<section class="product-stacking-section" id="products">
+  <div class="product-stacking-header wrap">
+    <div class="eyebrow">The Lineup</div>
+    <h2>Built Different.</h2>
   </div>
 
-  <div class="product-stack-section">
-    {products.map((p, idx) => (
-      <div
-        class="product-card-sticky"
-        style={`top: calc(18vh + ${idx * 22}px);`}
-        id={`pcard-${idx}`}
-      >
-        <div class="product-card-inner" style={`background: ${p.cardBg};`}>
-          <div class="product-card-copy">
-            <span class="product-card-label" style={`color: ${p.accentColor};`}>{p.label}</span>
-            <h3 class="product-card-name">{p.name}</h3>
-            <span class="product-card-compat">{p.compat}</span>
-            <p class="product-card-desc">{p.desc}</p>
-            <a href={`/products/${p.id}`} class="product-card-cta">More Info →</a>
-          </div>
-          <div class="product-card-visual">
-            <div class="product-card-images">
-              {p.images.map((img) => (
-                <img
-                  src={img.src}
-                  alt={p.name}
-                  loading="lazy"
-                  decoding="async"
-                  class="product-card-img"
-                  style={`z-index: ${img.zIdx}; left: ${img.left}; transform: rotate(${img.rot}); opacity: ${img.opacity};`}
-                />
-              ))}
-            </div>
-          </div>
+  {productGroups.map((group, idx) => (
+    <div
+      class="product-stack-card"
+      id={`pcard-${idx}`}
+      style={`top: ${18 + idx * 6}vh`}
+    >
+      <div class={`product-stack-inner ${group.toneClass}`}>
+
+        <div class="pstack-content">
+          <span class="pstack-badge">{group.badge ?? group.name}</span>
+          <h3 class="pstack-name">{group.name}</h3>
+          <p class="pstack-colors">Available in {group.variants.length} colours</p>
+          <p class="pstack-desc">{group.description}</p>
+          <a href={group.href} class="pstack-cta">Explore →</a>
         </div>
+
+        <div class="pstack-images">
+          {group.variants.map((variant, vIdx) => (
+            <img
+              src={variant.image}
+              alt={variant.colorName}
+              class="pstack-img"
+              style={`
+                z-index: ${vIdx + 1};
+                right: ${vIdx * 7}%;
+                bottom: ${-8 + vIdx * 5}%;
+                rotate: ${-18 + vIdx * 9}deg;
+                height: ${72 + vIdx * 7}%;
+                opacity: ${0.55 + vIdx * 0.15};
+              `}
+              loading="lazy"
+              decoding="async"
+            />
+          ))}
+        </div>
+
       </div>
-    ))}
-  </div>
-  <div style="height: 20vh;"></div>
+    </div>
+  ))}
 </section>
 
 <style>
-.product-showcase {
-  background: var(--brand-ink);
-  color: var(--text-light);
-  padding-top: clamp(32px, 5vw, 64px);
-  padding-bottom: 0;
+/* ── Tone variants ── */
+.tone-dark {
+  background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+  color: var(--text-light, #f7f3ee);
 }
-.product-showcase-header {
-  padding-bottom: clamp(24px, 4vw, 48px);
+.tone-crimson {
+  background: linear-gradient(135deg, #1e0204, #2d0307);
+  color: var(--text-light, #f7f3ee);
 }
-.product-showcase-header .eyebrow {
-  color: var(--brand-red);
+.tone-charcoal {
+  background: linear-gradient(135deg, #111111, #1a1a1a);
+  color: var(--text-light, #f7f3ee);
 }
-.product-showcase-header h2 {
+.tone-deep-red {
+  background: linear-gradient(135deg, #1a0303, #250404);
+  color: var(--text-light, #f7f3ee);
+}
+
+/* ── Section header ── */
+.product-stacking-section .eyebrow {
+  color: var(--brand-red, #91050b);
+}
+.product-stacking-section h2 {
   font-size: clamp(28px, 4vw, 52px);
-  line-height: .95;
+  line-height: 0.95;
   margin: 8px 0 0;
   text-transform: uppercase;
-  color: var(--text-light);
-}
-
-.product-stack-section {
-  position: relative;
-  height: calc(4 * 65vh);
-}
-
-.product-card-sticky {
-  position: sticky;
-  height: 60vh;
-  width: 92%;
-  margin-inline: auto;
-  margin-bottom: 16px;
-}
-
-.product-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 28px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 52px);
-  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
-}
-
-.product-card-copy {
-  width: 45%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
-  position: relative;
-}
-
-.product-card-label {
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .14em;
-}
-
-.product-card-name {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 900;
-  font-variation-settings: "wght" 900, "wdth" 125, "opsz" 72;
-  line-height: .9;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  color: var(--text-light);
-  margin: 0;
-}
-
-.product-card-compat {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: rgba(247,243,238,.45);
-}
-
-.product-card-desc {
-  font-size: clamp(13px, 1.2vw, 15px);
-  line-height: 1.55;
-  color: rgba(247,243,238,.62);
-  max-width: 32ch;
-  margin: 4px 0 8px;
-}
-
-.product-card-cta {
-  display: inline-block;
-  padding: 9px 20px;
-  border: 1px solid rgba(247,243,238,.22);
-  color: var(--text-light);
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  border-radius: 999px;
-  width: fit-content;
-  transition: background .25s ease, border-color .25s ease;
-}
-.product-card-cta:hover {
-  background: var(--brand-red);
-  border-color: var(--brand-red);
-}
-
-.product-card-visual {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 20;
-}
-
-.product-card-images {
-  position: absolute;
-  bottom: 0;
-  left: 48%;
-  width: 55%;
-  height: 115%;
-}
-
-.product-card-img {
-  position: absolute;
-  bottom: -8%;
-  height: 108%;
-  max-width: none;
-  object-fit: contain;
-  drop-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
-}
-
-@media (max-width: 760px) {
-  .product-stack-section { height: calc(4 * 75vh); }
-  .product-card-sticky { height: 68vh; width: 96%; }
-  .product-card-inner { flex-direction: column; align-items: flex-start; padding: 24px 20px; border-radius: 20px; }
-  .product-card-copy { width: 100%; }
-  .product-card-name { font-size: clamp(28px, 8vw, 44px); }
-  .product-card-images { width: 75%; right: -5%; }
-  .product-card-img { height: 90%; }
-}
-
-@media (max-width: 480px) {
-  .product-card-sticky { height: 72vh; }
-  .product-card-images { width: 80%; }
+  color: var(--text-light, #f7f3ee);
 }
 </style>
