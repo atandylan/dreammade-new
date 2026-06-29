@@ -86,12 +86,12 @@ const productGroups = [
               alt={variant.colorName}
               class="pstack-img"
               style={`
-                z-index: ${vIdx + 1};
+                z-index: ${(group.variants.length - vIdx) * 10};
                 right: ${vIdx * 7}%;
                 bottom: ${-8 + vIdx * 5}%;
                 rotate: ${-18 + vIdx * 9}deg;
                 height: ${72 + vIdx * 7}%;
-                opacity: ${0.55 + vIdx * 0.15};
+                opacity: ${1 - vIdx * 0.1};
               `}
               loading="lazy"
               decoding="async"
