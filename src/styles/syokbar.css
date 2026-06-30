@@ -197,14 +197,7 @@
   padding: 10% 8% 12%;
 }
 .syokbar-target-stage::before {
-  content: "";
-  position: absolute;
-  inset: 12% 6%;
-  border-radius: clamp(22px, 3vw, 38px);
-  background:
-    radial-gradient(circle at 50% 78%, rgba(9,9,9,.12), transparent 28%),
-    rgba(247,243,238,.46);
-  border: 1px solid rgba(9,9,9,.08);
+  display: none !important;
 }
 
 .syokbar-target-device {

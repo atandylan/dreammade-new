@@ -77,20 +77,20 @@ const productGroups = [
 
         <div class="pstack-content pstack-info">
           <span class="pstack-badge">{group.badge ?? group.name}</span>
-          <h3 class="pstack-name">{group.name}</h3>
+          <h3 class="pstack-name whitespace-nowrap">{group.name}</h3>
           <p class="pstack-colors">Available in {group.variants.length} colours</p>
           <p class="pstack-desc">{group.description}</p>
           <a href={group.href} class="pstack-cta">Explore →</a>
         </div>
 
         <div class="pstack-images">
-          <div class="showcase-card rounded-3xl" style="position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 75%; background: rgba(15, 15, 15, 0.75); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0,0,0,0.45); z-index: 1;">
+          <div class="showcase-card rounded-3xl" style="position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 75%; background: rgba(15, 15, 15, 0.75); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0,0,0,0.45); z-index: 1; overflow-x: clip; overflow-y: visible;">
             {group.variants.map((variant, vIdx) => {
-              let leftPercent = vIdx * 18; 
+              let rightPercent = vIdx * 18; 
               if (group.id === "syokpod-v2") {
-                leftPercent = vIdx * 13; // Tighter packing for thin SyokPod V2 sticks
+                rightPercent = vIdx * 13; // Tighter packing for thin SyokPod V2 sticks
               } else if (group.id === "syokbar-target") {
-                leftPercent = vIdx * 25; // 3 devices
+                rightPercent = vIdx * 25; // 3 devices
               }
 
               return (
@@ -101,7 +101,7 @@ const productGroups = [
                   style={`
                     position: absolute;
                     bottom: 0;
-                    left: ${leftPercent}%;
+                    right: ${rightPercent}%;
                     height: 130%; /* Pop-out effect: taller than card */
                     z-index: ${(vIdx + 1) * 10}; /* Correct z-index stacking */
                     opacity: ${1 - vIdx * 0.08};
@@ -187,7 +187,8 @@ const productGroups = [
     height: 120% !important;
   }
   .pstack-img {
-    left: calc(var(--vIdx) * 6%) !important; /* Extremely tight spread for narrow mobile screens */
+    right: calc(var(--vIdx) * 6%) !important; /* Extremely tight spread for narrow mobile screens */
+    left: auto !important;
   }
 }
 

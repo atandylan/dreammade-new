@@ -151,7 +151,7 @@
 .product-configurator[data-active-edition="gt-edition"] .configurator-device-viewport img,
 .product-configurator[data-active-edition="lush-limited-edition"] .configurator-device-viewport img { height: 72% !important; }
 .product-configurator[data-active-edition="2-years-anniversary"] .configurator-device-viewport img { height: 70% !important; }
-.product-configurator[data-product-experience="syokpod-pro"] .configurator-device-viewport img { height: 72% !important; }
+.product-configurator[data-product-experience="syokpod-pro"] .configurator-device-viewport img { height: 85% !important; }
 .configurator-system { position: absolute; z-index: 2; top: 32px; left: 38px; color: var(--red); font-size: 10px; font-weight: 800; letter-spacing: .13em; }
 .configurator-readout { position: absolute; z-index: 2; left: 38px; right: 38px; bottom: 28px; display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: end; color: var(--red); text-transform: uppercase; }
 .configurator-readout span { font-size: 8px; font-weight: 800; letter-spacing: .1em; }

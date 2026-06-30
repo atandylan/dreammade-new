@@ -20,7 +20,7 @@ const { experience } = Astro.props;
         <ProductFamilyMark family="syokpod" />
         <span class="eyebrow">{experience.eyebrow}</span>
       </div>
-      <h1 class="break-words hyphens-none tracking-tight">{experience.id === "syokpod-v2" ? <><span>SyokPod</span><span>V2</span></> : experience.name}</h1>
+      <h1 class="whitespace-nowrap tracking-tight">{experience.id === "syokpod-v2" ? <><span>SyokPod</span> <span>V2</span></> : experience.name}</h1>
       <h2>{experience.statement}</h2>
       <div class="editorial-description"><p>{experience.description}</p></div>
       <span class="editorial-compat">{experience.compatibility}</span>
