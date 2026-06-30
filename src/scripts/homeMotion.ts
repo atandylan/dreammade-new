@@ -147,49 +147,50 @@ export function initHomeMotion() {
   leaveSite?.addEventListener("click", leaveHandler);
   cleanup.push(() => leaveSite?.removeEventListener("click", leaveHandler));
 
+  // Hero scroll-out parallax
   gsap.timeline({
     scrollTrigger: {
       id: "dreammade-home-hero-reveal",
-      trigger: ".hero",
+      trigger: ".hero-section",
       start: "top top",
-      end: isMobile ? "+=52%" : "+=78%",
+      end: "bottom top",
       scrub: 1
     }
   })
-    .to(".title-line-one", { yPercent: -15, opacity: 0.5, ease: "none" }, 0)
-    .to(".title-line-two", { yPercent: -10, opacity: 0.5, ease: "none" }, 0)
-    .to(".hero-ghost", { yPercent: -18, opacity: 0.5, ease: "none" }, 0)
-    .to(".hero-copy, .hero-index", { opacity: 0, y: -20, ease: "none" }, .2);
+    .to(".hero-left-column", { opacity: 0, y: -50, ease: "none" }, 0)
+    .to(".hero-right-column", { opacity: 0, y: -80, ease: "none" }, 0);
 
-  // Hero product images: subtle float on load
+  // Hero Floating Devices
   if (!reduceMotion) {
-    const heroImgs = document.querySelectorAll<HTMLElement>(".hero-devices-float img");
-    heroImgs.forEach((img, i) => {
-      gsap.to(img, {
-        y: i % 2 === 0 ? -10 : -14,
-        duration: 2.2 + i * 0.3,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: i * 0.18
-      });
-    });
-
-    // Parallax on scroll — each image at different speed, NO opacity change
-    heroImgs.forEach((img, i) => {
-      gsap.to(img, {
-        y: -(60 + i * 25),
-        ease: "none",
-        scrollTrigger: {
-          id: `dreammade-home-hero-img-${i}`,
-          trigger: ".hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1.2
-        }
-      });
+    gsap.to(".hero-device", {
+      y: -15,
+      yoyo: true,
+      repeat: -1,
+      duration: 2.5,
+      ease: "sine.inOut",
+      stagger: 0.15
     });
   }
+
+  // Kinetic Tagline Scrub
+  gsap.set(".kinetic-tagline", {
+    scale: 0.7,
+    filter: "blur(15px)",
+    opacity: 0
+  });
+
+  gsap.to(".kinetic-tagline", {
+    scale: 1,
+    filter: "blur(0px)",
+    opacity: 1,
+    scrollTrigger: {
+      id: "dreammade-home-tagline-reveal",
+      trigger: ".tagline-section",
+      start: "top bottom",
+      end: "bottom center",
+      scrub: 1
+    }
+  });
 
   gsap.timeline({
     scrollTrigger: {
@@ -401,13 +402,13 @@ export function initHomeMotion() {
   // ─── STACKING PRODUCT CARDS (nexgen-style)
   const stackCards = gsap.utils.toArray<HTMLElement>(".product-stack-card");
 
-  // Blur out each card as the next one enters
+  // 3D Card Stacking Reveal: Scale down and darken each card as the next one enters
   stackCards.forEach((card, idx) => {
     if (idx === stackCards.length - 1) return;
     gsap.to(card, {
-      filter: "blur(12px)",
-      opacity: 0.45,
-      scale: 0.94,
+      scale: 0.95,
+      filter: "brightness(0.7)",
+      opacity: 0.8,
       scrollTrigger: {
         id: `dreammade-home-pstack-blur-${idx}`,
         trigger: stackCards[idx + 1],
@@ -439,40 +440,47 @@ export function initHomeMotion() {
     );
   });
 
-  // Per-image stagger-in when card becomes fully visible
+  // Device Stagger Entry: Slide in devices from the right and start infinite floating on complete
   stackCards.forEach((card, idx) => {
     const imgs = card.querySelectorAll<HTMLElement>(".pstack-img");
     if (!imgs.length) return;
 
-    gsap.from(imgs, {
-      x: 80,
-      opacity: 0,
-      duration: 0.75,
-      stagger: 0.1,
-      ease: "back.out(1.1)",
-      immediateRender: false,
-      scrollTrigger: {
-        id: `dreammade-home-pstack-imgs-${idx}`,
-        trigger: card,
-        start: "top 45%",
-        once: true,
+    gsap.fromTo(
+      imgs,
+      {
+        x: 100,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.75,
+        stagger: 0.1,
+        ease: "back.out(1.2)",
+        immediateRender: false,
+        scrollTrigger: {
+          id: `dreammade-home-pstack-imgs-${idx}`,
+          trigger: card,
+          start: "top 45%",
+          once: true,
+        },
+        onComplete: () => {
+          if (!reduceMotion) {
+            imgs.forEach((img) => {
+              gsap.to(img, {
+                y: -8,
+                yoyo: true,
+                repeat: -1,
+                duration: 2,
+                ease: "sine.inOut",
+                delay: Math.random() * 1.5, // Randomized delay to mimic zero-gravity breathing
+              });
+            });
+          }
+        },
       }
-    });
+    );
   });
-
-  // Floating yoyo on device images inside each card
-  if (!reduceMotion) {
-    document.querySelectorAll<HTMLElement>(".pstack-img").forEach((img, i) => {
-      gsap.to(img, {
-        y: i % 2 === 0 ? -7 : -11,
-        duration: 2.0 + i * 0.35,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: i * 0.22,
-      });
-    });
-  }
 
 
   // ─── ABOUT SECTION: scrub parallax on the section title

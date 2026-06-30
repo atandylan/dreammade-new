@@ -1,0 +1,204 @@
+---
+import { Plasma } from '../react/Plasma.jsx';
+---
+
+<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden w-full hero-section">
+  <div class="absolute inset-0 z-[-1] overflow-hidden">
+    <Plasma client:load color="#2A0A0A" opacity={0.8} speed={1.5} />
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[80vh] px-8 w-full max-w-7xl mx-auto hero-container">
+    {/* Left Column */}
+    <div class="hero-left-column flex flex-col justify-center">
+      <h1 class="hero-title hero-line text-5xl md:text-7xl font-extrabold uppercase leading-none text-white mb-4">
+        BUILT DIFFERENT.
+      </h1>
+      <p class="hero-desc hero-line text-lg text-gray-300 mb-8 max-w-md">
+        Designed around the ease of closed systems and bold flavours. The SyokGeng identity meets raw performance.
+      </p>
+      <a href="#products" class="hero-btn hero-line button w-fit">
+        Explore the Gear
+      </a>
+    </div>
+
+    {/* Right Column */}
+    <div class="hero-right-column relative h-[500px] w-full flex items-center justify-center overflow-visible">
+      <img 
+        src="/products/syokpod/v2/syokpod-v2-black-01.webp" 
+        alt="Syokpod V2 Black" 
+        class="hero-device device-1"
+        loading="eager"
+      />
+      <img 
+        src="/products/syokpod/v2/syokpod-v2-red-01.webp" 
+        alt="Syokpod V2 Red" 
+        class="hero-device device-2"
+        loading="eager"
+      />
+      <img 
+        src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" 
+        alt="Syokbar Grey" 
+        class="hero-device device-3"
+        loading="eager"
+      />
+      <img 
+        src="/products/syokbar/SYOKBAR/syokbar-orange-01.webp" 
+        alt="Syokbar Orange" 
+        class="hero-device device-4"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    background: #000;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .z-\[-1\] {
+    z-index: -1;
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  /* Compact 2-column layout */
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    min-height: 80vh;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .hero-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .hero-left-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .hero-title {
+    font-family: var(--font-display, 'Archivo Black', 'Inter', sans-serif);
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+  }
+
+  .hero-desc {
+    font-size: clamp(16px, 1.2vw, 20px);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+    background: var(--red, #91050b);
+    color: #fff;
+    width: fit-content;
+  }
+
+  .hero-btn:hover {
+    transform: translateY(-2px);
+    background: #b8070f;
+  }
+
+  .hero-right-column {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-device {
+    position: absolute;
+    height: 380px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.65));
+    transform-origin: bottom center;
+  }
+
+  /* Absolute positioning layout to tightly overlap / cluster like a premium product shot */
+  .device-1 {
+    z-index: 10;
+    left: 10%;
+    bottom: 12%;
+    transform: rotate(-10deg);
+  }
+  
+  .device-2 {
+    z-index: 20;
+    left: 28%;
+    bottom: 5%;
+    transform: rotate(5deg);
+  }
+
+  .device-3 {
+    z-index: 15;
+    left: 45%;
+    bottom: 18%;
+    transform: rotate(-4deg);
+    height: 320px;
+  }
+
+  .device-4 {
+    z-index: 25;
+    left: 62%;
+    bottom: 8%;
+    transform: rotate(8deg);
+    height: 320px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-right-column {
+      height: 360px;
+    }
+    .hero-device {
+      height: 240px;
+    }
+    .device-1 { left: 5%; }
+    .device-2 { left: 22%; }
+    .device-3 { left: 40%; height: 200px; }
+    .device-4 { left: 58%; height: 200px; }
+  }
+</style>

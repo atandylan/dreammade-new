@@ -34,6 +34,14 @@ try {
 } catch (e) {
   console.error("Failed to fetch reels for clothing:", e);
 }
+
+const subheadings: Record<string, string> = {
+  home: "Everyday essentials built for maximum comfort and style.",
+  fire: "Bold design statements that heat up any rotation.",
+  forest: "Natural tones meeting street-ready silhouettes.",
+  kiss: "Wear the vibe. Built for movement and expression.",
+  motocross: "High-octane racing aesthetics brought to the street."
+};
 ---
 
 <!doctype html>
@@ -69,28 +77,24 @@ try {
             <section class:list={["lookbook-group", toneClass]}>
               <div class="wrap lookbook-header">
                 <h2 class="lookbook-title" data-clothing-title>{group.name}</h2>
+                <p class="subheading text-gray-400 text-sm mb-4">
+                  {subheadings[group.id] || "Wear the vibe. Built for movement and expression."}
+                </p>
               </div>
-              <div class="wrap lookbook-grid-container">
-                <div class="lookbook-grid" id={`clothing-${group.id}`}>
-                  {group.images.map((image, index) => (
-                    <div class="lookbook-item">
-                      <div class="lookbook-image-wrapper">
-                        <img
-                          src={image}
-                          alt={`${group.name} look ${index + 1}`}
-                          loading={groupIndex === 0 && index < 2 ? "eager" : "lazy"}
-                          decoding="async"
-                        />
-                        <div class="lookbook-image-overlay"></div>
-                        <div class="lookbook-item-badge">SyokGeng</div>
-                      </div>
-                    </div>
-                  ))}
+              <HorizontalMediaRail
+                id={`clothing-${group.id}`}
+                images={group.images.slice(0, 5)}
+                altPrefix={`${group.name} look`}
+                initialCount={5}
+                eagerCount={groupIndex === 0 ? 2 : 0}
+                className="clothing-media-gallery"
+              >
+                <div class="horizontal-media-card see-all-card">
+                  <button class="lookbook-see-more-btn" data-target={`modal-${group.id}`}>
+                    See All Photos
+                  </button>
                 </div>
-              </div>
-              <div class="wrap lookbook-actions">
-                <button class="lookbook-see-more-btn" data-target={`modal-${group.id}`}>See All Photos</button>
-              </div>
+              </HorizontalMediaRail>
 
               <div class="lookbook-modal" id={`modal-${group.id}`} role="dialog" aria-modal="true">
                 <button class="modal-close" aria-label="Close">✕</button>
@@ -252,5 +256,20 @@ try {
       initLookbookModals();
       document.addEventListener("astro:page-load", initLookbookModals);
     </script>
+    <style>
+      .see-all-card {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: rgba(9, 9, 9, 0.04);
+        border: 1px dashed rgba(9, 9, 9, 0.15);
+        border-radius: clamp(16px, 2vw, 32px);
+        box-sizing: border-box;
+      }
+      .lookbook-group-red .see-all-card {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+    </style>
   </body>
 </html>

@@ -71,7 +71,7 @@ const productGroups = [
     >
       <div class={`product-stack-inner ${group.toneClass}`}>
 
-        <div class="pstack-content">
+        <div class="pstack-content pstack-info">
           <span class="pstack-badge">{group.badge ?? group.name}</span>
           <h3 class="pstack-name">{group.name}</h3>
           <p class="pstack-colors">Available in {group.variants.length} colours</p>
@@ -87,9 +87,9 @@ const productGroups = [
               class="pstack-img"
               style={`
                 position: absolute;
-                bottom: 0%;
-                left: ${vIdx * 8}%; /* Reduced from 14% to tighten the fan spread so it fits inside */
-                height: 85%; /* Shrunk from 107% to 85% so it perfectly fits the padding vertically */
+                bottom: -2%;
+                left: ${vIdx * 9}%;
+                height: 95%;
                 z-index: ${(group.variants.length - vIdx) * 10}; /* KEEP THIS */
                 rotate: ${vIdx * 3.5}deg; /* KEEP THIS */
                 opacity: ${1 - vIdx * 0.12}; /* KEEP THIS */
@@ -116,10 +116,10 @@ const productGroups = [
 
 .pstack-images {
   position: absolute;
-  right: 4%; /* Add 4% right padding so it doesn't touch the very edge */
+  right: 0 !important;
   left: auto;
   bottom: 0;
-  width: 48%; /* Reduced from 52% to ensure it gives the left-text enough space */
+  width: 60% !important;
   height: 100%;
   pointer-events: none;
   overflow: visible;
@@ -135,6 +135,7 @@ const productGroups = [
 }
 
 .product-stack-inner {
+  padding: 2rem !important; /* Reduced card padding (similar to p-8) */
   overflow: visible !important;
 }
 
@@ -142,13 +143,35 @@ const productGroups = [
   overflow: visible !important;
 }
 
+.pstack-info {
+  width: 45% !important;
+  max-width: none !important;
+}
+
+.pstack-name {
+  font-size: clamp(38px, 4.5vw, 58px) !important; /* Enlarged title (text-5xl/6xl equivalent) */
+  line-height: 1.0 !important;
+  margin: 12px 0 6px !important;
+}
+
+.pstack-desc {
+  font-size: clamp(15px, 1.1vw, 18px) !important; /* Enlarged description font size */
+  max-width: 42ch !important;
+}
+
 @media (max-width: 760px) {
+  .product-stack-inner {
+    padding: 1.5rem !important; /* Dense padding on mobile */
+  }
+  .pstack-info {
+    width: 100% !important;
+  }
   .pstack-images {
-    position: relative;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 120%; /* Adjust slightly if needed so devices sit cleanly above the bottom */
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 120% !important;
   }
   .pstack-img {
     left: calc(var(--vIdx) * 6%) !important; /* Extremely tight spread for narrow mobile screens */
