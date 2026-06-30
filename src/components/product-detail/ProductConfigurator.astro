@@ -29,9 +29,6 @@ const showOptionSelector = firstEdition.options.length > 1;
             alt={`${experience.name} ${firstOption.displayName}`}
           />
         </div>
-        
-        <h1 class="configurator-title">{experience.name}</h1>
-        <p class="configurator-price">{experience.id.includes("syokbar") ? "RM 30.00" : "RM 120.00"}</p>
 
         <div class="configurator-readout">
           <span id="configuratorEdition">{firstEdition.name}</span>
@@ -39,6 +36,9 @@ const showOptionSelector = firstEdition.options.length > 1;
           <span id="configuratorView">{viewLabels[firstViewIndex]}</span>
         </div>
       </div>
+      
+      <h1 class="configurator-title">{experience.name}</h1>
+      <p class="configurator-price">{experience.id.includes("syokbar") ? "RM 30.00" : "RM 120.00"}</p>
     </div>
 
     <!-- Right Column: Stack all information tightly -->
