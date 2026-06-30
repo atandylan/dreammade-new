@@ -32,14 +32,86 @@ const heroProducts = [
 
 <section class="hero page-hero products-visual-hero dream-pattern-cream" aria-label="Dreammade product families">
   <div class="products-family-grid">
-    {heroProducts.map((item, index) => (
-      <a class:list={["products-family-item", item.className]} href={item.href} data-products-hero-item>
-        <span class="products-family-label">{item.label}</span>
-        <span class="products-family-visual">
-          <img src={item.image} alt={item.label} loading={index < 2 ? "eager" : "lazy"} decoding="async" />
-          <i aria-hidden="true"></i>
-        </span>
-      </a>
-    ))}
+    {heroProducts.map((item, index) => {
+      let imageSrc = item.image;
+      if (item.label === "SYOKPOD PRO") {
+        imageSrc = "/products/syokpod/WEB-SYOKPODPRO.webp";
+      } else if (item.label === "SYOKPOD V2") {
+        imageSrc = "/products/syokpod/SYOKPOD-V2-NEW.webp";
+      }
+
+      return (
+        <a class:list={["products-family-item", item.className]} href={item.href} data-products-hero-item>
+          {/* TOP: Placeholder product copywriting */}
+          <p class="product-copy uppercase tracking-widest text-sm mb-4">
+            Experience raw performance.
+          </p>
+
+          {/* MIDDLE: Product img */}
+          <span class="products-family-visual">
+            <img src={imageSrc} alt={item.label} loading={index < 2 ? "eager" : "lazy"} decoding="async" />
+            <i aria-hidden="true"></i>
+          </span>
+
+          {/* BOTTOM: Product title (h3) sit directly below image */}
+          <h3 class="products-family-label">
+            {item.label}
+          </h3>
+        </a>
+      );
+    })}
   </div>
 </section>
+
+<style>
+  .products-family-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 32px 16px !important;
+    text-decoration: none !important;
+  }
+
+  .product-copy {
+    font-size: 11px !important;
+    letter-spacing: 0.15em !important;
+    color: rgba(9, 9, 9, 0.6) !important;
+    margin: 0 0 16px 0 !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+  }
+
+  .products-family-visual {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 320px !important;
+    position: relative !important;
+  }
+
+  .products-family-visual img {
+    height: 85% !important;
+    width: auto !important;
+    max-height: 340px !important;
+    object-fit: contain !important;
+    transition: transform .34s ease !important;
+  }
+
+  .products-family-item:hover .products-family-visual img {
+    transform: translateY(-8px) !important;
+  }
+
+  .products-family-label {
+    margin: 16px 0 0 0 !important;
+    font-family: var(--font-display) !important;
+    font-size: clamp(18px, 2.2vw, 26px) !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    color: var(--red) !important;
+    line-height: 1.1 !important;
+  }
+</style>

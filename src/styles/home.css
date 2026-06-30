@@ -788,3 +788,147 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
     height: 80% !important;
   }
 }
+
+/* ── ABAB Alternating Color Scheme (Red & Cream) ── */
+
+/* 1. Hero: RED (#91050b), Cream text (#F5F5DC) */
+.hero-section {
+  background-color: #91050b !important;
+  color: #F5F5DC !important;
+}
+.hero-section .hero-title {
+  color: #F5F5DC !important;
+}
+.hero-section .hero-desc {
+  color: rgba(245, 245, 220, 0.8) !important;
+}
+.hero-section .hero-btn.button {
+  background-color: #F5F5DC !important;
+  color: #91050b !important;
+  border-color: #F5F5DC !important;
+}
+.hero-section .hero-btn.button:hover {
+  background-color: transparent !important;
+  color: #F5F5DC !important;
+}
+
+/* 2. Tagline: CREAM (#F5F5DC), Red text (#91050b) */
+.tagline-section {
+  background-color: #F5F5DC !important;
+  color: #91050b !important;
+}
+.tagline-section .kinetic-tagline {
+  color: #91050b !important;
+}
+
+/* 3. About: RED (#91050b), Cream text (#F5F5DC) */
+.about {
+  background-color: #91050b !important;
+  color: #F5F5DC !important;
+  border-top: 1px solid rgba(245, 245, 220, 0.15) !important;
+}
+.about .about-title {
+  color: #F5F5DC !important;
+}
+.about .about-title em {
+  color: #F5F5DC !important;
+  text-shadow: 0 0 10px rgba(245,245,220,0.3) !important;
+}
+.about .body-lg {
+  color: rgba(245, 245, 220, 0.8) !important;
+}
+.about .syok-geng-note {
+  color: rgba(245, 245, 220, 0.9) !important;
+  border-left-color: #F5F5DC !important;
+}
+.about .about-logo-panel {
+  background-color: rgba(245, 245, 220, 0.08) !important;
+  border: 1px solid rgba(245, 245, 220, 0.2) !important;
+  color: #F5F5DC !important;
+}
+.about .about-logo-panel img {
+  filter: invert(99%) sepia(9%) saturate(405%) hue-rotate(18deg) brightness(101%) contrast(92%) !important;
+}
+.about .about-panel-index {
+  color: rgba(245, 245, 220, 0.6) !important;
+}
+.about-kinetic {
+  border-top-color: rgba(245, 245, 220, 0.15) !important;
+  border-bottom-color: rgba(245, 245, 220, 0.15) !important;
+}
+.about-track {
+  color: rgba(245, 245, 220, 0.15) !important;
+}
+
+/* 4. Product Showcase: CREAM (#F5F5DC), Red text (#91050b) */
+.product-stacking-section {
+  background-color: #F5F5DC !important;
+  color: #91050b !important;
+}
+.product-stacking-section h2 {
+  color: #91050b !important;
+}
+.product-stacking-section .eyebrow {
+  color: #91050b !important;
+}
+
+/* 5. Reels Preview: RED (#91050b), Cream text (#F5F5DC) */
+.feed-section {
+  background-color: #91050b !important;
+  color: #F5F5DC !important;
+}
+.feed-title {
+  color: #F5F5DC !important;
+}
+.feed-section .eyebrow {
+  color: #F5F5DC !important;
+  opacity: 0.8;
+}
+.feed-track-container {
+  border-top-color: rgba(245, 245, 220, 0.15) !important;
+  border-bottom-color: rgba(245, 245, 220, 0.15) !important;
+}
+.reel-label {
+  color: #F5F5DC !important;
+}
+
+/* 6. FAQAccordion: CREAM (#F5F5DC), Red text (#91050b) */
+.faq {
+  background-color: #F5F5DC !important;
+  color: #91050b !important;
+}
+.faq .section-title {
+  color: #91050b !important;
+}
+.faq .eyebrow {
+  color: #91050b !important;
+}
+.faq-question {
+  color: #91050b !important;
+  border-bottom-color: rgba(145, 5, 11, 0.15) !important;
+}
+.faq-question::after {
+  color: #91050b !important;
+}
+.faq-answer p {
+  color: rgba(9, 9, 9, 0.8) !important;
+}
+
+/* 7. FooterReveal: RED (#91050b), Cream text (#F5F5DC) */
+.footer-reveal {
+  background-color: #91050b !important;
+  color: #F5F5DC !important;
+}
+.footer-reveal a {
+  color: #F5F5DC !important;
+}
+.footer-reveal .footer-word {
+  color: rgba(245, 245, 220, 0.08) !important;
+}
+.footer-reveal .footer-kicker {
+  color: rgba(245, 245, 220, 0.6) !important;
+}
+.footer-bottom {
+  border-top-color: rgba(245, 245, 220, 0.15) !important;
+}
+

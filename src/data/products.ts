@@ -167,12 +167,12 @@ export const products: Product[] = [
     variants: {
       standardColourways: [],
       specialEditions: [
-        variant("gt-edition", "GT Edition", "special-edition", "#a95e3d", "/products/syokpod/gt/syokpod-gt-copper-02.webp"),
+        variant("gt-edition", "GT Edition", "special-edition", "#a95e3d", "/products/syokpod/gt/syokpod-gt-copper-04.webp"),
         variant("2-years-anniversary", "2 Years Anniversary", "special-edition", "#f7f3ee", "/products/syokpod/2years/syokpod-2years-02.webp"),
         variant("lush-limited-edition", "Lush Limited Edition", "special-edition", "#8fbf74", "/products/syokpod/lush/syokpod-lush-02.webp")
       ]
     },
-    images: { primary: "/products/syokpod/gt/syokpod-gt-copper-02.webp", svg: deviceSvg.syokpodGt },
+    images: { primary: "/products/syokpod/gt/syokpod-gt-copper-04.webp", svg: deviceSvg.syokpodGt },
     specs: [
       { label: "Battery", value: "450 mAh" },
       { label: "Charging Port", value: "Type-C" },

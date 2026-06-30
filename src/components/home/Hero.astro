@@ -1,16 +1,16 @@
 ---
 ---
 
-<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden w-full hero-section bg-black">
-  <div class="absolute inset-0 z-[-1] bg-black"></div>
+<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden w-full hero-section bg-[#91050b]">
+  <div class="absolute inset-0 z-[-1] bg-[#91050b]"></div>
   
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[80vh] px-8 w-full max-w-7xl mx-auto hero-container">
     {/* Left Column */}
     <div class="hero-left-column flex flex-col justify-center">
-      <h1 class="hero-title hero-line text-6xl md:text-8xl font-extrabold uppercase leading-[0.85] text-white mb-4">
+      <h1 class="hero-title hero-line text-6xl md:text-8xl font-extrabold uppercase leading-[0.85] text-[#F5F5DC] mb-4">
         BUILT DIFFERENT.
       </h1>
-      <p class="hero-desc hero-line text-lg text-gray-300 mb-8 max-w-md leading-snug">
+      <p class="hero-desc hero-line text-lg text-[#F5F5DC] mb-8 max-w-md leading-snug opacity-80">
         Designed around the ease of closed systems and bold flavours. The SyokGeng identity meets raw performance.
       </p>
       <a href="#products" class="hero-btn hero-line button w-fit">
@@ -20,7 +20,7 @@
 
     {/* Right Column */}
     <div class="hero-right-column relative h-[500px] w-full flex items-center justify-center overflow-visible">
-      <img src="/intro-logo.svg" class="absolute inset-0 w-full h-[120%] object-contain opacity-30 drop-shadow-2xl z-0 scale-125 pointer-events-none" />
+      <img src="/intro-logo.svg" class="absolute inset-0 m-auto w-[130%] h-[130%] object-contain opacity-20 pointer-events-none z-0" />
       <img 
         src="/products/syokpod/v2/syokpod-v2-black-01.webp" 
         alt="Syokpod V2 Black" 
@@ -52,10 +52,13 @@
 <style>
   .hero-section {
     position: relative;
-    background-color: #000;
+    background-color: #91050b;
   }
-  .bg-black {
-    background-color: #000;
+  .bg-\[\#91050b\] {
+    background-color: #91050b;
+  }
+  .text-\[\#F5F5DC\] {
+    color: #F5F5DC !important;
   }
   .absolute {
     position: absolute;
@@ -66,29 +69,32 @@
     bottom: 0;
     left: 0;
   }
+  .m-auto {
+    margin: auto !important;
+  }
+  .w-\[130\%\] {
+    width: 130% !important;
+  }
+  .h-\[130\%\] {
+    height: 130% !important;
+  }
+  .opacity-20 {
+    opacity: 0.2 !important;
+  }
   .z-\[-1\] {
     z-index: -1;
   }
   .z-0 {
     z-index: 0;
   }
-  .scale-125 {
-    transform: scale(1.25);
-  }
   .pointer-events-none {
     pointer-events: none;
-  }
-  .opacity-30 {
-    opacity: 0.3;
   }
   .object-contain {
     object-fit: contain;
   }
   .w-full {
     width: 100%;
-  }
-  .h-\[120\%\] {
-    height: 120%;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -121,12 +127,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #fff;
+    color: #F5F5DC;
   }
 
   .hero-title {
     font-family: var(--font-display, 'Archivo Black', 'Inter', sans-serif);
-    font-size: clamp(56px, 8vw, 112px); /* text-6xl md:text-8xl range */
+    font-size: clamp(56px, 8vw, 112px);
     font-weight: 900;
     line-height: 0.85 !important;
     letter-spacing: -0.04em;
@@ -136,8 +142,8 @@
 
   .hero-desc {
     font-size: clamp(16px, 1.2vw, 20px);
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.35 !important; /* leading-snug */
+    color: rgba(245, 245, 220, 0.8);
+    line-height: 1.35 !important;
     margin-bottom: 2rem;
     max-width: 480px;
   }
@@ -152,14 +158,16 @@
     text-transform: uppercase;
     text-decoration: none;
     transition: background 0.3s, transform 0.3s;
-    background: var(--red, #91050b);
-    color: #fff;
+    background: #F5F5DC;
+    color: #91050b;
+    border: 1px solid #F5F5DC;
     width: fit-content;
   }
 
   .hero-btn:hover {
     transform: translateY(-2px);
-    background: #b8070f;
+    background: transparent;
+    color: #F5F5DC;
   }
 
   .hero-right-column {
@@ -180,11 +188,11 @@
     transform-origin: bottom center;
   }
 
-  /* Absolute positioning layout to tightly overlap / cluster like a premium product shot */
-  .device-1 { z-index: 10; left: 8%; bottom: 12%; transform: rotate(-10deg); }
-  .device-2 { z-index: 20; left: 28%; bottom: 5%; transform: rotate(2deg); }
-  .device-3 { z-index: 15; left: 45%; bottom: 15%; transform: rotate(-3deg); height: 330px; }
-  .device-4 { z-index: 25; left: 60%; bottom: 8%; transform: rotate(6deg); height: 330px; }
+  /* Dense clustered overlap coordinates */
+  .device-1 { z-index: 10; left: 20%; bottom: 15%; transform: rotate(-8deg); }
+  .device-2 { z-index: 20; left: 32%; bottom: 8%; transform: rotate(2deg); }
+  .device-3 { z-index: 15; left: 45%; bottom: 16%; transform: rotate(-4deg); height: 330px; }
+  .device-4 { z-index: 25; left: 56%; bottom: 10%; transform: rotate(5deg); height: 330px; }
 
   @media (max-width: 768px) {
     .hero-right-column {
@@ -193,9 +201,9 @@
     .hero-device {
       height: 240px;
     }
-    .device-1 { left: 5%; }
-    .device-2 { left: 22%; }
-    .device-3 { height: 210px; }
-    .device-4 { height: 210px; }
+    .device-1 { left: 10%; }
+    .device-2 { left: 24%; }
+    .device-3 { left: 38%; height: 210px; }
+    .device-4 { left: 52%; height: 210px; }
   }
 </style>
