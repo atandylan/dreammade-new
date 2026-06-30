@@ -84,42 +84,36 @@ const productGroups = [
         </div>
 
         <div class="pstack-images">
-          {group.variants.map((variant, vIdx) => {
-            let spread = 9; 
-            let rotateAngle = 3.5;
-            let scaleSize = 95;
+          <div class="showcase-card rounded-3xl" style="position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 75%; background: rgba(15, 15, 15, 0.75); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0,0,0,0.45); z-index: 1;">
+            {group.variants.map((variant, vIdx) => {
+              let leftPercent = vIdx * 18; 
+              if (group.id === "syokpod-v2") {
+                leftPercent = vIdx * 13; // Tighter packing for thin SyokPod V2 sticks
+              } else if (group.id === "syokbar-target") {
+                leftPercent = vIdx * 25; // 3 devices
+              }
 
-            if (group.id === "syokpod-v2") {
-              spread = 11.5; 
-              rotateAngle = 4.5;
-              scaleSize = 98;
-            } else if (group.id === "syokbar-target") {
-              spread = 18; 
-              rotateAngle = 5;
-            }
-
-            return (
-              <img
-                src={variant.image}
-                alt={variant.colorName}
-                class="pstack-img"
-                style={`
-                  position: absolute;
-                  bottom: 0%;
-                  left: ${vIdx * spread}%;
-                  height: ${scaleSize}%;
-                  rotate: ${vIdx * rotateAngle}deg;
-                  z-index: ${(group.variants.length - vIdx) * 10}; /* KEEP THIS */
-                  opacity: ${1 - vIdx * 0.12}; /* KEEP THIS */
-                  transform-origin: bottom left; /* KEEP THIS */
-                  filter: drop-shadow(0 -10px 30px rgba(0,0,0,0.5));
-                  --vIdx: ${vIdx};
-                `}
-                loading="lazy"
-                decoding="async"
-              />
-            );
-          })}
+              return (
+                <img
+                  src={variant.image}
+                  alt={variant.colorName}
+                  class="pstack-img"
+                  style={`
+                    position: absolute;
+                    bottom: 0;
+                    left: ${leftPercent}%;
+                    height: 130%; /* Pop-out effect: taller than card */
+                    z-index: ${(vIdx + 1) * 10}; /* Correct z-index stacking */
+                    opacity: ${1 - vIdx * 0.08};
+                    filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.4));
+                    --vIdx: ${vIdx};
+                  `}
+                  loading="lazy"
+                  decoding="async"
+                />
+              );
+            })}
+          </div>
         </div>
 
       </div>

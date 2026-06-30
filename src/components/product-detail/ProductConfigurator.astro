@@ -37,7 +37,7 @@ const showOptionSelector = firstEdition.options.length > 1;
         </div>
       </div>
       
-      <h1 class="configurator-title">{experience.name}</h1>
+      <h1 class="configurator-title text-5xl md:text-6xl lg:text-8xl break-words hyphens-none tracking-tight max-w-[90vw]">{experience.name}</h1>
       <p class="configurator-price">{experience.id.includes("syokbar") ? "RM 30.00" : "RM 120.00"}</p>
     </div>
 
@@ -127,7 +127,6 @@ const showOptionSelector = firstEdition.options.length > 1;
 
   .configurator-title {
     font-family: var(--font-display, 'Archivo Black', 'Inter', sans-serif);
-    font-size: clamp(32px, 3.8vw, 56px) !important;
     font-weight: 900 !important;
     line-height: 1.0 !important;
     color: var(--text-dark, #090909) !important;
