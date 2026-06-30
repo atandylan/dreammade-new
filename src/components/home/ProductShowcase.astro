@@ -86,10 +86,15 @@ const productGroups = [
         <div class="pstack-images">
           {group.variants.map((variant, vIdx) => {
             let rightPercent = vIdx * 18 + 6; 
+            let imgHeight = 96; // Default height
+
             if (group.id === "syokpod-v2") {
               rightPercent = vIdx * 13 + 12; // Shifted left to fit cleanly inside card padding
             } else if (group.id === "syokbar-target") {
               rightPercent = vIdx * 25 + 6; // 3 devices
+            } else if (group.id === "syokbar") {
+              rightPercent = vIdx * 16 + 6; // Slightly tighter packing to shift left device away from text
+              imgHeight = 93.5; // Slightly scaled down by ~2px to 3px
             }
 
             const numVariants = group.variants.length;
@@ -106,7 +111,7 @@ const productGroups = [
                   position: absolute;
                   bottom: 1.5rem;
                   right: ${rightPercent}%;
-                  height: 96%; /* Sized to fit cleanly inside the card container */
+                  height: ${imgHeight}%; /* Sized to fit cleanly inside the card container */
                   z-index: ${(vIdx + 1) * 10}; /* Correct z-index stacking */
                   opacity: ${1 - vIdx * 0.08};
                   filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.4));
