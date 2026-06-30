@@ -402,18 +402,18 @@ export function initHomeMotion() {
   // ─── STACKING PRODUCT CARDS (nexgen-style)
   const stackCards = gsap.utils.toArray<HTMLElement>(".product-stack-card");
 
-  // 3D Card Stacking Reveal: Scale down and darken each card as the next one enters
+  // 3D Card Stacking Reveal: Scale down and fade out each card as the next one enters
   stackCards.forEach((card, idx) => {
     if (idx === stackCards.length - 1) return;
     gsap.to(card, {
-      scale: 0.95,
-      filter: "brightness(0.7)",
-      opacity: 0.8,
+      scale: 0.93,
+      filter: "brightness(0.3) blur(4px)",
+      opacity: 0,
       scrollTrigger: {
         id: `dreammade-home-pstack-blur-${idx}`,
         trigger: stackCards[idx + 1],
-        start: "top 80%",
-        end: "top 20%",
+        start: "top 60%",
+        end: "top 25%",
         scrub: true,
       },
     });

@@ -4,10 +4,13 @@
 <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden w-full hero-section bg-[#91050b]">
   <div class="absolute inset-0 z-[-1] bg-[#91050b]"></div>
   
+  <!-- Massive 'S' logo centered in the absolute background of the entire section -->
+  <img src="/intro-logo.svg" class="absolute inset-0 m-auto w-[90%] h-[90%] object-contain opacity-10 pointer-events-none z-0" style="mix-blend-mode: overlay;" />
+  
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[80vh] px-8 w-full max-w-7xl mx-auto hero-container">
     {/* Left Column */}
     <div class="hero-left-column flex flex-col justify-center">
-      <h1 class="hero-title hero-line text-6xl md:text-8xl font-extrabold uppercase leading-[0.85] text-[#F5F5DC] mb-4">
+      <h1 class="hero-title hero-line text-5xl md:text-7xl font-extrabold uppercase leading-[0.85] text-[#F5F5DC] mb-4">
         BUILT DIFFERENT.
       </h1>
       <p class="hero-desc hero-line text-lg text-[#F5F5DC] mb-8 max-w-md leading-snug opacity-80">
@@ -18,9 +21,8 @@
       </a>
     </div>
 
-    {/* Right Column */}
-    <div class="hero-right-column relative h-[500px] w-full flex items-center justify-center overflow-visible">
-      <img src="/intro-logo.svg" class="absolute inset-0 m-auto w-[130%] h-[130%] object-contain opacity-20 pointer-events-none z-0" />
+    {/* Right Column: Clean horizontal row */}
+    <div class="hero-right-column hero-devices-row relative w-full flex items-center justify-center overflow-visible">
       <img 
         src="/products/syokpod/v2/syokpod-v2-black-01.webp" 
         alt="Syokpod V2 Black" 
@@ -72,17 +74,14 @@
   .m-auto {
     margin: auto !important;
   }
-  .w-\[130\%\] {
-    width: 130% !important;
+  .w-\[90\%\] {
+    width: 90% !important;
   }
-  .h-\[130\%\] {
-    height: 130% !important;
+  .h-\[90\%\] {
+    height: 90% !important;
   }
-  .opacity-20 {
-    opacity: 0.2 !important;
-  }
-  .z-\[-1\] {
-    z-index: -1;
+  .opacity-10 {
+    opacity: 0.1 !important;
   }
   .z-0 {
     z-index: 0;
@@ -118,8 +117,8 @@
 
   @media (min-width: 768px) {
     .hero-container {
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
     }
   }
 
@@ -128,11 +127,12 @@
     flex-direction: column;
     justify-content: center;
     color: #F5F5DC;
+    z-index: 5;
   }
 
   .hero-title {
     font-family: var(--font-display, 'Archivo Black', 'Inter', sans-serif);
-    font-size: clamp(56px, 8vw, 112px);
+    font-size: clamp(48px, 6.2vw, 88px); /* scaled down proportionately */
     font-weight: 900;
     line-height: 0.85 !important;
     letter-spacing: -0.04em;
@@ -141,7 +141,7 @@
   }
 
   .hero-desc {
-    font-size: clamp(16px, 1.2vw, 20px);
+    font-size: clamp(15px, 1.1vw, 18px);
     color: rgba(245, 245, 220, 0.8);
     line-height: 1.35 !important;
     margin-bottom: 2rem;
@@ -174,33 +174,43 @@
     position: relative;
     height: 500px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 5;
+  }
+
+  /* Horizontal Grid Layout Redesign */
+  .hero-devices-row {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.75rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: auto !important;
+    min-height: 420px !important;
   }
 
   .hero-device {
-    position: absolute;
-    height: 380px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.65));
-    transform-origin: bottom center;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 280px !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5)) !important;
+    z-index: 2 !important;
   }
 
-  /* Crescent/fan shape array coordinates */
-  .device-1 { left: 0%; bottom: 5%; transform: rotate(-15deg); z-index: 10; height: 340px; }
-  .device-2 { left: 22%; bottom: 0%; transform: rotate(-5deg); z-index: 20; height: 400px; }
-  .device-3 { left: 45%; bottom: 2%; transform: rotate(5deg); z-index: 30; height: 380px; }
-  .device-4 { left: 68%; bottom: 8%; transform: rotate(15deg); z-index: 15; height: 340px; }
-
   @media (max-width: 768px) {
-    .hero-right-column {
-      height: 360px;
+    .hero-devices-row {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5rem !important;
+      min-height: 320px !important;
     }
-    .device-1 { left: -5%; height: 200px; position: absolute; bottom: 5%; transform: rotate(-15deg); z-index: 10; }
-    .device-2 { left: 20%; height: 240px; position: absolute; bottom: 0%; transform: rotate(-5deg); z-index: 20; }
-    .device-3 { left: 45%; height: 220px; position: absolute; bottom: 2%; transform: rotate(5deg); z-index: 30; }
-    .device-4 { left: 70%; height: 200px; position: absolute; bottom: 8%; transform: rotate(15deg); z-index: 15; }
+    .hero-device {
+      max-height: 200px !important;
+    }
   }
 </style>

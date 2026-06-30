@@ -96,8 +96,8 @@ h1, h2, h3,
   min-width: 0;
   max-inline-size: 100%;
   text-wrap: balance;
-  word-break: normal;
-  overflow-wrap: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
   hyphens: none;
 }
 
