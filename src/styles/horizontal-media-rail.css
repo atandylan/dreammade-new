@@ -77,3 +77,11 @@
     margin-inline: 20px;
   }
 }
+
+.rounded-2xl {
+  border-radius: 16px !important;
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
+}

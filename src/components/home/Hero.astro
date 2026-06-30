@@ -1,16 +1,16 @@
 ---
 ---
 
-<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden w-full hero-section">
-  <div class="absolute inset-0 z-[-1]" style="background: radial-gradient(circle at 70% 50%, #2A0A0A 0%, #000000 60%);"></div>
+<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden w-full hero-section bg-black">
+  <div class="absolute inset-0 z-[-1] bg-black"></div>
   
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[80vh] px-8 w-full max-w-7xl mx-auto hero-container">
     {/* Left Column */}
     <div class="hero-left-column flex flex-col justify-center">
-      <h1 class="hero-title hero-line text-5xl md:text-7xl font-extrabold uppercase leading-none text-white mb-4">
+      <h1 class="hero-title hero-line text-6xl md:text-8xl font-extrabold uppercase leading-[0.85] text-white mb-4">
         BUILT DIFFERENT.
       </h1>
-      <p class="hero-desc hero-line text-lg text-gray-300 mb-8 max-w-md">
+      <p class="hero-desc hero-line text-lg text-gray-300 mb-8 max-w-md leading-snug">
         Designed around the ease of closed systems and bold flavours. The SyokGeng identity meets raw performance.
       </p>
       <a href="#products" class="hero-btn hero-line button w-fit">
@@ -20,6 +20,7 @@
 
     {/* Right Column */}
     <div class="hero-right-column relative h-[500px] w-full flex items-center justify-center overflow-visible">
+      <img src="/intro-logo.svg" class="absolute inset-0 w-full h-[120%] object-contain opacity-30 drop-shadow-2xl z-0 scale-125 pointer-events-none" />
       <img 
         src="/products/syokpod/v2/syokpod-v2-black-01.webp" 
         alt="Syokpod V2 Black" 
@@ -51,7 +52,10 @@
 <style>
   .hero-section {
     position: relative;
-    background: #000;
+    background-color: #000;
+  }
+  .bg-black {
+    background-color: #000;
   }
   .absolute {
     position: absolute;
@@ -64,6 +68,27 @@
   }
   .z-\[-1\] {
     z-index: -1;
+  }
+  .z-0 {
+    z-index: 0;
+  }
+  .scale-125 {
+    transform: scale(1.25);
+  }
+  .pointer-events-none {
+    pointer-events: none;
+  }
+  .opacity-30 {
+    opacity: 0.3;
+  }
+  .object-contain {
+    object-fit: contain;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .h-\[120\%\] {
+    height: 120%;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -101,10 +126,10 @@
 
   .hero-title {
     font-family: var(--font-display, 'Archivo Black', 'Inter', sans-serif);
-    font-size: clamp(48px, 6vw, 84px);
+    font-size: clamp(56px, 8vw, 112px); /* text-6xl md:text-8xl range */
     font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -0.03em;
+    line-height: 0.85 !important;
+    letter-spacing: -0.04em;
     margin: 0 0 1rem;
     text-transform: uppercase;
   }
@@ -112,7 +137,7 @@
   .hero-desc {
     font-size: clamp(16px, 1.2vw, 20px);
     color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
+    line-height: 1.35 !important; /* leading-snug */
     margin-bottom: 2rem;
     max-width: 480px;
   }
