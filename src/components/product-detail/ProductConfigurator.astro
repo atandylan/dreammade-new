@@ -29,6 +29,10 @@ const showOptionSelector = firstEdition.options.length > 1;
             alt={`${experience.name} ${firstOption.displayName}`}
           />
         </div>
+        
+        <h1 class="configurator-title">{experience.name}</h1>
+        <p class="configurator-price">{experience.id.includes("syokbar") ? "RM 30.00" : "RM 120.00"}</p>
+
         <div class="configurator-readout">
           <span id="configuratorEdition">{firstEdition.name}</span>
           <b id="configuratorOption">{firstOption.displayName}</b>
@@ -45,7 +49,9 @@ const showOptionSelector = firstEdition.options.length > 1;
           <h2 id="configuratorHeadline">{viewer.headline}</h2>
           <div class="configurator-description">
             {viewer.body.map((paragraph, index) => (
-              <p id={index === 0 ? "configuratorDescription" : undefined}>{paragraph}</p>
+              <p id={index === 0 ? "configuratorDescription" : undefined}>
+                {index === 0 ? "Experience raw performance and uncompromising design. Built for movement, crafted for those who demand more from their daily carry. This system is designed around the ease of closed system capsules and bold, long-lasting flavours. Engineered for the street, refined for absolute durability and tactile pleasure in every single draw." : paragraph}
+              </p>
             ))}
           </div>
         </div>
@@ -119,10 +125,30 @@ const showOptionSelector = firstEdition.options.length > 1;
     height: auto !important;
   }
 
+  .configurator-title {
+    font-family: var(--font-display, 'Archivo Black', 'Inter', sans-serif);
+    font-size: clamp(32px, 3.8vw, 56px) !important;
+    font-weight: 900 !important;
+    line-height: 1.0 !important;
+    color: var(--text-dark, #090909) !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+    text-transform: uppercase !important;
+  }
+
+  .configurator-price {
+    font-size: clamp(20px, 2.5vw, 32px) !important;
+    font-weight: 800 !important;
+    color: var(--red, #91050b) !important;
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+    font-family: var(--font-display, 'Archivo Black', 'Inter', sans-serif);
+  }
+
   .configurator-right-column {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.25rem !important; /* Reduced gap from 2.5rem for tight stack */
+    gap: 1rem !important; /* tight spacing (gap-4) */
     padding: clamp(16px, 3vw, 36px) 0 !important;
   }
 
@@ -131,6 +157,7 @@ const showOptionSelector = firstEdition.options.length > 1;
     padding: 0 !important;
     background: transparent !important;
     min-height: auto !important;
+    margin-bottom: 0.5rem !important; /* tight margin-bottom (mb-4 / mb-2 equivalent) */
   }
 
   .product-configurator-editorial h2 {

@@ -1,13 +1,13 @@
 ---
 ---
 
-<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden w-full hero-section bg-[#91050b]">
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden w-full hero-section bg-[#91050b]">
   <div class="absolute inset-0 z-[-1] bg-[#91050b]"></div>
   
   <!-- Massive 'S' logo centered in the absolute background of the entire section -->
   <img src="/intro-logo.svg" class="absolute inset-0 m-auto w-[90%] h-[90%] object-contain opacity-10 pointer-events-none z-0" style="mix-blend-mode: overlay;" />
   
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[80vh] px-8 w-full max-w-7xl mx-auto hero-container">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-screen px-8 w-full max-w-7xl mx-auto hero-container">
     {/* Left Column */}
     <div class="hero-left-column flex flex-col justify-center">
       <h1 class="hero-title hero-line text-5xl md:text-7xl font-extrabold uppercase leading-[0.85] text-[#F5F5DC] mb-4">
@@ -24,28 +24,28 @@
     {/* Right Column: Clean horizontal row */}
     <div class="hero-right-column hero-devices-row relative w-full flex items-center justify-center overflow-visible">
       <img 
-        src="/products/syokpod/v2/syokpod-v2-black-01.webp" 
-        alt="Syokpod V2 Black" 
-        class="hero-device device-1"
-        loading="eager"
+      	src="/products/syokpod/v2/syokpod-v2-black-01.webp" 
+      	alt="Syokpod V2 Black" 
+      	class="hero-device device-1"
+      	loading="eager"
       />
       <img 
-        src="/products/syokpod/pro/syokpod-pro-obsidian-01.webp" 
-        alt="Syokpod Pro Obsidian" 
-        class="hero-device device-2"
-        loading="eager"
+      	src="/products/syokpod/pro/syokpod-pro-obsidian-01.webp" 
+      	alt="Syokpod Pro Obsidian" 
+      	class="hero-device device-2"
+      	loading="eager"
       />
       <img 
-        src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" 
-        alt="Syokbar Grey" 
-        class="hero-device device-3"
-        loading="eager"
+      	src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" 
+      	alt="Syokbar Grey" 
+      	class="hero-device device-3"
+      	loading="eager"
       />
       <img 
-        src="/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp" 
-        alt="Syokbar Target Green" 
-        class="hero-device device-4"
-        loading="eager"
+      	src="/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp" 
+      	alt="Syokbar Target Green" 
+      	class="hero-device device-4"
+      	loading="eager"
       />
     </div>
   </div>
@@ -105,7 +105,7 @@
     grid-template-columns: 1fr;
     gap: 2rem;
     align-items: center;
-    min-height: 80vh;
+    min-height: 100vh;
     padding-left: 2rem;
     padding-right: 2rem;
     width: 100%;
@@ -185,7 +185,7 @@
     align-items: center !important;
     justify-content: center !important;
     height: auto !important;
-    min-height: 420px !important;
+    min-height: 500px !important;
   }
 
   .hero-device {
@@ -196,7 +196,7 @@
     bottom: auto !important;
     width: 100% !important;
     height: auto !important;
-    max-height: 350px !important; /* Increased by ~25% to fill space */
+    max-height: 450px !important; /* Increased by ~28% to fill space */
     object-fit: contain !important;
     filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5)) !important;
     z-index: 2 !important;
@@ -211,10 +211,10 @@
     .hero-devices-row {
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 1.5rem !important;
-      min-height: 320px !important;
+      min-height: 380px !important;
     }
     .hero-device {
-      max-height: 240px !important; /* Increased from 200px */
+      max-height: 290px !important; /* Increased from 240px by ~20% */
     }
     .device-1 { transform: rotate(-6deg) !important; }
     .device-2 { transform: rotate(-2deg) !important; }

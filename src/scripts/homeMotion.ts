@@ -158,7 +158,7 @@ export function initHomeMotion() {
     }
   })
     .to(".hero-left-column", { opacity: 0, y: -50, ease: "none" }, 0)
-    .to(".hero-right-column", { opacity: 0, y: -80, ease: "none" }, 0);
+    .to(".hero-right-column", { opacity: 0, y: -150, ease: "none" }, 0);
 
   // Hero Floating Devices
   if (!reduceMotion) {
@@ -217,7 +217,7 @@ export function initHomeMotion() {
     });
   });
 
-  gsap.fromTo(".about-logo-panel img", { scale: 0.95, yPercent: 5 }, {
+  gsap.fromTo(".about-logo-panel .about-logo-mask", { scale: 0.95, yPercent: 5 }, {
     scale: 1,
     yPercent: -5,
     ease: "none",
