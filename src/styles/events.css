@@ -5,7 +5,7 @@ main {
 }
 
 .events-hero {
-  min-height: 76svh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -166,7 +166,7 @@ main {
 
 @media (max-width: 760px) {
   .events-hero {
-    min-height: 72svh;
+    min-height: 100svh;
   }
 
   .events-hero h1,
