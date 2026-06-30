@@ -591,7 +591,7 @@ h1 {
 .tile h3 {
   margin: 10px 0 0;
   font-family: var(--font-display);
-  font-size: clamp(20px, 2.5vw, 32px);
+  font-size: clamp(18px, 2.2vw, 26px);
   line-height: 1;
   font-weight: 780;
   letter-spacing: -0.035em;
@@ -932,6 +932,6 @@ h1 {
   }
 
   .tile h3 {
-    font-size: clamp(15px, 4vw, 19px) !important;
+    font-size: clamp(12px, 3.8vw, 15px) !important;
   }
 }
