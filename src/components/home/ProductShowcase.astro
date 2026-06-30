@@ -1,6 +1,7 @@
 ---
 const productGroups = [
   {
+    id: "syokpod-v2",
     name: "SyokPod V2",
     badge: "Closed System",
     toneClass: "tone-dark",
@@ -15,6 +16,7 @@ const productGroups = [
     ]
   },
   {
+    id: "syokpod-pro",
     name: "SyokPod Pro",
     badge: "Closed System",
     toneClass: "tone-crimson",
@@ -29,6 +31,7 @@ const productGroups = [
     ]
   },
   {
+    id: "syokbar",
     name: "SyokBar",
     badge: "Disposable",
     toneClass: "tone-charcoal",
@@ -43,6 +46,7 @@ const productGroups = [
     ]
   },
   {
+    id: "syokbar-target",
     name: "SyokBar Target",
     badge: "Open System",
     toneClass: "tone-deep-red",
@@ -80,27 +84,42 @@ const productGroups = [
         </div>
 
         <div class="pstack-images">
-          {group.variants.map((variant, vIdx) => (
-            <img
-              src={variant.image}
-              alt={variant.colorName}
-              class="pstack-img"
-              style={`
-                position: absolute;
-                bottom: -2%;
-                left: ${vIdx * 9}%;
-                height: 95%;
-                z-index: ${(group.variants.length - vIdx) * 10}; /* KEEP THIS */
-                rotate: ${vIdx * 3.5}deg; /* KEEP THIS */
-                opacity: ${1 - vIdx * 0.12}; /* KEEP THIS */
-                transform-origin: bottom left; /* KEEP THIS */
-                filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
-                --vIdx: ${vIdx};
-              `}
-              loading="lazy"
-              decoding="async"
-            />
-          ))}
+          {group.variants.map((variant, vIdx) => {
+            let spread = 9; 
+            let rotateAngle = 3.5;
+            let scaleSize = 95;
+
+            if (group.id === "syokpod-v2") {
+              spread = 11.5; 
+              rotateAngle = 4.5;
+              scaleSize = 98;
+            } else if (group.id === "syokbar-target") {
+              spread = 18; 
+              rotateAngle = 5;
+            }
+
+            return (
+              <img
+                src={variant.image}
+                alt={variant.colorName}
+                class="pstack-img"
+                style={`
+                  position: absolute;
+                  bottom: -2%;
+                  left: ${vIdx * spread}%;
+                  height: ${scaleSize}%;
+                  rotate: ${vIdx * rotateAngle}deg;
+                  z-index: ${(group.variants.length - vIdx) * 10}; /* KEEP THIS */
+                  opacity: ${1 - vIdx * 0.12}; /* KEEP THIS */
+                  transform-origin: bottom left; /* KEEP THIS */
+                  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
+                  --vIdx: ${vIdx};
+                `}
+                loading="lazy"
+                decoding="async"
+              />
+            );
+          })}
         </div>
 
       </div>
