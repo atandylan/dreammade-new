@@ -87,14 +87,15 @@ const productGroups = [
               class="pstack-img"
               style={`
                 position: absolute;
-                bottom: -6%;
-                left: ${vIdx * 14}%;
-                height: 110%;
-                z-index: ${(group.variants.length - vIdx) * 10};
-                rotate: ${vIdx * 3.5}deg;
-                opacity: ${1 - vIdx * 0.12};
-                transform-origin: bottom left;
+                bottom: 0%;
+                left: ${vIdx * 8}%; /* Reduced from 14% to tighten the fan spread so it fits inside */
+                height: 85%; /* Shrunk from 107% to 85% so it perfectly fits the padding vertically */
+                z-index: ${(group.variants.length - vIdx) * 10}; /* KEEP THIS */
+                rotate: ${vIdx * 3.5}deg; /* KEEP THIS */
+                opacity: ${1 - vIdx * 0.12}; /* KEEP THIS */
+                transform-origin: bottom left; /* KEEP THIS */
                 filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
+                --vIdx: ${vIdx};
               `}
               loading="lazy"
               decoding="async"
@@ -115,10 +116,11 @@ const productGroups = [
 
 .pstack-images {
   position: absolute;
-  right: -4%;
+  right: 4%; /* Add 4% right padding so it doesn't touch the very edge */
+  left: auto;
   bottom: 0;
-  width: 65%;
-  height: 120%;
+  width: 48%; /* Reduced from 52% to ensure it gives the left-text enough space */
+  height: 100%;
   pointer-events: none;
   overflow: visible;
 }
@@ -138,6 +140,19 @@ const productGroups = [
 
 .product-stack-card {
   overflow: visible !important;
+}
+
+@media (max-width: 760px) {
+  .pstack-images {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 120%; /* Adjust slightly if needed so devices sit cleanly above the bottom */
+  }
+  .pstack-img {
+    left: calc(var(--vIdx) * 6%) !important; /* Extremely tight spread for narrow mobile screens */
+  }
 }
 
 /* ── Tone variants ── */
