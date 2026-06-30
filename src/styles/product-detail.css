@@ -1079,7 +1079,7 @@
   .product-editorial-hero { padding: 92px 18px 18px; }
   .product-editorial-shell { min-height: auto; grid-template-columns: minmax(0, 1fr); border-radius: 26px; }
   .product-editorial-copy { grid-row: 1; padding: 42px 24px 0; }
-  .product-editorial-copy h1 { font-size: clamp(44px, 13vw, 72px); line-height: .9; letter-spacing: -.015em; }
+  .product-editorial-copy h1 { font-size: clamp(32px, 10vw, 54px); line-height: .9; letter-spacing: -.015em; }
   .product-editorial-copy h2 { font-size: clamp(24px, 7vw, 36px); line-height: 1; }
   .editorial-description { padding: 22px; }
   .product-editorial-visual { grid-row: 2; min-height: clamp(350px, 78vw, 460px); }

@@ -790,7 +790,7 @@ h1 {
   .syokpod-campaign-v2 .campaign-copy { grid-row: 1; }
   .syokpod-campaign-v2 .campaign-product-group { grid-row: 2; }
   .campaign-copy { padding: 42px 24px 8px; }
-  .campaign-copy h2 { font-size: clamp(44px, 13vw, 72px); letter-spacing: -.015em; }
+  .campaign-copy h2 { font-size: clamp(32px, 10vw, 54px); letter-spacing: -.015em; }
   .campaign-copy h3 { font-size: clamp(24px, 7vw, 36px); }
   .campaign-product-group { min-height: clamp(330px, 78vw, 460px); }
   .campaign-product-group-v2 {

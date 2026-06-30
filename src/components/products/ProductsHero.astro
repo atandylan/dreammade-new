@@ -101,6 +101,12 @@ const heroProducts = [
     transition: transform .34s ease !important;
   }
 
+  /* Scale up SyokPod Pro to compensate for its canvas whitespace */
+  .products-family-pro .products-family-visual img {
+    height: 98% !important;
+    max-height: 380px !important;
+  }
+
   .products-family-item:hover .products-family-visual img {
     transform: translateY(-8px) !important;
   }

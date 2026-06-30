@@ -177,48 +177,70 @@
     z-index: 5;
   }
 
-  /* Horizontal Grid Layout Redesign */
+  /* Absolute Overlapping Stacking Layout */
   .hero-devices-row {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 0.75rem !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: auto !important;
-    min-height: 500px !important;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 500px !important;
   }
 
   .hero-device {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: 450px !important; /* Increased by ~28% to fill space */
+    position: absolute !important;
+    bottom: 10px !important;
+    width: 28% !important;
+    height: clamp(380px, 45vh, 480px) !important;
     object-fit: contain !important;
     filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5)) !important;
-    z-index: 2 !important;
+    transform-origin: bottom center !important;
+    transition: transform 0.4s ease !important;
   }
 
-  .device-1 { transform: rotate(-8deg) !important; }
-  .device-2 { transform: rotate(-3deg) !important; }
-  .device-3 { transform: rotate(3deg) !important; }
-  .device-4 { transform: rotate(8deg) !important; }
+  /* Absolute position and custom scaling to match visual sizes */
+  .device-1 {
+    left: 6% !important;
+    z-index: 10 !important;
+    transform: rotate(-10deg) translateY(15px) scale(0.92) !important;
+  }
+  .device-2 {
+    left: 28% !important;
+    z-index: 20 !important;
+    transform: rotate(-3deg) translateY(-10px) scale(1.06) !important;
+  }
+  .device-3 {
+    left: 50% !important;
+    z-index: 30 !important;
+    transform: rotate(4deg) translateY(5px) scale(0.98) !important;
+  }
+  .device-4 {
+    left: 72% !important;
+    z-index: 40 !important;
+    transform: rotate(10deg) translateY(20px) scale(1.02) !important;
+  }
 
   @media (max-width: 768px) {
     .hero-devices-row {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 1.5rem !important;
-      min-height: 380px !important;
+      height: 320px !important;
     }
     .hero-device {
-      max-height: 290px !important; /* Increased from 240px by ~20% */
+      width: 26% !important;
+      height: clamp(240px, 35vh, 290px) !important;
     }
-    .device-1 { transform: rotate(-6deg) !important; }
-    .device-2 { transform: rotate(-2deg) !important; }
-    .device-3 { transform: rotate(2deg) !important; }
-    .device-4 { transform: rotate(6deg) !important; }
+    .device-1 {
+      left: 4% !important;
+      transform: rotate(-10deg) translateY(10px) scale(0.92) !important;
+    }
+    .device-2 {
+      left: 26% !important;
+      transform: rotate(-3deg) translateY(-5px) scale(1.06) !important;
+    }
+    .device-3 {
+      left: 48% !important;
+      transform: rotate(4deg) translateY(2px) scale(0.98) !important;
+    }
+    .device-4 {
+      left: 70% !important;
+      transform: rotate(10deg) translateY(12px) scale(1.02) !important;
+    }
   }
 </style>

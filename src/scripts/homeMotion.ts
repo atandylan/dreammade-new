@@ -483,6 +483,35 @@ export function initHomeMotion() {
   });
 
 
+  // Card Text Info Stagger: Fade and slide up content children
+  stackCards.forEach((card, idx) => {
+    const infoElements = card.querySelectorAll<HTMLElement>(".pstack-info > *");
+    if (!infoElements.length) return;
+
+    gsap.fromTo(
+      infoElements,
+      {
+        y: 20,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        immediateRender: false,
+        scrollTrigger: {
+          id: `dreammade-home-pstack-info-${idx}`,
+          trigger: card,
+          start: "top 55%",
+          once: true,
+        },
+      }
+    );
+  });
+
+
   // ─── ABOUT SECTION: scrub parallax on the section title
   gsap.fromTo(".about .section-title, .about .eyebrow",
     { opacity: 0, y: 28 },

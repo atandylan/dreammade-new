@@ -64,7 +64,7 @@ const productGroups = [
 <section class="product-stacking-section" id="products">
   <div class="product-stacking-header wrap">
     <div class="eyebrow">The Lineup</div>
-    <h2>Built Different.</h2>
+    <h2>REFUSE TO BE ORDINARY.</h2>
   </div>
 
   {productGroups.map((group, idx) => (
@@ -84,36 +84,34 @@ const productGroups = [
         </div>
 
         <div class="pstack-images">
-          <div class="showcase-card rounded-3xl" style="position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 75%; background: rgba(15, 15, 15, 0.75); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0,0,0,0.45); z-index: 1; overflow-x: clip; overflow-y: visible;">
-            {group.variants.map((variant, vIdx) => {
-              let rightPercent = vIdx * 18; 
-              if (group.id === "syokpod-v2") {
-                rightPercent = vIdx * 13; // Tighter packing for thin SyokPod V2 sticks
-              } else if (group.id === "syokbar-target") {
-                rightPercent = vIdx * 25; // 3 devices
-              }
+          {group.variants.map((variant, vIdx) => {
+            let rightPercent = vIdx * 18; 
+            if (group.id === "syokpod-v2") {
+              rightPercent = vIdx * 13; // Tighter packing for thin SyokPod V2 sticks
+            } else if (group.id === "syokbar-target") {
+              rightPercent = vIdx * 25; // 3 devices
+            }
 
-              return (
-                <img
-                  src={variant.image}
-                  alt={variant.colorName}
-                  class="pstack-img"
-                  style={`
-                    position: absolute;
-                    bottom: 0;
-                    right: ${rightPercent}%;
-                    height: 130%; /* Pop-out effect: taller than card */
-                    z-index: ${(vIdx + 1) * 10}; /* Correct z-index stacking */
-                    opacity: ${1 - vIdx * 0.08};
-                    filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.4));
-                    --vIdx: ${vIdx};
-                  `}
-                  loading="lazy"
-                  decoding="async"
-                />
-              );
-            })}
-          </div>
+            return (
+              <img
+                src={variant.image}
+                alt={variant.colorName}
+                class="pstack-img"
+                style={`
+                  position: absolute;
+                  bottom: 0;
+                  right: ${rightPercent}%;
+                  height: 112%; /* Pop-out effect: slightly taller than card height */
+                  z-index: ${(vIdx + 1) * 10}; /* Correct z-index stacking */
+                  opacity: ${1 - vIdx * 0.08};
+                  filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.4));
+                  --vIdx: ${vIdx};
+                `}
+                loading="lazy"
+                decoding="async"
+              />
+            );
+          })}
         </div>
 
       </div>
@@ -165,6 +163,7 @@ const productGroups = [
   font-size: clamp(38px, 4.5vw, 58px) !important; /* Enlarged title (text-5xl/6xl equivalent) */
   line-height: 1.0 !important;
   margin: 12px 0 6px !important;
+  text-transform: uppercase !important;
 }
 
 .pstack-desc {

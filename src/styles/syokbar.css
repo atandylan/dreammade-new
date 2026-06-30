@@ -360,7 +360,7 @@
   .syokbar-copy,
   .syokbar-editorial-copy { padding: 42px 24px 10px; }
   .syokbar-copy h2,
-  .syokbar-editorial-copy h1 { font-size: clamp(44px, 13vw, 72px); letter-spacing: -.015em; }
+  .syokbar-editorial-copy h1 { font-size: clamp(32px, 10vw, 54px); letter-spacing: -.015em; }
   .syokbar-copy h3,
   .syokbar-editorial-copy h2 { font-size: clamp(24px, 7vw, 36px); }
   .syokbar-lineup,
