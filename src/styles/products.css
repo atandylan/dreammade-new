@@ -596,6 +596,9 @@ h1 {
   font-weight: 780;
   letter-spacing: -0.035em;
   text-transform: uppercase;
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 .tile p {
   margin: 10px 0 0;

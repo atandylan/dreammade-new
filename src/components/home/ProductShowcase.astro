@@ -77,7 +77,7 @@ const productGroups = [
 
         <div class="pstack-content pstack-info">
           <span class="pstack-badge">{group.badge ?? group.name}</span>
-          <h3 class="pstack-name whitespace-nowrap">{group.name}</h3>
+          <h3 class="pstack-name">{group.name}</h3>
           <p class="pstack-colors">Available in {group.variants.length} colours</p>
           <p class="pstack-desc">{group.description}</p>
           <a href={group.href} class="pstack-cta">Explore →</a>
@@ -87,7 +87,7 @@ const productGroups = [
           {group.variants.map((variant, vIdx) => {
             let rightPercent = vIdx * 18 + 6; 
             if (group.id === "syokpod-v2") {
-              rightPercent = vIdx * 13 + 6; // Tighter packing for thin SyokPod V2 sticks
+              rightPercent = vIdx * 13 + 12; // Shifted left to fit cleanly inside card padding
             } else if (group.id === "syokbar-target") {
               rightPercent = vIdx * 25 + 6; // 3 devices
             }
@@ -104,9 +104,9 @@ const productGroups = [
                 class="pstack-img"
                 style={`
                   position: absolute;
-                  bottom: 0;
+                  bottom: 1.5rem;
                   right: ${rightPercent}%;
-                  height: 98%; /* Sized to fit cleanly inside the card container */
+                  height: 96%; /* Sized to fit cleanly inside the card container */
                   z-index: ${(vIdx + 1) * 10}; /* Correct z-index stacking */
                   opacity: ${1 - vIdx * 0.08};
                   filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.4));
