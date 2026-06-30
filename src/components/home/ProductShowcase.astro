@@ -92,6 +92,11 @@ const productGroups = [
               rightPercent = vIdx * 25; // 3 devices
             }
 
+            const numVariants = group.variants.length;
+            const midIdx = (numVariants - 1) / 2;
+            const rotVal = (midIdx - vIdx) * (numVariants === 3 ? 5 : 3.5);
+            const yVal = Math.abs(midIdx - vIdx) * 3;
+
             return (
               <img
                 src={variant.image}
@@ -101,10 +106,11 @@ const productGroups = [
                   position: absolute;
                   bottom: 0;
                   right: ${rightPercent}%;
-                  height: 112%; /* Pop-out effect: slightly taller than card height */
+                  height: 104%; /* Pop-out effect: slightly taller than card height */
                   z-index: ${(vIdx + 1) * 10}; /* Correct z-index stacking */
                   opacity: ${1 - vIdx * 0.08};
                   filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.4));
+                  transform: rotate(${rotVal}deg) translateY(${yVal}px);
                   --vIdx: ${vIdx};
                 `}
                 loading="lazy"
@@ -130,7 +136,7 @@ const productGroups = [
   right: 0 !important;
   left: auto;
   bottom: 0;
-  width: 60% !important;
+  width: 50% !important;
   height: 100%;
   pointer-events: none;
   overflow: visible;
@@ -155,7 +161,7 @@ const productGroups = [
 }
 
 .pstack-info {
-  width: 45% !important;
+  width: 40% !important;
   max-width: none !important;
 }
 

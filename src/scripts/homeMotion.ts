@@ -147,6 +147,33 @@ export function initHomeMotion() {
   leaveSite?.addEventListener("click", leaveHandler);
   cleanup.push(() => leaveSite?.removeEventListener("click", leaveHandler));
 
+  // ─── FULL-PAGE SECTION STACKING (cinematic slide-over on desktop)
+  if (!isMobile && !reduceMotion) {
+    const stackPanels = [
+      ".hero-section",
+      ".tagline-section",
+      ".about",
+      ".product-stacking-section"
+    ];
+
+    stackPanels.forEach((panelSelector, i) => {
+      const panel = document.querySelector<HTMLElement>(panelSelector);
+      if (!panel) return;
+      panel.style.zIndex = `${(i + 1) * 10}`;
+      panel.style.position = "relative";
+
+      if (i < stackPanels.length - 1) {
+        ScrollTrigger.create({
+          trigger: panel,
+          start: "top top",
+          pin: true,
+          pinSpacing: false,
+          id: `dreammade-section-pin-${i}`,
+        });
+      }
+    });
+  }
+
   // Hero scroll-out parallax
   gsap.timeline({
     scrollTrigger: {
@@ -217,7 +244,7 @@ export function initHomeMotion() {
     });
   });
 
-  gsap.fromTo(".about-logo-panel .about-logo-mask", { scale: 0.95, yPercent: 5 }, {
+  gsap.fromTo(".about-logo-panel .about-logo-watermark", { scale: 0.95, yPercent: 5 }, {
     scale: 1,
     yPercent: -5,
     ease: "none",
