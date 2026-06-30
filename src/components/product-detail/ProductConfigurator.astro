@@ -122,8 +122,8 @@ const showOptionSelector = firstEdition.options.length > 1;
   .configurator-right-column {
     display: flex !important;
     flex-direction: column !important;
-    gap: 2.5rem !important;
-    padding: clamp(24px, 4vw, 48px) 0 !important;
+    gap: 1.25rem !important; /* Reduced gap from 2.5rem for tight stack */
+    padding: clamp(16px, 3vw, 36px) 0 !important;
   }
 
   /* Remove default margins, padding, heights, backgrounds causing gaps */
@@ -134,14 +134,22 @@ const showOptionSelector = firstEdition.options.length > 1;
   }
 
   .product-configurator-editorial h2 {
-    margin-top: 12px !important;
+    margin-top: 4px !important; /* Reduced margin */
+    margin-bottom: 8px !important;
     font-size: clamp(28px, 3.5vw, 54px) !important;
     line-height: 1.05 !important;
     color: var(--text-dark, #090909) !important;
   }
 
+  .configurator-description p {
+    margin-bottom: 8px !important; /* Tighter paragraphs */
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+  }
+
   .configurator-compatibility {
-    margin-top: 16px !important;
+    margin-top: 4px !important; /* Reduced from 16px */
+    margin-bottom: 4px !important;
     color: var(--red, #91050b) !important;
     font-weight: 800 !important;
     text-transform: uppercase !important;
@@ -154,7 +162,7 @@ const showOptionSelector = firstEdition.options.length > 1;
     background: transparent !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.5rem !important;
+    gap: 1rem !important; /* Tight spacing between selectors */
   }
 
   .configurator-control-group {

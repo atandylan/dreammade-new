@@ -35,21 +35,21 @@ section {
   min-width: 0;
   max-width: 100%;
   margin-top: clamp(16px, 2.4vw, 28px);
-  color: var(--white);
-  opacity: 0.08;
+  color: #F5F5DC !important;
+  opacity: 1 !important;
   font-family: var(--font-display);
-  font-size: clamp(90px, 13vw, 210px);
+  font-size: clamp(80px, 11vw, 180px);
   font-weight: 900;
   font-variation-settings:
     "wght" 900,
     "wdth" 116,
     "opsz" 72;
   line-height: .76;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   white-space: nowrap;
   -webkit-text-stroke: 0;
-  text-shadow: 0 18px 46px rgba(9,9,9,.18);
+  text-shadow: 0 18px 46px rgba(0,0,0,0.3);
 }
 
 .clothing-lookbook {

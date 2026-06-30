@@ -194,14 +194,18 @@
     right: auto !important;
     top: auto !important;
     bottom: auto !important;
-    transform: none !important;
     width: 100% !important;
     height: auto !important;
-    max-height: 280px !important;
+    max-height: 350px !important; /* Increased by ~25% to fill space */
     object-fit: contain !important;
     filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5)) !important;
     z-index: 2 !important;
   }
+
+  .device-1 { transform: rotate(-8deg) !important; }
+  .device-2 { transform: rotate(-3deg) !important; }
+  .device-3 { transform: rotate(3deg) !important; }
+  .device-4 { transform: rotate(8deg) !important; }
 
   @media (max-width: 768px) {
     .hero-devices-row {
@@ -210,7 +214,11 @@
       min-height: 320px !important;
     }
     .hero-device {
-      max-height: 200px !important;
+      max-height: 240px !important; /* Increased from 200px */
     }
+    .device-1 { transform: rotate(-6deg) !important; }
+    .device-2 { transform: rotate(-2deg) !important; }
+    .device-3 { transform: rotate(2deg) !important; }
+    .device-4 { transform: rotate(6deg) !important; }
   }
 </style>
