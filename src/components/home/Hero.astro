@@ -188,22 +188,19 @@
     transform-origin: bottom center;
   }
 
-  /* Dense clustered overlap coordinates */
-  .device-1 { z-index: 10; left: 20%; bottom: 15%; transform: rotate(-8deg); }
-  .device-2 { z-index: 20; left: 32%; bottom: 8%; transform: rotate(2deg); }
-  .device-3 { z-index: 15; left: 45%; bottom: 16%; transform: rotate(-4deg); height: 330px; }
-  .device-4 { z-index: 25; left: 56%; bottom: 10%; transform: rotate(5deg); height: 330px; }
+  /* Crescent/fan shape array coordinates */
+  .device-1 { left: 0%; bottom: 5%; transform: rotate(-15deg); z-index: 10; height: 340px; }
+  .device-2 { left: 22%; bottom: 0%; transform: rotate(-5deg); z-index: 20; height: 400px; }
+  .device-3 { left: 45%; bottom: 2%; transform: rotate(5deg); z-index: 30; height: 380px; }
+  .device-4 { left: 68%; bottom: 8%; transform: rotate(15deg); z-index: 15; height: 340px; }
 
   @media (max-width: 768px) {
     .hero-right-column {
       height: 360px;
     }
-    .hero-device {
-      height: 240px;
-    }
-    .device-1 { left: 10%; }
-    .device-2 { left: 24%; }
-    .device-3 { left: 38%; height: 210px; }
-    .device-4 { left: 52%; height: 210px; }
+    .device-1 { left: -5%; height: 200px; position: absolute; bottom: 5%; transform: rotate(-15deg); z-index: 10; }
+    .device-2 { left: 20%; height: 240px; position: absolute; bottom: 0%; transform: rotate(-5deg); z-index: 20; }
+    .device-3 { left: 45%; height: 220px; position: absolute; bottom: 2%; transform: rotate(5deg); z-index: 30; }
+    .device-4 { left: 70%; height: 200px; position: absolute; bottom: 8%; transform: rotate(15deg); z-index: 15; }
   }
 </style>

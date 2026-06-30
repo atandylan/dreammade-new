@@ -11,7 +11,7 @@ const { variant = "standard" } = Astro.props;
 {variant === "reveal" ? (
   <section class="footer-reveal" id="contact">
     <footer class="wrap footer-content">
-      <div class="footer-word">{site.name}</div>
+      <div class="footer-word text-black">{site.name}</div>
       
       <div class="footer-reveal-grid">
         <div class="footer-reveal-col">
@@ -63,7 +63,7 @@ const { variant = "standard" } = Astro.props;
   <footer class="footer footer-standard" id="contact">
     <div class="wrap footer-grid">
       <div class="footer-top">
-        <div class="footer-word">{site.name}</div>
+        <div class="footer-word text-black">{site.name}</div>
       </div>
 
       <div class="footer-columns">
@@ -148,3 +148,12 @@ const { variant = "standard" } = Astro.props;
     </div>
   </footer>
 )}
+
+<style>
+  .text-black {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    -webkit-text-stroke: 0 !important;
+    opacity: 1 !important;
+  }
+</style>

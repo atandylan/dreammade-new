@@ -76,7 +76,7 @@ export const syokpodGtEdition: SyokPodEdition = {
   viewLabels: ["FRONT", "ANGLED", "BODY DETAIL"],
   defaultViewIndex: 1,
   options: [
-    { id: "copper", name: "Copper", displayName: "Copper", colour: "#a95e3d", images: ["/products/syokpod/gt/syokpod-gt-copper-01.webp", "/products/syokpod/gt/syokpod-gt-copper-04.webp", "/products/syokpod/gt/syokpod-gt-copper-body.webp"] },
+    { id: "copper", name: "Copper", displayName: "Copper", colour: "#a95e3d", images: ["/products/syokpod/gt/syokpod-gt-copper-01.webp", "/products/syokpod/gt/syokpod-gt-cooper-04.webp", "/products/syokpod/gt/syokpod-gt-copper-body.webp"] },
     { id: "silver", name: "Silver", displayName: "Silver", colour: "#b9bec4", images: ["/products/syokpod/gt/syokpod-gt-silver-01.webp", "/products/syokpod/gt/syokpod-gt-silver-02.webp", "/products/syokpod/gt/syokpod-gt-silver-body.webp"] }
   ],
   specs: syokpodSpecs
@@ -264,7 +264,7 @@ export const syokpodGtExperience: SyokPodExperience = withNarratives({
     "The product viewer leads with the stronger front-facing angles so the finish reads immediately."
   ]),
   storySlides: [
-    { eyebrow: "Form", title: "Copper and silver with a sharper edge.", body: "Both metallic finishes keep the familiar V2 body while pushing the object into collector territory.", image: "/products/syokpod/gt/syokpod-gt-copper-04.webp", imageAlt: "SyokPod GT Copper front-facing view", tone: "red" },
+    { eyebrow: "Form", title: "Copper and silver with a sharper edge.", body: "Both metallic finishes keep the familiar V2 body while pushing the object into collector territory.", image: "/products/syokpod/gt/syokpod-gt-cooper-04.webp", imageAlt: "SyokPod GT Copper front-facing view", tone: "red" },
     { eyebrow: "Finish", title: "Built around the finish.", body: "Detail views give the metallic body room to feel deliberate and product-led.", image: "/products/syokpod/gt/syokpod-gt-silver-body.webp", imageAlt: "SyokPod GT Silver body detail" }
   ],
   narrative: {
