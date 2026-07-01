@@ -26,9 +26,20 @@
 
 .syokbar-target-campaign {
   background:
-    radial-gradient(circle at 76% 20%, rgba(145,5,11,.09), transparent 30%),
-    linear-gradient(135deg, var(--brand-grey-soft), var(--brand-cream-light));
-  color: var(--text-dark);
+    radial-gradient(circle at 76% 20%, rgba(247,243,238,.12), transparent 30%),
+    linear-gradient(135deg, #770208, var(--red)) !important;
+  color: var(--cream) !important;
+}
+.syokbar-target-campaign .syokbar-copy h2,
+.syokbar-target-campaign .syokbar-copy h3,
+.syokbar-target-campaign .campaign-link {
+  color: var(--cream) !important;
+}
+.syokbar-target-campaign .syokbar-copy p {
+  color: rgba(247, 243, 238, 0.8) !important;
+}
+.syokbar-target-campaign .product-family-signature .eyebrow {
+  color: rgba(247, 243, 238, 0.74) !important;
 }
 
 .syokbar-copy {
@@ -373,11 +384,11 @@
   .syokbar-target-stage,
   .syokbar-hero-stage { min-height: clamp(330px, 72vw, 460px); }
   .syokbar-device { width: 21%; height: 62%; bottom: 12%; }
-  .syokbar-device-1 { left: 3%; }
-  .syokbar-device-2 { left: 22%; }
-  .syokbar-device-3 { left: 41%; }
-  .syokbar-device-4 { left: 60%; }
-  .syokbar-device-5 { left: 79%; }
+  .syokbar-device-1 { left: 1%; }
+  .syokbar-device-2 { left: 19%; }
+  .syokbar-device-3 { left: 37%; }
+  .syokbar-device-4 { left: 55%; }
+  .syokbar-device-5 { left: 73%; }
   .syokbar-special-grid { grid-template-columns: 1fr; }
   .syokbar-special-panel { min-height: 440px; }
   .syokbar-target-stage {

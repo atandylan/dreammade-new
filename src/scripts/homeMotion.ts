@@ -174,8 +174,8 @@ export function initHomeMotion() {
     });
   }
 
-  // Hero scroll-out parallax
-  gsap.timeline({
+  // Hero scroll-out parallax with converging "menguncup" device animation
+  const heroRevealTimeline = gsap.timeline({
     scrollTrigger: {
       id: "dreammade-home-hero-reveal",
       trigger: ".hero-section",
@@ -183,9 +183,19 @@ export function initHomeMotion() {
       end: "bottom top",
       scrub: 1
     }
-  })
-    .to(".hero-left-column", { opacity: 0, y: -50, ease: "none" }, 0)
-    .to(".hero-right-column", { opacity: 0, y: -150, ease: "none" }, 0);
+  });
+
+  heroRevealTimeline.to(".hero-left-column", { opacity: 0, y: -50, ease: "none" }, 0);
+
+  if (!reduceMotion) {
+    heroRevealTimeline
+      .to(".hero-device.device-1", { x: 140, rotate: 5, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0)
+      .to(".hero-device.device-2", { x: 50, rotate: 1, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0)
+      .to(".hero-device.device-3", { x: -50, rotate: -1, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0)
+      .to(".hero-device.device-4", { x: -140, rotate: -5, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0);
+  } else {
+    heroRevealTimeline.to(".hero-right-column", { opacity: 0, y: -150, ease: "none" }, 0);
+  }
 
   // Hero Floating Devices
   if (!reduceMotion) {

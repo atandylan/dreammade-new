@@ -1,8 +1,8 @@
 ---
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden w-full hero-section bg-[#91050b]">
-  <div class="absolute inset-0 z-[-1] bg-[#91050b]"></div>
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden w-full hero-section">
+  <div class="absolute inset-0 z-[-1] hero-bg-gradient"></div>
   
   <!-- Massive 'S' logo centered in the absolute background of the entire section -->
   <img src="/intro-logo.svg" class="absolute inset-0 m-auto w-[90%] h-[90%] object-contain opacity-10 pointer-events-none z-0" style="mix-blend-mode: overlay;" />
@@ -24,14 +24,14 @@
     {/* Right Column: Clean horizontal row */}
     <div class="hero-right-column hero-devices-row relative w-full flex items-center justify-center overflow-visible">
       <img 
-      	src="/products/syokpod/v2/syokpod-v2-black-01.webp" 
-      	alt="Syokpod V2 Black" 
+      	src="/products/syokpod/v2/syokpod-v2-red-01.webp" 
+      	alt="Syokpod V2 Red" 
       	class="hero-device device-1"
       	loading="eager"
       />
       <img 
-      	src="/products/syokpod/pro/syokpod-pro-obsidian-01.webp" 
-      	alt="Syokpod Pro Obsidian" 
+      	src="/products/syokpod/pro/syokpod-pro-gold-01.webp" 
+      	alt="Syokpod Pro Gold" 
       	class="hero-device device-2"
       	loading="eager"
       />
@@ -42,8 +42,8 @@
       	loading="eager"
       />
       <img 
-      	src="/products/syokbar/SYOKBAR TARGET/syokbar-target-green-01.webp" 
-      	alt="Syokbar Target Green" 
+      	src="/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp" 
+      	alt="Syokbar Target Orange" 
       	class="hero-device device-4"
       	loading="eager"
       />
@@ -52,9 +52,12 @@
 </section>
 
 <style>
+  .hero-bg-gradient {
+    background: radial-gradient(circle at 75% 45%, #91050b 0%, #030303 85%) !important;
+  }
   .hero-section {
     position: relative;
-    background-color: #91050b;
+    background: radial-gradient(circle at 75% 45%, #91050b 0%, #030303 85%) !important;
   }
   .bg-\[\#91050b\] {
     background-color: #91050b;
