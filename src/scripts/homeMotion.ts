@@ -194,29 +194,30 @@ export function initHomeMotion() {
       opacity: 0.35,
       ease: "none"
     }, 0);
+
+    // Parallax shrink/fade out mobile hero devices on scroll
+    heroRevealTimeline.to(".hero-mobile-device", {
+      y: -60,
+      opacity: 0,
+      stagger: 0.05,
+      ease: "none"
+    }, 0);
   } else {
     heroRevealTimeline.to(".hero-bg-image", { opacity: 0, ease: "none" }, 0);
   }
 
-  // Kinetic Tagline Scrub
-  gsap.set(".kinetic-tagline", {
-    scale: 0.7,
-    filter: "blur(15px)",
-    opacity: 0
-  });
-
-  gsap.to(".kinetic-tagline", {
-    scale: 1,
-    filter: "blur(0px)",
-    opacity: 1,
-    scrollTrigger: {
-      id: "dreammade-home-tagline-reveal",
-      trigger: ".tagline-section",
-      start: "top bottom",
-      end: "bottom center",
-      scrub: 1
-    }
-  });
+  // Mobile Hero fanned devices load reveal animation
+  const mDevices = document.querySelectorAll(".hero-mobile-device");
+  if (mDevices.length && !reduceMotion) {
+    gsap.from(mDevices, {
+      opacity: 0,
+      y: 60,
+      scale: 0.6,
+      stagger: 0.08,
+      duration: 1.1,
+      ease: "back.out(1.2)",
+    });
+  }
 
   gsap.timeline({
     scrollTrigger: {
@@ -226,7 +227,7 @@ export function initHomeMotion() {
     }
   })
     .to(".about-title .reveal-line span", { yPercent: 0, stagger: .08, ease: "power4.out" }, 0)
-    .to(".about-copy .body-lg, .about-copy .syok-geng-note", { opacity: 1, y: 0, stagger: .06, ease: "power3.out" }, .1);
+    .to(".about-copy .body-lg", { opacity: 1, y: 0, ease: "power3.out" }, .1);
 
   document.querySelectorAll<HTMLElement>(".section-title").forEach((title, index) => {
     if (title.classList.contains("about-title")) return;
@@ -531,7 +532,7 @@ export function initHomeMotion() {
   });
 
 
-  // ─── ABOUT SECTION: scrub parallax on the section title
+  // ─── ABOUT SECTION: scrub parallax on the section title and slogan scrolling ticker
   gsap.fromTo(".about .section-title, .about .eyebrow",
     { opacity: 0, y: 28 },
     {
@@ -547,6 +548,18 @@ export function initHomeMotion() {
       }
     }
   );
+
+  // Single-line scrolling tagline ticker scrub
+  gsap.to(".about-slogan-primary", {
+    x: -160,
+    scrollTrigger: {
+      id: "dreammade-home-about-slogan-scroll",
+      trigger: ".about-slogan-banner",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1
+    }
+  });
 
   // ─── PRODUCT SHOWCASE section header reveal
   gsap.fromTo(".product-stacking-section .eyebrow, .product-stacking-header h2",

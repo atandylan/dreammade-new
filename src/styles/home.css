@@ -467,22 +467,34 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
 }
 .about-slogan-banner {
   width: 100%;
-  text-align: center;
-  padding: clamp(20px, 3vh, 32px) 20px;
+  padding: 20px 0;
   border-top: 1px solid rgba(9, 9, 9, 0.08);
   border-bottom: 1px solid rgba(9, 9, 9, 0.08);
   background: var(--brand-red);
   color: var(--cream);
-  margin-top: clamp(24px, 3.5vh, 44px);
+  margin-top: -20px !important; /* Pull up to close layout gaps */
+  overflow: hidden;
 }
-.about-slogan-banner span {
+.about-slogan-track {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 40px;
   font-family: 'Archivo Black', 'Outfit', sans-serif;
-  font-size: clamp(20px, 4.2vw, 58px);
+  font-size: clamp(24px, 4vw, 54px);
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
-  display: block;
+  will-change: transform;
+}
+.about-slogan-track i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: 0 0 auto;
+  opacity: 0.8;
 }
 
 
