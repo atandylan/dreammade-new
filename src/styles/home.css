@@ -271,25 +271,51 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
   z-index: 6;
   margin-top: -1px;
   padding-top: clamp(32px, 4.5vh, 60px) !important;
-  padding-bottom: clamp(32px, 4.5vh, 60px) !important;
+  padding-bottom: 12px !important;
   border-top: 1px solid rgba(9,9,9,.08);
   overflow: hidden;
 }
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
   align-items: center;
-  max-width: 920px !important;
+  max-width: 1200px !important;
   margin: 0 auto !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 .about-grid > * { position: relative; z-index: 1; }
 .about-copy {
   padding: clamp(18px, 3vw, 36px) 0;
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important;
+  align-items: flex-start !important;
+}
+
+/* S-Logo Container & Visuals */
+.about-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.about-logo-shield {
+  position: relative;
+  width: clamp(410px, 36vw, 620px);
+  height: clamp(410px, 36vw, 620px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(145, 5, 11, 0.05) 0%, transparent 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed rgba(9, 9, 9, 0.08); /* Static dashed orbit ring */
+}
+.about-logo-s {
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+  opacity: 0.88;
+  filter: drop-shadow(0 12px 32px rgba(145, 5, 11, 0.16));
 }
 .about-title {
   font-size: clamp(32px, 4.8vw, 68px);
@@ -314,8 +340,8 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
 }
 .about-copy .body-lg {
   max-width: 820px !important;
-  margin: 28px auto 0 !important;
-  text-align: center !important;
+  margin: 28px 0 0 !important;
+  text-align: left !important;
 }
 .syok-geng-note {
   max-width: 540px;
@@ -327,12 +353,12 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
 }
 .about-copy .syok-geng-note {
   max-width: 760px !important;
-  margin: 30px auto 0 !important;
-  border-left: none !important;
-  border-top: 1px solid rgba(245, 245, 220, 0.15) !important;
-  padding-left: 0 !important;
-  padding-top: 18px !important;
-  text-align: center !important;
+  margin: 30px 0 0 !important;
+  border-left: 3px solid var(--red) !important;
+  border-top: none !important;
+  padding-left: 18px !important;
+  padding-top: 0 !important;
+  text-align: left !important;
   width: 100% !important;
 }
 .image-tile { position: relative; overflow: hidden; isolation: isolate; background: var(--black); }
@@ -439,39 +465,24 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
   font-weight: 800;
   letter-spacing: .14em;
 }
-.about-kinetic {
-  margin-top: clamp(16px, 2vh, 24px) !important;
-  border-top: 1px solid rgba(9,9,9,.14);
-  border-bottom: 1px solid rgba(9,9,9,.14);
-  padding: 16px 0;
-  overflow: hidden;
+.about-slogan-banner {
+  width: 100%;
+  text-align: center;
+  padding: clamp(20px, 3vh, 32px) 20px;
+  border-top: 1px solid rgba(9, 9, 9, 0.08);
+  border-bottom: 1px solid rgba(9, 9, 9, 0.08);
+  background: var(--brand-red);
+  color: var(--cream);
+  margin-top: clamp(24px, 3.5vh, 44px);
 }
-.about-track {
-  width: max-content;
-  display: flex;
-  align-items: center;
-  gap: clamp(18px, 3vw, 42px);
-  color: var(--red);
-  font-family: var(--font-display);
-  font-size: clamp(34px, 7.5vw, 112px);
+.about-slogan-banner span {
+  font-family: 'Archivo Black', 'Outfit', sans-serif;
+  font-size: clamp(20px, 4.2vw, 58px);
   font-weight: 900;
-  line-height: .88;
-  letter-spacing: -.035em;
-  white-space: nowrap;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  will-change: transform;
-}
-.about-track-secondary {
-  margin-top: 10px;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(145,5,11,.42);
-}
-.about-track i {
-  width: .14em;
-  height: .14em;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: currentColor;
+  white-space: nowrap;
+  display: block;
 }
 
 
@@ -627,7 +638,20 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
 
 @media (max-width: 900px) {
   .about-grid, .product-stage-inner { grid-template-columns: 1fr; }
-  .about-grid { gap: 52px; }
+  .about-grid { gap: 52px; text-align: center !important; }
+  .about-copy { align-items: center !important; }
+  .about-copy .body-lg {
+    margin: 28px auto 0 !important;
+    text-align: center !important;
+  }
+  .about-copy .syok-geng-note {
+    margin: 30px auto 0 !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(245, 245, 220, 0.15) !important;
+    padding-left: 0 !important;
+    padding-top: 18px !important;
+    text-align: center !important;
+  }
   .about-logo-panel { min-height: 420px; aspect-ratio: 4 / 4.4; }
   .product-stage { padding: 92px 0; }
   .product-copy { min-height: auto; }
@@ -668,7 +692,7 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
   .product-family.active img:first-child:nth-last-child(3) + img + img { transform: rotate(8deg) translateX(50px) translateY(4px) scale(0.97); }
   .feed-section { padding-bottom: 70px; }
   .about-kinetic { margin-top: 16px !important; }
-  .about-track { font-size: clamp(38px, 13vw, 70px); }
+  .about-track { font-size: clamp(24px, 10vw, 42px) !important; }
   .faq-heading { margin-bottom: 28px; text-align: left; }
   .faq-question { min-height: 76px; align-items: center; }
 }
@@ -686,7 +710,7 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
 
 .product-stacking-section {
   position: relative;
-  padding-bottom: clamp(80px, 12vh, 150px) !important;
+  padding-bottom: clamp(180px, 26vh, 320px) !important;
   padding-top: clamp(20px, 3vw, 36px);
   overflow: visible;
 }
@@ -742,10 +766,12 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
 }
 
 .pstack-name {
-  font-size: var(--text-2xl);
-  font-weight: 700;
+  font-family: 'Archivo Black', 'Outfit', sans-serif;
+  font-size: var(--text-3xl);
+  font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
 .pstack-colors {
@@ -816,8 +842,10 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
   .pstack-images {
     top: 0;
     height: 55%;
-    overflow: hidden;
-    clip-path: inset(0 0 0 0 round 28px);
+    right: 12%;
+    width: 76%;
+    overflow: visible !important;
+    clip-path: none !important;
   }
   .pstack-img {
     height: 80% !important;

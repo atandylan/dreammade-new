@@ -188,25 +188,14 @@ export function initHomeMotion() {
   heroRevealTimeline.to(".hero-left-column", { opacity: 0, y: -50, ease: "none" }, 0);
 
   if (!reduceMotion) {
-    heroRevealTimeline
-      .to(".hero-device.device-1", { x: 140, rotate: 5, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0)
-      .to(".hero-device.device-2", { x: 50, rotate: 1, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0)
-      .to(".hero-device.device-3", { x: -50, rotate: -1, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0)
-      .to(".hero-device.device-4", { x: -140, rotate: -5, scale: 0.82, opacity: 0, ease: "power1.inOut" }, 0);
+    heroRevealTimeline.to(".hero-bg-image", {
+      scale: 1.08,
+      yPercent: 6,
+      opacity: 0.35,
+      ease: "none"
+    }, 0);
   } else {
-    heroRevealTimeline.to(".hero-right-column", { opacity: 0, y: -150, ease: "none" }, 0);
-  }
-
-  // Hero Floating Devices
-  if (!reduceMotion) {
-    gsap.to(".hero-device", {
-      y: -15,
-      yoyo: true,
-      repeat: -1,
-      duration: 2.5,
-      ease: "sine.inOut",
-      stagger: 0.15
-    });
+    heroRevealTimeline.to(".hero-bg-image", { opacity: 0, ease: "none" }, 0);
   }
 
   // Kinetic Tagline Scrub
@@ -442,8 +431,8 @@ export function initHomeMotion() {
       scrollTrigger: {
         id: `dreammade-home-pstack-blur-${idx}`,
         trigger: stackCards[idx + 1],
-        start: "top 60%",
-        end: "top 25%",
+        start: "top 65%",
+        end: "top 42%",
         scrub: 0.8,
       },
     });
@@ -463,7 +452,7 @@ export function initHomeMotion() {
           id: `dreammade-home-pstack-enter-${idx}`,
           trigger: card,
           start: "top bottom",
-          end: "top 20%",
+          end: "top 45%",
           scrub: 0.8,
         },
       }
@@ -472,11 +461,12 @@ export function initHomeMotion() {
 
   // Device Stagger Entry: Slide in devices from the right and start infinite floating on complete
   stackCards.forEach((card, idx) => {
+    const imagesContainer = card.querySelector<HTMLElement>(".pstack-images");
     const imgs = card.querySelectorAll<HTMLElement>(".pstack-img");
-    if (!imgs.length) return;
+    if (!imagesContainer || !imgs.length) return;
 
     gsap.fromTo(
-      imgs,
+      imagesContainer,
       {
         x: 100,
         opacity: 0,
@@ -484,24 +474,23 @@ export function initHomeMotion() {
       {
         x: 0,
         opacity: 1,
-        duration: 0.75,
-        stagger: 0.1,
-        ease: "back.out(1.2)",
+        duration: 0.85,
+        ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
           id: `dreammade-home-pstack-imgs-${idx}`,
           trigger: card,
-          start: "top 45%",
+          start: "top 70%",
           once: true,
         },
         onComplete: () => {
           if (!reduceMotion) {
             imgs.forEach((img) => {
               gsap.to(img, {
-                y: -8,
+                y: "-=8",
                 yoyo: true,
                 repeat: -1,
-                duration: 2,
+                duration: 2.2,
                 ease: "sine.inOut",
                 delay: Math.random() * 1.5, // Randomized delay to mimic zero-gravity breathing
               });

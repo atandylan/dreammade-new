@@ -17,7 +17,9 @@
 .syokpod-detail { overflow: clip; }
 .product-editorial-hero {
   padding: 112px 20px 20px;
-  background: var(--red);
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='roughNoiseProdHero'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughNoiseProdHero)' opacity='0.10'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 50% 50%, #91050b 0%, #4d0407 100%) !important;
   color: var(--cream);
   overflow: clip;
 }
@@ -238,7 +240,12 @@
   text-transform: uppercase;
 }
 
-.product-feature-board { padding: 20px; background: var(--red); }
+.product-feature-board {
+  padding: 20px;
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='roughNoiseProdFeat'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughNoiseProdFeat)' opacity='0.10'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 50% 50%, #91050b 0%, #4d0407 100%) !important;
+}
 .product-feature-shell[hidden] { display: none; }
 .product-feature-shell {
   width: min(1600px, 100%);
@@ -259,7 +266,11 @@
   border-radius: clamp(20px, 2vw, 32px);
   overflow: clip;
 }
-.feature-closeup-panel { background: var(--red); }
+.feature-closeup-panel {
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='roughNoiseCloseup'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughNoiseCloseup)' opacity='0.10'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 50% 50%, #91050b 0%, #4d0407 100%) !important;
+}
 .feature-closeup-panel img {
   position: absolute;
   inset: 12%;
@@ -412,7 +423,9 @@
 .product-narrative-copy p + p { margin-top: 20px; }
 
 .product-poster-gallery-group {
-  background: var(--red);
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='roughNoisePoster'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughNoisePoster)' opacity='0.10'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 50% 50%, #91050b 0%, #4d0407 100%) !important;
   padding-top: 20px;
 }
 .product-poster-gallery[hidden] { display: none; }

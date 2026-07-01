@@ -70,6 +70,23 @@ export function initEventsMotion() {
         .fromTo(visibleCards, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .42, stagger: .045, ease: "power3.out" }, "-=.28")
         .fromTo(visibleImages, { scale: 1.02 }, { scale: 1, duration: .78, stagger: .035, ease: "power3.out" }, "-=.5")
         .fromTo(toggle, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .36, ease: "power3.out" }, "-=.24");
+
+      visibleImages.forEach((img) => {
+        gsap.fromTo(img, 
+          { scale: 1 }, 
+          {
+            scale: 1.04,
+            ease: "none",
+            scrollTrigger: {
+              id: eventsTriggerId(`album-${albumIndex}-img-scroll`),
+              trigger: img,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true
+            }
+          }
+        );
+      });
     });
 
     window.setTimeout(() => ScrollTrigger.refresh(), 400);

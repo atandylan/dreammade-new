@@ -2,10 +2,7 @@
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden w-full hero-section">
-  <div class="absolute inset-0 z-[-1] hero-bg-gradient"></div>
-  
-  <!-- Massive 'S' logo centered in the absolute background of the entire section -->
-  <img src="/intro-logo.svg" class="absolute inset-0 m-auto w-[90%] h-[90%] object-contain opacity-10 pointer-events-none z-0" style="mix-blend-mode: overlay;" />
+  <div class="absolute inset-0 z-0 hero-bg-image"></div>
   
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-screen px-8 w-full max-w-7xl mx-auto hero-container">
     {/* Left Column */}
@@ -21,43 +18,26 @@
       </a>
     </div>
 
-    {/* Right Column: Clean horizontal row */}
-    <div class="hero-right-column hero-devices-row relative w-full flex items-center justify-center overflow-visible">
-      <img 
-      	src="/products/syokpod/v2/syokpod-v2-red-01.webp" 
-      	alt="Syokpod V2 Red" 
-      	class="hero-device device-1"
-      	loading="eager"
-      />
-      <img 
-      	src="/products/syokpod/pro/syokpod-pro-gold-01.webp" 
-      	alt="Syokpod Pro Gold" 
-      	class="hero-device device-2"
-      	loading="eager"
-      />
-      <img 
-      	src="/products/syokbar/SYOKBAR/syokbar-grey-01.webp" 
-      	alt="Syokbar Grey" 
-      	class="hero-device device-3"
-      	loading="eager"
-      />
-      <img 
-      	src="/products/syokbar/SYOKBAR TARGET/syokbar-target-orange-01.webp" 
-      	alt="Syokbar Target Orange" 
-      	class="hero-device device-4"
-      	loading="eager"
-      />
-    </div>
+    {/* Right Column: Empty spacer to let the background image's fanned devices show through */}
+    <div class="hero-right-column hero-devices-row relative w-full flex items-center justify-center overflow-visible"></div>
   </div>
 </section>
 
 <style>
-  .hero-bg-gradient {
-    background: radial-gradient(circle at 75% 45%, #91050b 0%, #030303 85%) !important;
+  .hero-bg-image {
+    background-image: url('/website-hero.jpg');
+    background-size: cover;
+    background-position: 80% center;
+    background-repeat: no-repeat;
+  }
+  @media (max-width: 768px) {
+    .hero-bg-image {
+      background-position: 64% 40%;
+    }
   }
   .hero-section {
     position: relative;
-    background: radial-gradient(circle at 75% 45%, #91050b 0%, #030303 85%) !important;
+    background: #030303 !important;
   }
   .bg-\[\#91050b\] {
     background-color: #91050b;
