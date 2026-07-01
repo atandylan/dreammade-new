@@ -691,8 +691,10 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
   .product-family.active img:first-child:nth-last-child(3) + img { transform: rotate(0deg) translateX(0) translateY(0) scale(1); }
   .product-family.active img:first-child:nth-last-child(3) + img + img { transform: rotate(8deg) translateX(50px) translateY(4px) scale(0.97); }
   .feed-section { padding-bottom: 70px; }
-  .about-kinetic { margin-top: 16px !important; }
-  .about-track { font-size: clamp(24px, 10vw, 42px) !important; }
+  .about-slogan-banner {
+    margin-top: 20px !important;
+    padding: 16px 12px !important;
+  }
   .faq-heading { margin-bottom: 28px; text-align: left; }
   .faq-question { min-height: 76px; align-items: center; }
 }
@@ -915,13 +917,7 @@ section { position: relative; padding: clamp(24px, 3.5vw, 48px) 0; }
 .about .about-panel-index {
   color: rgba(245, 245, 220, 0.6) !important;
 }
-.about-kinetic {
-  border-top-color: rgba(245, 245, 220, 0.15) !important;
-  border-bottom-color: rgba(245, 245, 220, 0.15) !important;
-}
-.about-track {
-  color: rgba(245, 245, 220, 0.15) !important;
-}
+
 
 /* 4. Product Showcase: CREAM (#F5F5DC), Red text (#91050b) */
 .product-stacking-section {
